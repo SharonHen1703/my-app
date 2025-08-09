@@ -1,0 +1,28 @@
+﻿# Node/React
+**/node_modules/
+**/build/
+**/dist/
+**/.cache/
+**/coverage/
+
+# Env & secrets
+**/.env
+**/.env.*
+!**/.env.example
+
+# Java / Spring Boot
+**/target/
+**/out/
+
+# Gradle
+**/.gradle/
+**/build/
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+
+# OS junk
+.DS_Store
+Thumbs.db
