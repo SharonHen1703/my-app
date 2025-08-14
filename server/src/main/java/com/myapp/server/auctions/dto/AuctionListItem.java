@@ -1,7 +1,8 @@
-package com.myapp.server.auctions;
+package com.myapp.server.auctions.dto;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.util.List;
 
 public record AuctionListItem(
         Long id,
@@ -13,5 +14,5 @@ public record AuctionListItem(
         Integer bidsCount,
         BigDecimal minBidToPlace,
         OffsetDateTime endDate,
-        String firstImageUrl
+        List<String> imageUrls
 ) {}

@@ -1,2 +1,2 @@
 -- baseline (no-op)
-DO $$ BEGIN END $$;
+-- H2 compatible baseline migration

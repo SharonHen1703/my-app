@@ -1,25 +1,11 @@
--- V2: users table (basic)
-CREATE TABLE IF NOT EXISTS public.users (
-  id          BIGSERIAL PRIMARY KEY,
-  email       TEXT        NOT NULL,
-  first_name  TEXT        NOT NULL,
-  last_name   TEXT        NOT NULL,
-  created_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
-  updated_at  TIMESTAMPTZ NOT NULL DEFAULT now()
+-- V2: users table (H2 compatible)
+CREATE TABLE IF NOT EXISTS users (
+  id          IDENTITY PRIMARY KEY,
+  email       VARCHAR(255) NOT NULL,
+  first_name  VARCHAR(255) NOT NULL,
+  last_name   VARCHAR(255) NOT NULL,
+  created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE UNIQUE INDEX IF NOT EXISTS users_email_unique
-  ON public.users ((lower(email)));
-
-CREATE OR REPLACE FUNCTION set_updated_at() RETURNS TRIGGER AS $$
-BEGIN
-  NEW.updated_at = now();
-  RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-DROP TRIGGER IF EXISTS users_set_updated_at ON public.users;
-CREATE TRIGGER users_set_updated_at
-  BEFORE UPDATE ON public.users
-  FOR EACH ROW
-  EXECUTE FUNCTION set_updated_at();
+CREATE UNIQUE INDEX IF NOT EXISTS users_email_unique ON users (email);
