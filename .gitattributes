@@ -1,1 +1,10 @@
+# SQL files - normalize line endings to LF
 *.sql text eol=lf
+
+# Maven wrapper - Unix LF
+/mvnw text eol=lf
+**/mvnw text eol=lf
+
+# Windows batch files - Windows CRLF  
+*.cmd text eol=crlf
+*.bat text eol=crlf

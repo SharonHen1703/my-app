@@ -5,7 +5,7 @@ import { fetchAuctions } from "../../api";
 import styles from "./index.module.css";
 import AuctionCard from "../AuctionCard";
 
-export default function AuctionsList() {
+function AuctionsList() {
   const [allItems, setAllItems] = React.useState<AuctionListItem[]>([]);
   const [error, setError] = React.useState<string | null>(null);
   const [loading, setLoading] = React.useState(false);
@@ -118,3 +118,5 @@ export default function AuctionsList() {
     </>
   );
 }
+
+export default AuctionsList;

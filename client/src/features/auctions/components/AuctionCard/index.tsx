@@ -1,27 +1,48 @@
-import { useState } from "react";
+import { useState, useMemo, memo, useEffect } from "react";
 import type { AuctionListItem } from "../../utils/types";
 import styles from "./index.module.css";
 
-function timeLeft(endsAt: string) {
-  const end = new Date(endsAt).getTime();
-  const diff = end - Date.now();
-  if (diff <= 0) return "הסתיים";
-  const sec = Math.floor(diff / 1000);
-  const d = Math.floor(sec / 86400);
-  const h = Math.floor((sec % 86400) / 3600);
-  const m = Math.floor((sec % 3600) / 60);
-  return d > 0 ? `${d} ימים ${h} שעות` : `${h} שעות ${m} דק׳`;
+interface AuctionCardProps {
+  item: AuctionListItem;
+  onPlaceBid?: (auction: AuctionListItem) => void;
 }
 
-export default function AuctionCard({ item }: { item: AuctionListItem }) {
+const AuctionCard = memo(function AuctionCard({
+  item,
+  onPlaceBid,
+}: AuctionCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentTime, setCurrentTime] = useState(Date.now());
+
+  // Update time every minute to avoid constant re-renders
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(Date.now());
+    }, 60000); // Update every minute instead of every second
+
+    return () => clearInterval(interval);
+  }, []);
 
   const price = item.currentBidAmount ?? item.minPrice;
 
+  const timeLeftText = useMemo(() => {
+    const end = new Date(item.endDate).getTime();
+    const diff = end - currentTime;
+    if (diff <= 0) return "הסתיים";
+    const sec = Math.floor(diff / 1000);
+    const d = Math.floor(sec / 86400);
+    const h = Math.floor((sec % 86400) / 3600);
+    const m = Math.floor((sec % 3600) / 60);
+    return d > 0 ? `${d} ימים ${h} שעות` : `${h} שעות ${m} דק׳`;
+  }, [item.endDate, currentTime]);
+
   // השתמש רק במערך תמונות
-  const images = item.imageUrls?.length > 0 ? item.imageUrls : [];
+  const images = useMemo(
+    () => (item.imageUrls?.length > 0 ? item.imageUrls : []),
+    [item.imageUrls]
+  );
 
   const hasMultipleImages = images.length > 1;
   const currentImage = images[currentImageIndex];
@@ -124,10 +145,19 @@ export default function AuctionCard({ item }: { item: AuctionListItem }) {
         <div>
           מחיר נוכחי: <b>{price.toLocaleString()}</b> ₪
         </div>
-        <div>מינ׳ קפיצה: {item.bidIncrement} ₪</div>
         <div>הצעות: {item.bidsCount}</div>
-        <div>זמן שנותר: {timeLeft(item.endDate)}</div>
+        <div>זמן שנותר: {timeLeftText}</div>
+
+        {onPlaceBid && (
+          <button className={styles.bidButton} onClick={() => onPlaceBid(item)}>
+            הגש הצעה
+          </button>
+        )}
       </div>
     </div>
   );
-}
+});
+
+AuctionCard.displayName = "AuctionCard";
+
+export default AuctionCard;
