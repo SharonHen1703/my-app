@@ -7,7 +7,7 @@ import AuctionsList from "./features/auctions/components/AuctionsList";
 import AuctionDetailPage from "./features/auctions/pages/AuctionDetailPage";
 import BidHistoryPage from "./features/auctions/pages/BidHistoryPage";
 import MyBidsPage from "./features/bids/pages/MyBidsPage";
-import MyAuctionsPage from "./features/auctions/pages/MyAuctionsPage";
+import MyAuctionsPageSmart from "./features/auctions/pages/MyAuctionsPage/MyAuctionsPageSmart";
 import LoginPage from "./features/auth/pages/LoginPage";
 import SignupPage from "./features/auth/pages/SignupPage";
 
@@ -53,10 +53,10 @@ function App() {
                 }
               />
               <Route
-                path="/my-auctions"
+                path="/my-auctions-smart"
                 element={
                   <RequireAuth>
-                    <MyAuctionsPage />
+                    <MyAuctionsPageSmart />
                   </RequireAuth>
                 }
               />
