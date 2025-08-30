@@ -1,113 +1,182 @@
 import { useState, useEffect } from "react";
-import type { AuctionListItem, PlaceBidRequest } from "../../utils/types";
-import { placeBid } from "../../api";
+import type { AuctionListItem } from "../../utils/types";
+import { getAuctionDetail } from "../../api";
+import { translateCondition } from "../../utils/conditionTranslations";
 import styles from "./index.module.css";
 
 type Props = {
   open: boolean;
   auction: AuctionListItem | null;
   onClose: () => void;
-  onPlaced: () => void; // נקרא אחרי הצלחה כדי לרענן רשימה
+  onPlaceBid: (auction: AuctionListItem) => void;
 };
 
-export default function PlaceBidDialog({
+export default function AuctionDetailsDialog({
   open,
   auction,
   onClose,
-  onPlaced,
+  onPlaceBid,
 }: Props) {
-  const [bidderId, setBidderId] = useState<number>(1); // שונה מ-2 כדי למנוע בעיות עם המוכר
-  const [maxBid, setMaxBid] = useState<number>(auction?.minBidToPlace ?? 0);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState<string>("");
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [auctionDetail, setAuctionDetail] = useState<AuctionListItem | null>(
+    null
+  );
+  const [loading, setLoading] = useState(false);
 
-  // עדכון ערך ברגע שהמודל נפתח עם מכרז אחר
   useEffect(() => {
-    if (auction) {
-      setMaxBid(auction.minBidToPlace);
-      setError("");
+    if (auction && open) {
+      setCurrentImageIndex(0);
+      setLoading(true);
+
+      getAuctionDetail(auction.id)
+        .then((detail) => {
+          setAuctionDetail(detail);
+        })
+        .catch((err) => {
+          console.error("Failed to load auction detail:", err);
+          setAuctionDetail(auction);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     }
-  }, [auction]);
+  }, [auction, open]);
 
   if (!open || !auction) return null;
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitting(true);
-    setError("");
-    try {
-      const body: PlaceBidRequest = { bidderId, maxBid };
-      await placeBid(auction.id, body);
-      onPlaced();
-      onClose();
-    } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Bid failed");
-    } finally {
-      setSubmitting(false);
+  const displayAuction = auctionDetail || auction;
+  const images = displayAuction.imageUrls || [];
+
+  const nextImage = () => {
+    if (images.length > 1) {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    }
+  };
+
+  const prevImage = () => {
+    if (images.length > 1) {
+      setCurrentImageIndex(
+        (prev) => (prev - 1 + images.length) % images.length
+      );
     }
   };
 
   const handleOverlayClick = (e: React.MouseEvent) => {
-    // Close dialog only if clicking on the overlay (not on the dialog content)
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
 
+  const handlePlaceBid = () => {
+    onPlaceBid(displayAuction);
+  };
+
   return (
     <div className={styles.overlay} onClick={handleOverlayClick}>
       <div className={styles.dialog}>
-        <h2 className={styles.title}>הגש הצעה – {auction.title}</h2>
+        <button
+          type="button"
+          onClick={onClose}
+          className={styles.closeButton}
+          aria-label="סגור"
+        >
+          ×
+        </button>
 
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <label className={styles.field}>
-            <span className={styles.label}>
-              User ID (זמני - אל תשתמש ב-1 אם אתה המוכר)
-            </span>
-            <input
-              type="number"
-              min={1}
-              value={bidderId}
-              onChange={(e) => setBidderId(Number(e.target.value))}
-              className={styles.input}
-              required
-            />
-          </label>
+        <h2 className={styles.title}>{displayAuction.title}</h2>
 
-          <label className={styles.field}>
-            <span className={styles.label}>
-              Maximum Bid (מינימום: {auction.minBidToPlace.toFixed(2)})
-            </span>
-            <input
-              type="number"
-              step="0.01"
-              min={auction.minBidToPlace}
-              value={maxBid}
-              onChange={(e) => setMaxBid(Number(e.target.value))}
-              className={styles.input}
-              required
-            />
-          </label>
+        {loading && <div className={styles.loading}>טוען פרטים...</div>}
 
-          {error && <div className={styles.error}>{error}</div>}
-
-          <div className={styles.buttons}>
-            <button
-              type="button"
-              onClick={onClose}
-              className={styles.cancelButton}
-            >
-              ביטול
-            </button>
-            <button
-              type="submit"
-              disabled={submitting}
-              className={styles.submitButton}
-            >
-              {submitting ? "שולח..." : "הגש הצעה"}
-            </button>
+        {/* Image Carousel */}
+        {images.length > 0 && (
+          <div className={styles.carousel}>
+            {images.length > 1 && (
+              <button
+                type="button"
+                onClick={prevImage}
+                className={styles.carouselButton}
+                aria-label="תמונה קודמת"
+              >
+                ‹
+              </button>
+            )}
+            <div className={styles.imageContainer}>
+              <img
+                src={images[currentImageIndex]}
+                alt={displayAuction.title}
+                className={styles.carouselImage}
+              />
+            </div>
+            {images.length > 1 && (
+              <button
+                type="button"
+                onClick={nextImage}
+                className={styles.carouselButton}
+                aria-label="תמונה הבאה"
+              >
+                ›
+              </button>
+            )}
+            {images.length > 1 && (
+              <div className={styles.imageIndicators}>
+                {images.map((_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`${styles.indicator} ${
+                      index === currentImageIndex ? styles.active : ""
+                    }`}
+                    aria-label={`תמונה ${index + 1}`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
-        </form>
+        )}
+
+        {/* Auction Details */}
+        <div className={styles.detailsGrid}>
+          <div className={styles.detailItem}>
+            <span className={styles.detailLabel}>תיאור המוצר:</span>
+            <span className={styles.detailValue}>
+              {displayAuction.description}
+            </span>
+          </div>
+
+          <div className={styles.detailItem}>
+            <span className={styles.detailLabel}>מצב הפריט:</span>
+            <span className={styles.detailValue}>
+              {translateCondition(displayAuction.condition)}
+            </span>
+          </div>
+
+          <div className={styles.detailItem}>
+            <span className={styles.detailLabel}>הצעה נוכחית:</span>
+            <span className={styles.detailValue}>
+              {displayAuction.currentBidAmount
+                ? `₪${displayAuction.currentBidAmount.toLocaleString()}`
+                : "אין הצעות"}
+            </span>
+          </div>
+
+          <div className={styles.detailItem}>
+            <span className={styles.detailLabel}>מספר הצעות:</span>
+            <span className={styles.detailValue}>
+              {displayAuction.bidsCount}
+            </span>
+          </div>
+        </div>
+
+        <div className={styles.actions}>
+          <button
+            type="button"
+            onClick={handlePlaceBid}
+            className={styles.placeBidButton}
+          >
+            הגש הצעה
+          </button>
+        </div>
       </div>
     </div>
   );

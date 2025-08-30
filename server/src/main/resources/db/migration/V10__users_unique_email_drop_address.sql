@@ -1,0 +1,4 @@
+-- DEPRECATED: Replaced by V19__users_cleanup_remove_address_and_email_lower.sql
+-- This file is intentionally left as a no-op to avoid Flyway version conflict.
+-- Do not remove in existing environments to prevent checksum mismatches.
+-- No-op

@@ -1,0 +1,1 @@
+-- Renamed from V4__sample_auctions.sql to avoid Flyway duplicate version. Original content moved to V11__sample_auctions.sql.

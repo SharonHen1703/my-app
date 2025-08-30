@@ -1,6 +1,6 @@
--- V2: users table (H2 compatible)
+-- V2: users table (PostgreSQL compatible)
 CREATE TABLE IF NOT EXISTS users (
-  id          IDENTITY PRIMARY KEY,
+  id          SERIAL PRIMARY KEY,
   email       VARCHAR(255) NOT NULL,
   first_name  VARCHAR(255) NOT NULL,
   last_name   VARCHAR(255) NOT NULL,

@@ -1,0 +1,521 @@
+/* My Auctions Page Styles */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  direction: rtl;
+}
+
+.headerSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e0e7ff;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1e40af;
+  margin: 0;
+}
+
+.headerActions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.addItemButton {
+  background: #059669;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.addItemButton:hover {
+  background: #047857;
+  transform: translateY(-1px);
+}
+
+.backToAuctionsLink {
+  color: #6b7280;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.backToAuctionsLink:hover {
+  color: #1e40af;
+}
+
+/* Loading State */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  color: #6b7280;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e5e7eb;
+  border-top: 4px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error State */
+.error {
+  text-align: center;
+  padding: 3rem;
+  color: #dc2626;
+}
+
+.error h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.error p {
+  margin-bottom: 2rem;
+  color: #6b7280;
+}
+
+/* Empty State */
+.emptyState {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #6b7280;
+}
+
+.emptyState h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+.emptyState p {
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.emptyFiltered {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 2px dashed #e5e7eb;
+}
+
+.emptyFiltered h3 {
+  color: #374151;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.emptyFiltered p {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+/* Empty results within table */
+.emptyResultsCell {
+  padding: 3rem 2rem;
+  text-align: center;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.emptyResults {
+  color: #6b7280;
+}
+
+.emptyResults p {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.emptyResults p:first-child {
+  font-weight: 500;
+  color: #374151;
+}
+
+.backButton {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.backButton:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+}
+
+/* Table wrapper with header controls */
+.tableWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.headerControls {
+  position: absolute;
+  left: -50px;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 12px;
+  z-index: 1;
+}
+
+.resetButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #6b7280;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.resetButton:hover,
+.resetButton:focus {
+  background: #f3f4f6;
+  border-color: #3b82f6;
+  color: #3b82f6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.resetButton:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.resetIcon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+  display: block;
+}
+
+.resetButton:hover .resetIcon {
+  transform: rotate(-15deg);
+}
+
+.resetButton:hover .resetIcon path {
+  fill: #3b82f6;
+}
+
+/* Table Styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.tableHeader {
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+  color: white;
+}
+
+.tableRow {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tableRow:last-child {
+  border-bottom: none;
+}
+
+.tableCell {
+  padding: 1rem;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.tableHeader .tableCell {
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.sortableHeader {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s;
+}
+
+.sortableHeader:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sortIcons {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.sortIcon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 1px;
+  width: 14px;
+  height: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  transition: all 0.2s;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.sortIcon:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.sortIcon.active {
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+  transform: scale(1.1);
+}
+
+.sortIcon svg {
+  width: 10px;
+  height: 5px;
+  fill: currentColor;
+}
+
+.filterDropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.filterButton {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: all 0.2s;
+}
+
+.filterButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.filterMenu {
+  position: fixed;
+  top: auto;
+  right: auto;
+  background: white;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem;
+  min-width: 200px;
+  z-index: 50;
+  color: #374151;
+}
+
+.filterOption {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s;
+}
+
+.filterOption:hover {
+  background: #f8fafc;
+}
+
+.filterCheckbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #3b82f6;
+}
+
+.emptyFiltered {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #6b7280;
+}
+
+.emptyFiltered h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+.emptyFiltered p {
+  margin-bottom: 2rem;
+}
+
+.tableBody .tableRow:hover {
+  background: #f8fafc;
+}
+
+/* Table Content Styles */
+.auctionTitle {
+  color: #1e40af;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.auctionTitle:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.currentPrice {
+  font-weight: 600;
+  color: #059669;
+  font-size: 1rem;
+}
+
+.statusPlaceholder {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.bidsCountButton {
+  background: #6366f1;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bidsCountButton:hover {
+  background: #4f46e5;
+  transform: translateY(-1px);
+}
+
+.timeRemainingPlaceholder {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .headerSection {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .headerActions {
+    justify-content: center;
+  }
+
+  .table {
+    font-size: 0.875rem;
+  }
+
+  .tableCell {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+}
+
+/* Status Badge Styles */
+.statusBadge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.statusActive {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.statusSold {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.statusUnsold {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.timeRemaining {
+  font-weight: 500;
+  color: #374151;
+}

@@ -1,0 +1,332 @@
+.sidebar {
+  width: 280px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0;
+  height: fit-content;
+  max-height: calc(100vh - 40px); /* מגבלת גובה למניעת חריגה מהמסך */
+  overflow-y: auto; /* גלילה אנכית במידת הצורך */
+  position: sticky;
+  top: 20px;
+  align-self: flex-start; /* נדבק לחלק העליון של הקונטיינר */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #d1d5db #f9fafb; /* Firefox */
+}
+
+/* Custom scrollbar for Webkit browsers */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: #f9fafb;
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+.loading {
+  padding: 20px;
+  text-align: center;
+  color: #6b7280;
+}
+
+.filterSection {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.filterSection:last-child {
+  border-bottom: none;
+}
+
+.filterHeader {
+  width: 100%;
+  padding: 16px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #111827;
+  transition: background-color 0.2s;
+}
+
+.filterHeader:hover {
+  background-color: #f9fafb;
+}
+
+.filterTitle {
+  text-align: right;
+}
+
+.expandIcon {
+  font-size: 20px;
+  font-weight: bold;
+  color: #6b7280;
+  transition: transform 0.2s;
+}
+
+.filterContent {
+  padding: 0 20px 16px 20px;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.filterOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filterOption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 6px 0;
+  transition: color 0.2s;
+}
+
+.filterOption:hover {
+  color: #2563eb;
+}
+
+.radioInput {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #d1d5db;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  position: relative;
+  appearance: none;
+  transition: all 0.2s;
+}
+
+.radioInput:checked {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+.radioInput:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+}
+
+.optionText {
+  font-size: 14px;
+  color: #374151;
+  text-align: right;
+  flex: 1;
+}
+
+.radioInput:checked + .optionText {
+  color: #2563eb;
+  font-weight: 500;
+}
+
+.comingSoon {
+  padding: 12px 0;
+  text-align: center;
+  color: #9ca3af;
+  font-style: italic;
+  font-size: 14px;
+}
+
+/* Price range */
+.priceRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.priceInput {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.priceLabel {
+  color: #6b7280;
+  font-size: 12px;
+  text-align: center;
+}
+.priceField {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 8px 10px;
+  min-width: 110px;
+}
+.priceField input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+}
+.currency {
+  font-weight: 600;
+  color: #374151;
+}
+.toText {
+  color: #6b7280;
+}
+.priceApply {
+  border: none;
+  background: #e5e7eb;
+  width: 34px;
+  height: 34px;
+  border-radius: 17px;
+  cursor: pointer;
+  color: #111827;
+}
+.priceApply:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.priceError {
+  margin-top: 8px;
+  color: #dc2626;
+  font-size: 12px;
+}
+
+/* Condition checkboxes */
+.checkboxOption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+}
+
+/* כפתור עוד/פחות קטגוריות */
+.toggleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  padding: 8px 12px;
+  margin-top: 8px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  color: #475569;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toggleButton:hover {
+  background: #e2e8f0;
+  border-color: #cbd5e1;
+  color: #334155;
+}
+
+.toggleIcon {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.toggleText {
+  font-size: 14px;
+}
+
+/* Search Input Styles */
+.searchInputContainer {
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 10px 12px;
+  padding-right: 35px; /* מקום לכפתור הניקוי */
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #ffffff;
+  color: #374151;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  direction: rtl; /* טקסט בעברית */
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.searchInput::placeholder {
+  color: #9ca3af;
+  direction: rtl;
+}
+
+.clearSearchButton {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #9ca3af;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.clearSearchButton:hover {
+  color: #6b7280;
+  background-color: #f3f4f6;
+}
+
+.clearSearchButton:focus {
+  outline: none;
+  color: #374151;
+  background-color: #e5e7eb;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 100%;
+    margin-bottom: 20px;
+    position: static; /* במובייל לא צריך sticky */
+    max-height: none; /* מסיר את מגבלת הגובה במובייל */
+    overflow-y: visible;
+  }
+}

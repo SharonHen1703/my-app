@@ -34,6 +34,12 @@ dist-ssr
 **/target/
 **/out/
 
+# H2 Database files
+**/data/
+*.db
+*.mv.db
+*.trace.db
+
 # Gradle
 **/.gradle/
 **/build/

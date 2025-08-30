@@ -5,6 +5,5 @@ import jakarta.validation.constraints.Positive;
 import java.math.BigDecimal;
 
 public record PlaceBidRequest(
-        @NotNull Long bidderId,
         @NotNull @Positive BigDecimal maxBid
 ) {}

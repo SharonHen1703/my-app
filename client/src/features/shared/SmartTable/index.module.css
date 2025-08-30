@@ -1,0 +1,148 @@
+/* Shared SmartTable styles, RTL aware */
+.wrapper {
+  width: 100%;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.tableHeader {
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+  color: #fff;
+  font-weight: 400; /* Remove bold from headers */
+}
+.tableRow {
+  border-bottom: 1px solid #e5e7eb;
+}
+.tableCell {
+  padding: 1rem;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 400; /* Ensure normal weight */
+}
+.sortableHeader {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s;
+  font-weight: 400; /* Ensure headers are not bold */
+}
+.sortableHeader:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.sortIcons {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.sortIcon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 1px;
+  width: 14px;
+  height: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  transition: color 0.2s, opacity 0.2s; /* Remove scale transition */
+  color: rgba(255, 255, 255, 0.6);
+}
+.sortIcon.active {
+  color: #fff;
+  opacity: 1;
+  /* Removed transform: scale and background */
+}
+.sortIcon:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+.sortIcon svg {
+  width: 10px;
+  height: 5px;
+  fill: currentColor;
+}
+.filterDropdown {
+  position: relative;
+  display: inline-block;
+}
+.filterButton {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: all 0.2s;
+}
+.filterButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+.filterMenu {
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem;
+  min-width: 200px;
+  color: #374151;
+}
+.filterOption {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s;
+}
+.filterOption:hover {
+  background: #f8fafc;
+}
+.filterOptionText {
+  font-size: 0.875rem; /* Smaller font size for filter options */
+  font-weight: 400; /* Normal weight for filter options */
+  line-height: 1.4;
+}
+.filterCheckbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #3b82f6;
+}
+.tableBody .tableRow:hover {
+  background: #f8fafc;
+}
+
+/* Empty state shown under header when no rows */
+.emptyResultsCell {
+  padding: 3rem 2rem;
+  text-align: center;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+.emptyResults {
+  color: #6b7280;
+}
+.emptyResults p {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+.emptyResults p:first-child {
+  font-weight: 500;
+  color: #374151;
+}

@@ -8,6 +8,8 @@ public record AuctionListItem(
         Long id,
         String title,
         String description,
+        String condition,
+        String categories,
         BigDecimal minPrice,
         BigDecimal bidIncrement,
         BigDecimal currentBidAmount,

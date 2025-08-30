@@ -1,0 +1,175 @@
+.fullWidthCard {
+  display: flex;
+  width: 100%;
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  direction: rtl;
+}
+
+.imageSection {
+  flex: 0 0 300px;
+  height: 200px;
+  position: relative;
+  background: #f3f4f6;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholderContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f4f6;
+  color: #9ca3af;
+}
+
+.placeholderIcon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.contentSection {
+  flex: 1;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.headerSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+  text-align: right;
+  flex: 1;
+}
+
+.priceSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: left;
+}
+
+.priceLabel {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+.priceValue {
+  color: #059669;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.detailsSection {
+  flex: 1;
+  margin-bottom: 1.5rem;
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.detailItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.label {
+  font-weight: 500;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+.value {
+  color: #1f2937;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.ended {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.actionSection {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.placeBidButton {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1.125rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.placeBidButton:hover {
+  background: #2563eb;
+}
+
+.placeBidButton:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  color: #6b7280;
+}
+
+.ownerMessage {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #f59e0b;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  direction: rtl;
+}
+
+@media (max-width: 768px) {
+  .fullWidthCard {
+    flex-direction: column;
+  }
+
+  .imageSection {
+    flex: none;
+    height: 200px;
+    width: 100%;
+  }
+
+  .detailsGrid {
+    grid-template-columns: 1fr;
+  }
+}

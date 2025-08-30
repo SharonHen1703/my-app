@@ -1,7 +1,7 @@
--- V3__auctions.sql (H2 compatible)
+-- V3__auctions.sql (PostgreSQL compatible)
 
 CREATE TABLE auctions (
-  id                IDENTITY PRIMARY KEY,
+  id                SERIAL PRIMARY KEY,
   title             VARCHAR(255) NOT NULL,
   description       TEXT         NOT NULL,
   condition         VARCHAR(50)  NOT NULL CHECK (condition IN ('new','like_new','used','refurbished','damaged_or_parts')),
