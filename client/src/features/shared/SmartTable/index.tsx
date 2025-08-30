@@ -69,6 +69,19 @@ export function SmartTable<T>(props: SmartTableProps<T>) {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
+  const updateMenuPosition = () => {
+    if (buttonRef.current) {
+      const buttonRect = buttonRef.current.getBoundingClientRect();
+      const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+      setMenuPosition({
+        top: buttonRect.bottom + scrollY + 4,
+        left: buttonRect.right - 200 + scrollX, // Align right edge with menu width (200px)
+      });
+    }
+  };
+
   useEffect(() => {
     const onDocClick = (e: MouseEvent) => {
       if (
@@ -97,13 +110,27 @@ export function SmartTable<T>(props: SmartTableProps<T>) {
         }
       }
     };
+    const onResize = () => {
+      if (filterOpen) {
+        updateMenuPosition();
+      }
+    };
+    const onScroll = () => {
+      if (filterOpen) {
+        updateMenuPosition();
+      }
+    };
     if (filterOpen) {
       document.addEventListener("mousedown", onDocClick);
       document.addEventListener("keydown", onKeyDown);
+      window.addEventListener("resize", onResize);
+      window.addEventListener("scroll", onScroll);
     }
     return () => {
       document.removeEventListener("mousedown", onDocClick);
       document.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("scroll", onScroll);
     };
   }, [filterOpen]);
 
@@ -115,15 +142,8 @@ export function SmartTable<T>(props: SmartTableProps<T>) {
   };
 
   const handleToggleMenu = () => {
-    if (!filterOpen && buttonRef.current) {
-      const buttonRect = buttonRef.current.getBoundingClientRect();
-      const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
-      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-
-      setMenuPosition({
-        top: buttonRect.bottom + scrollY + 4,
-        left: buttonRect.right - 200 + scrollX, // Align right edge with menu width (200px)
-      });
+    if (!filterOpen) {
+      updateMenuPosition();
     }
     setFilterOpen(!filterOpen);
   };
@@ -132,6 +152,13 @@ export function SmartTable<T>(props: SmartTableProps<T>) {
     if (!filterOptions || !getRowStatusValue) return rows;
     return rows.filter((r) => selectedFilters.has(getRowStatusValue(r)));
   }, [rows, filterOptions, getRowStatusValue, selectedFilters]);
+
+  // Update menu position when table data changes (if menu is open)
+  useEffect(() => {
+    if (filterOpen) {
+      updateMenuPosition();
+    }
+  }, [filteredRows, filterOpen]);
 
   const sortedRows = useMemo(() => {
     const data = [...filteredRows];
