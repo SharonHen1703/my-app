@@ -3,10 +3,7 @@ import type { CreateAuctionForm } from "../../utils/types";
 import { validateForm } from "../../utils/validation";
 import { CONDITION_OPTIONS, TOAST_MESSAGES } from "../../utils/constants";
 import { createAuction, fetchCategoriesMap } from "../../api";
-import {
-  showSuccessToast,
-  showErrorToast,
-} from "../../../../components/Toast/toastUtils";
+import { showSuccessToast, showErrorToast } from "../../../shared/ui/Toast";
 import styles from "./index.module.css";
 
 interface AddItemModalProps {

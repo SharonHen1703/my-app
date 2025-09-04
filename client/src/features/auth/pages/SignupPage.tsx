@@ -1,9 +1,6 @@
 import { useRef, useState } from "react";
 import { signup } from "../api";
-import {
-  showErrorToast,
-  showSuccessToast,
-} from "../../../components/Toast/toastUtils";
+import { showErrorToast, showSuccessToast } from "../../shared/ui/Toast";
 import styles from "./auth.module.css";
 import { Link, useNavigate } from "react-router-dom";
 

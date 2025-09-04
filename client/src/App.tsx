@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ToastProvider } from "./components/Toast/ToastProvider";
+import { ToastProvider } from "./features/shared/ui/Toast";
 import { AuthProvider } from "./features/auth/AuthProvider";
 import { RequireAuth } from "./features/auth/RequireAuth";
 import styles from "./App.module.css";
