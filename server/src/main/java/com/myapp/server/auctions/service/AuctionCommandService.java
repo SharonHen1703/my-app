@@ -7,8 +7,8 @@ import com.myapp.server.auctions.entity.enums.AuctionCategory;
 import com.myapp.server.auctions.entity.enums.AuctionStatus;
 import com.myapp.server.auctions.mapper.AuctionMapper;
 import com.myapp.server.auctions.repository.AuctionRepository;
-import com.myapp.server.users.entity.User;
-import com.myapp.server.users.repository.UserRepository;
+import com.myapp.server.auth.entity.User;
+import com.myapp.server.auth.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,31 +54,8 @@ public class AuctionCommandService {
      * בונה entity של מכרז מה-DTO
      */
     private Auction buildAuctionFromRequest(CreateAuctionRequest request, User seller) {
-        Auction auction = new Auction();
-        
-        // Set basic fields
-        auction.setTitle(request.getTitle());
-        auction.setDescription(request.getDescription());
-        auction.setStartingPrice(request.getStartingPrice());
-        auction.setCurrentPrice(request.getStartingPrice());
-        auction.setMinBidIncrement(request.getMinBidIncrement());
-        auction.setEndTime(request.getEndTime());
-        auction.setBuyItNowPrice(request.getBuyItNowPrice());
-        auction.setCondition(request.getCondition());
-        auction.setShippingCost(request.getShippingCost());
-        auction.setImageUrls(auctionPolicy.formatImageUrls(request.getImageUrls()));
-        
-        // Set category using validation
-        AuctionCategory category = auctionPolicy.parseCategory(request.getCategory());
-        auction.setCategory(category);
-        
-        // Set derived fields
-        auction.setSeller(seller);
-        auction.setStatus(AuctionStatus.ACTIVE);
-        auction.setCreatedAt(LocalDateTime.now());
-        auction.setTotalBids(0);
-        
-        return auction;
+        // Delegate to the mapper for proper conversion
+        return auctionMapper.fromCreateAuctionRequest(request, seller.getId());
     }
     
     /**
