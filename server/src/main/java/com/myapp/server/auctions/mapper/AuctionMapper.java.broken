@@ -1,0 +1,379 @@
+package com.myapp.server.auctions.mapper;
+
+import com.myapp.server.auctions.dto.AuctionDetail;
+import com.myapp.server.auctions.dto.AuctionListItem;
+import com.myapp.server.auctions.dto.CreateAuctionRequest;
+import com.myapp.server.auctions.dto.CreateAuctionResponse;
+import com.myapp.server.auctions.entity.Auction;
+import com.myapp.server.auctions.entity.enums.AuctionCondition;
+import com.myapp.server.auctions.entity.enums.AuctionStatus;
+import com.myapp.server.auctions.entity.enums.AuctionCategory;
+import com.myapp.server.auctions.repository.AuctionRepository;
+import com.myapp.server.auctions.utils.AuctionStatusTranslator;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+/**
+ * Handles all Entity ↔ DTO conversions for auction operations.
+ * Extracted from AuctionService to provide focused mapping responsibilities.
+ */
+@Component
+public class AuctionMapper {
+    
+    private final ObjectMapper objectMapper;
+    
+    public AuctionMapper(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+    }
+    
+    /**
+     * ממיר Projection ל-AuctionListItem DTO
+     */
+    public AuctionListItem toAuctionListItem(AuctionRepository.AuctionProjection projection) {
+        List<String> imageUrls = parseImageUrls(projection.getImageUrls());
+        
+        return new AuctionListItem(
+            projection.getId(),
+            projection.getTitle(),
+            projection.getDescription(),
+            projection.getCondition(),
+            projection.getCategories(),
+            projection.getMinPrice(),
+            projection.getBidIncrement(),
+            projection.getCurrentBidAmount(),
+            projection.getBidsCount(),
+            projection.getMinBidToPlace(),
+            projection.getEndDate(),
+            imageUrls
+        );
+    }
+    
+    /**
+     * ממיר Projection ל-AuctionDetail DTO
+     */
+    public AuctionDetail toAuctionDetail(AuctionRepository.AuctionProjection projection) {
+        List<String> imageUrls = parseImageUrls(projection.getImageUrls());
+        
+        return new AuctionDetail(
+            projection.getId(),
+            projection.getTitle(),
+            projection.getDescription(),
+            projection.getCondition(),
+            projection.getMinPrice(),
+            projection.getBidIncrement(),
+            projection.getCurrentBidAmount(),
+            projection.getBidsCount(),
+            projection.getMinBidToPlace(),
+            projection.getEndDate(),
+            imageUrls,
+            projection.getSellerId(),
+            projection.getStatus()
+        );
+    }
+    
+    /**
+     * Creates CreateAuctionResponse from saved Auction entity
+     */
+    public CreateAuctionResponse toCreateAuctionResponse(Auction auction) {
+        return new CreateAuctionResponse(
+            auction.getId(),
+            auction.getTitle(),
+            "Auction created successfully"
+        );
+    }
+    
+    /**
+     * Maps CreateAuctionRequest to Auction entity (field-to-field only)
+     * Note: Non-DTO fields (sellerId, etc.) are set in services
+     */
+    public Auction fromCreateAuctionRequest(CreateAuctionRequest request, Long sellerId) {
+        // Validate and convert condition
+        AuctionCondition condition;
+        try {
+            condition = AuctionCondition.fromValue(request.condition());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid condition: " + request.condition());
+        }
+
+        // Validate categories
+        for (String categoryCode : request.categories()) {
+            if (!AuctionCategory.isValidCode(categoryCode)) {
+                throw new IllegalArgumentException("Invalid category: " + categoryCode);
+            }
+        }
+
+        // Validate status
+        AuctionStatus status;
+        try {
+            status = AuctionStatus.valueOf(request.status().toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid status: " + request.status());
+        }
+
+        // Create auction entity
+        Auction auction = new Auction();
+        auction.setTitle(request.title());
+        auction.setDescription(request.description());
+        auction.setCondition(condition);
+        
+        // Convert categories list to JSON string
+        try {
+            String categoriesJson = objectMapper.writeValueAsString(request.categories());
+            auction.setCategories(categoriesJson);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to serialize categories", e);
+        }
+        
+        auction.setImageUrls("[]"); // Empty array for now
+        auction.setMinPrice(request.minPrice());
+        auction.setBuyNowPrice(null); // Not supported yet
+        auction.setBidIncrement(request.bidIncrement());
+        auction.setCurrentBidAmount(request.minPrice()); // Initialize with min_price
+        auction.setHighestMaxBid(null);
+        auction.setHighestUserId(null);
+        auction.setBidsCount(request.bidsCount());
+        auction.setStartDate(request.startDate());
+        auction.setEndDate(request.endDate());
+        auction.setSellerId(sellerId); // Use provided sellerId
+        auction.setStatus(status);
+
+        return auction;
+    }
+    
+    /**
+     * Maps UserAuctionProjection to UserAuctionItem DTO
+     */
+    public com.myapp.server.users.dto.UserAuctionItem toUserAuctionItem(
+            AuctionRepository.UserAuctionProjection projection) {
+        return new com.myapp.server.users.dto.UserAuctionItem(
+            projection.getId(),
+            projection.getTitle(),
+            projection.getCurrentPrice() != null ? projection.getCurrentPrice() : projection.getMinPrice(),
+            AuctionStatusTranslator.translateToHebrew(projection.getAuctionStatus()),
+            projection.getBidsCount(),
+            projection.getEndDate().toString()
+        );
+    }
+    
+    /**
+     * ממיר JSON string למערך תמונות
+     */
+    public List<String> parseImageUrls(String imageUrlsJson) {
+        if (imageUrlsJson == null || imageUrlsJson.equals("[]")) {
+            return List.of();
+        }
+        
+        try {
+            return objectMapper.readValue(imageUrlsJson, new TypeReference<List<String>>() {});
+        } catch (Exception e) {
+            return List.of();
+        }
+    }
+    
+    /**
+     * Helper method to parse condition string to AuctionCondition enum
+     */
+    public AuctionCondition parseCondition(String conditionStr) {
+        if (conditionStr == null || conditionStr.trim().isEmpty()) {
+            return null;
+        }
+        
+        try {
+            for (AuctionCondition condition : AuctionCondition.values()) {
+                if (condition.getValue().equals(conditionStr.trim())) {
+                    return condition;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Failed to parse condition: " + conditionStr + ", error: " + e.getMessage());
+        }
+        
+        return null;
+    }
+}
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * Handles all Entity ↔ DTO conversions for auction operations.
+ * Extracted from AuctionService to provide focused mapping responsibilities.
+ */
+@Component
+public class AuctionMapper {
+    
+    private final ObjectMapper objectMapper;
+    
+    public AuctionMapper(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+    }
+    
+    /**
+     * ממיר Projection ל-AuctionListItem DTO
+     */
+    public AuctionListItem toAuctionListItem(AuctionRepository.AuctionProjection projection) {
+        List<String> imageUrls = parseImageUrls(projection.getImageUrls());
+        
+        return new AuctionListItem(
+            projection.getId(),
+            projection.getTitle(),
+            projection.getDescription(),
+            projection.getCondition(),
+            projection.getCategories(),
+            projection.getMinPrice(),
+            projection.getBidIncrement(),
+            projection.getCurrentBidAmount(),
+            projection.getBidsCount(),
+            projection.getMinBidToPlace(),
+            projection.getEndDate(),
+            imageUrls
+        );
+    }
+    
+    /**
+     * ממיר Projection ל-AuctionDetail DTO
+     */
+    public AuctionDetail toAuctionDetail(AuctionRepository.AuctionProjection projection) {
+        List<String> imageUrls = parseImageUrls(projection.getImageUrls());
+        
+        return new AuctionDetail(
+            projection.getId(),
+            projection.getTitle(),
+            projection.getDescription(),
+            projection.getCondition(),
+            projection.getMinPrice(),
+            projection.getBidIncrement(),
+            projection.getCurrentBidAmount(),
+            projection.getBidsCount(),
+            projection.getMinBidToPlace(),
+            projection.getEndDate(),
+            imageUrls,
+            projection.getSellerId(),
+            projection.getStatus()
+        );
+    }
+    
+    /**
+     * Creates CreateAuctionResponse from saved Auction entity
+     */
+    public CreateAuctionResponse toCreateAuctionResponse(Auction auction) {
+        return new CreateAuctionResponse(
+            auction.getId(),
+            auction.getTitle(),
+            "Auction created successfully"
+        );
+    }
+    
+    /**
+     * Maps CreateAuctionRequest to Auction entity (field-to-field only)
+     * Note: Non-DTO fields (sellerId, etc.) are set in services
+     */
+    public Auction fromCreateAuctionRequest(CreateAuctionRequest request, Long sellerId) {
+        // Validate and convert condition
+        AuctionCondition condition;
+        try {
+            condition = AuctionCondition.fromValue(request.condition());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid condition: " + request.condition());
+        }
+
+        // Validate categories
+        for (String categoryCode : request.categories()) {
+            if (!AuctionCategory.isValidCode(categoryCode)) {
+                throw new IllegalArgumentException("Invalid category: " + categoryCode);
+            }
+        }
+
+        // Validate status
+        AuctionStatus status;
+        try {
+            status = AuctionStatus.valueOf(request.status().toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid status: " + request.status());
+        }
+
+        // Create auction entity
+        Auction auction = new Auction();
+        auction.setTitle(request.title());
+        auction.setDescription(request.description());
+        auction.setCondition(condition);
+        
+        // Convert categories list to JSON string
+        try {
+            String categoriesJson = objectMapper.writeValueAsString(request.categories());
+            auction.setCategories(categoriesJson);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to serialize categories", e);
+        }
+        
+        auction.setImageUrls("[]"); // Empty array for now
+        auction.setMinPrice(request.minPrice());
+        auction.setBuyNowPrice(null); // Not supported yet
+        auction.setBidIncrement(request.bidIncrement());
+        auction.setCurrentBidAmount(request.minPrice()); // Initialize with min_price
+        auction.setHighestMaxBid(null);
+        auction.setHighestUserId(null);
+        auction.setBidsCount(request.bidsCount());
+        auction.setStartDate(request.startDate());
+        auction.setEndDate(request.endDate());
+        auction.setSellerId(sellerId); // Use provided sellerId
+        auction.setStatus(status);
+
+        return auction;
+    }
+    
+    /**
+     * Maps UserAuctionProjection to UserAuctionItem DTO
+     */
+    public com.myapp.server.users.dto.UserAuctionItem toUserAuctionItem(
+            AuctionRepository.UserAuctionProjection projection) {
+        return new com.myapp.server.users.dto.UserAuctionItem(
+            projection.getId(),
+            projection.getTitle(),
+            projection.getCurrentPrice() != null ? projection.getCurrentPrice() : projection.getMinPrice(),
+            AuctionStatusTranslator.translateToHebrew(projection.getAuctionStatus()),
+            projection.getBidsCount(),
+            projection.getEndDate().toString() // שולח את תאריך הסיום כמו שהוא
+        );
+    }
+    
+    /**
+     * ממיר JSON string למערך תמונות
+     */
+    public List<String> parseImageUrls(String imageUrlsJson) {
+        if (imageUrlsJson == null || imageUrlsJson.equals("[]")) {
+            return List.of();
+        }
+        
+        try {
+            return objectMapper.readValue(imageUrlsJson, new TypeReference<List<String>>() {});
+        } catch (Exception e) {
+            // If parsing fails, return empty list
+            return List.of();
+        }
+    }
+    
+    /**
+     * Helper method to parse condition string to AuctionCondition enum
+     */
+    public AuctionCondition parseCondition(String conditionStr) {
+        if (conditionStr == null || conditionStr.trim().isEmpty()) {
+            return null;
+        }
+        
+        try {
+            for (AuctionCondition condition : AuctionCondition.values()) {
+                if (condition.getValue().equals(conditionStr.trim())) {
+                    return condition;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Failed to parse condition: " + conditionStr + ", error: " + e.getMessage());
+        }
+        
+        return null;
+    }
+}

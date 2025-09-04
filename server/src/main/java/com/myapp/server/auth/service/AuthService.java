@@ -1,4 +1,4 @@
-package com.myapp.server.auth;
+package com.myapp.server.auth.service;
 
 import com.myapp.server.auth.dto.SignupRequest;
 import com.myapp.server.auth.entity.User;
@@ -21,6 +21,31 @@ public class AuthService {
 
     public String normalizeEmail(String email) {
         return email == null ? "" : email.trim().toLowerCase();
+    }
+
+    public String validateAndNormalizeSignupData(SignupRequest req) {
+        // Validate and normalize inputs
+        final String emailNormalized = normalizeEmail(req.getEmail());
+        final String fullName = req.getFullName() == null ? "" : req.getFullName().trim();
+        final String password = req.getPassword() == null ? "" : req.getPassword().trim();
+        final String phoneRaw = req.getPhone();
+        final String phoneDigits = phoneRaw == null ? "" : phoneRaw.replaceAll("\\D", "");
+
+        if (fullName.length() < 2) {
+            throw new IllegalArgumentException("שם מלא חייב להיות באורך של לפחות 2 תווים");
+        }
+        if (password.length() < 8) {
+            throw new IllegalArgumentException("הסיסמה חייבת להיות באורך של לפחות 8 תווים");
+        }
+        if (phoneRaw != null && !phoneRaw.isBlank() && phoneDigits.length() != 10) {
+            throw new IllegalArgumentException("מספר טלפון חייב להכיל בדיוק 10 ספרות");
+        }
+        
+        // Set normalized values back to request
+        req.setEmail(emailNormalized);
+        if (!phoneDigits.isBlank()) req.setPhone(phoneDigits);
+        
+        return emailNormalized;
     }
 
     public Optional<User> findByEmailNormalized(String emailNormalized) {

@@ -4,7 +4,7 @@ import com.myapp.server.bids.dto.UserBidSummaryItem;
 import com.myapp.server.bids.service.BidsService;
 import com.myapp.server.users.dto.UserAuctionItem;
 import com.myapp.server.auctions.service.AuctionService;
-import com.myapp.server.auth.JwtService;
+import com.myapp.server.auth.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;

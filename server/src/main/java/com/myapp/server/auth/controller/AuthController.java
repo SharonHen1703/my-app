@@ -1,9 +1,12 @@
-package com.myapp.server.auth;
+package com.myapp.server.auth.controller;
 
 import com.myapp.server.auth.dto.LoginRequest;
 import com.myapp.server.auth.dto.SignupRequest;
 import com.myapp.server.auth.dto.UserResponse;
 import com.myapp.server.auth.entity.User;
+import com.myapp.server.auth.service.AuthService;
+import com.myapp.server.auth.service.JwtService;
+import com.myapp.server.auth.service.LoginRateLimiter;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

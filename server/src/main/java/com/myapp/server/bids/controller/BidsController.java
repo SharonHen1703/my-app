@@ -1,7 +1,7 @@
 package com.myapp.server.bids.controller;
 
 import com.myapp.server.bids.service.BidsService;
-import com.myapp.server.auth.JwtService;
+import com.myapp.server.auth.service.JwtService;
 import java.util.List;
 import com.myapp.server.bids.dto.PlaceBidRequest;
 import com.myapp.server.bids.dto.PlaceBidResponse;

@@ -2,8 +2,8 @@ package com.myapp.server.auctions.entity;
 
 import com.myapp.server.auctions.entity.enums.AuctionCondition;
 import com.myapp.server.auctions.entity.enums.AuctionStatus;
-import com.myapp.server.auctions.converter.AuctionConditionConverter;
-import com.myapp.server.auctions.converter.AuctionStatusConverter;
+import com.myapp.server.auctions.mapper.AuctionConditionConverter;
+import com.myapp.server.auctions.mapper.AuctionStatusConverter;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Type;
 

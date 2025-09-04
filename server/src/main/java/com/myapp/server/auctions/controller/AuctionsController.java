@@ -5,7 +5,7 @@ import com.myapp.server.auctions.dto.AuctionListItem;
 import com.myapp.server.auctions.dto.CreateAuctionRequest;
 import com.myapp.server.auctions.dto.CreateAuctionResponse;
 import com.myapp.server.auctions.service.AuctionService;
-import com.myapp.server.auth.JwtService;
+import com.myapp.server.auth.service.JwtService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.Cookie;
 import org.springframework.data.domain.Page;
