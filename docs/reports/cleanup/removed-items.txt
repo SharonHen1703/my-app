@@ -1,0 +1,18 @@
+# Cleanup Removed Items Log
+# Date: September 5, 2025
+# Branch: chore/pre-submit-cleanup
+
+## Items Removed:
+
+### Unused Imports (Step C):
+- Auction.java: org.hibernate.annotations.Type, java.util.List
+- UserAuctionMapper.java: org.springframework.stereotype.Component
+- AuctionCommandService.java: com.myapp.server.auctions.entity.enums.AuctionCategory, java.time.LocalDateTime
+- AuctionService.java: java.math.BigDecimal
+- User.java: java.time.OffsetDateTime  
+- BidsController.java: java.util.Map
+- AuctionLockingJdbcOps.java: java.sql.ResultSet, java.time.OffsetDateTime
+- BidsJdbcUserSummaries.java: java.math.BigDecimal
+
+### Dead Files (Step D):
+- BidsRecords.java: Duplicate records already defined in BidsDao.java - REMOVED SUCCESSFULLY

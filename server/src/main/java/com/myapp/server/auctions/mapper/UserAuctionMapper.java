@@ -3,7 +3,6 @@ package com.myapp.server.auctions.mapper;
 import com.myapp.server.auctions.repository.AuctionRepository;
 import com.myapp.server.auctions.service.policy.AuctionDefaults;
 import com.myapp.server.users.dto.UserAuctionItem;
-import org.springframework.stereotype.Component;
 
 /**
  * Pure mapper for user auction operations - no business logic, only field-to-field mapping.

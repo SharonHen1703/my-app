@@ -2,7 +2,6 @@ package com.myapp.server.bids.repository;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.List;
 

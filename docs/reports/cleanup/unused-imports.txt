@@ -1,0 +1,25 @@
+<file name="C:\projects\my-app\server\src\main\java\com\myapp\server\auctions\entity\Auction.java">
+Unused import 'org.hibernate.annotations.Type'
+Unused import 'java.util.List'
+<file name="C:\projects\my-app\server\src\main\java\com\myapp\server\auctions\mapper\UserAuctionMapper.java">
+Unused import 'org.springframework.stereotype.Component'
+<file name="C:\projects\my-app\server\src\main\java\com\myapp\server\auctions\service\AuctionCommandService.java">
+Unused import 'com.myapp.server.auctions.entity.enums.AuctionCategory'
+Unused import 'java.time.LocalDateTime'
+<file name="C:\projects\my-app\server\src\main\java\com\myapp\server\auctions\service\AuctionService.java">
+Unused import 'java.math.BigDecimal'
+<file name="C:\projects\my-app\server\src\main\java\com\myapp\server\auth\entity\User.java">
+Unused import 'java.time.OffsetDateTime'
+<file name="C:\projects\my-app\server\src\main\java\com\myapp\server\bids\controller\BidsController.java">
+Unused import 'java.util.Map'
+<file name="C:\projects\my-app\server\src\main\java\com\myapp\server\bids\repository\AuctionLockingJdbcOps.java">
+Unused import 'java.sql.ResultSet'
+Unused import 'java.time.OffsetDateTime'
+<file name="C:\projects\my-app\server\src\main\java\com\myapp\server\bids\repository\BidsJdbcUserSummaries.java">
+Unused import 'java.math.BigDecimal'
+<file name="C:\projects\my-app\server\src\main\java\com\myapp\server\bids\repository\BidsRowMappers.java">
+Unused import 'java.math.BigDecimal'
+<file name="C:\projects\my-app\server\src\main\java\com\myapp\server\bids\service\BidPlacementService.java">
+Unused import 'java.util.List'
+<file name="C:\projects\my-app\server\src\main\java\com\myapp\server\config\CorsConfig.java">
+Unused import 'org.springframework.web.cors.CorsConfigurationSource'

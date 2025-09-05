@@ -2,9 +2,6 @@ package com.myapp.server.bids.repository;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.sql.ResultSet;
-import java.time.OffsetDateTime;
-
 /**
  * Package-private helper for auction locking and existence checks.
  */

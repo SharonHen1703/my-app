@@ -3,7 +3,6 @@ package com.myapp.server.auctions.service;
 import com.myapp.server.auctions.dto.CreateAuctionRequest;
 import com.myapp.server.auctions.dto.CreateAuctionResponse;
 import com.myapp.server.auctions.entity.Auction;
-import com.myapp.server.auctions.entity.enums.AuctionCategory;
 import com.myapp.server.auctions.entity.enums.AuctionCondition;
 import com.myapp.server.auctions.entity.enums.AuctionStatus;
 import com.myapp.server.auctions.mapper.AuctionFormMapper;
@@ -17,8 +16,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDateTime;
 
 /**
  * Handles all write operations for auctions.

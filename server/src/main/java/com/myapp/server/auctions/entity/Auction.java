@@ -5,11 +5,9 @@ import com.myapp.server.auctions.entity.enums.AuctionStatus;
 import com.myapp.server.auctions.converter.AuctionConditionConverter;
 import com.myapp.server.auctions.converter.AuctionStatusConverter;
 import jakarta.persistence.*;
-import org.hibernate.annotations.Type;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "auctions")
