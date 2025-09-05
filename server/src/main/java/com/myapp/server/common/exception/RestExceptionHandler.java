@@ -41,6 +41,17 @@ public class RestExceptionHandler {
         return ResponseEntity.badRequest().body(body);
     }
 
+    @ExceptionHandler(BusinessRuleViolationException.class)
+    public ResponseEntity<Map<String, Object>> handleBusinessRuleViolation(BusinessRuleViolationException ex) {
+        Map<String, Object> body = new HashMap<>();
+        HttpStatus status = ex.getStatus();
+        body.put("timestamp", OffsetDateTime.now());
+        body.put("status", status.value());
+        body.put("error", status.getReasonPhrase());
+        body.put("message", ex.getMessage());
+        return ResponseEntity.status(status).body(body);
+    }
+
     @ExceptionHandler(ResponseStatusException.class)
     public ResponseEntity<Map<String, Object>> handleResponseStatus(ResponseStatusException ex) {
         Map<String, Object> body = new HashMap<>();

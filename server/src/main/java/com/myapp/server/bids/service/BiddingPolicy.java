@@ -1,6 +1,8 @@
 package com.myapp.server.bids.service;
 
 import com.myapp.server.bids.repository.BidsDao;
+import com.myapp.server.common.exception.BusinessRuleViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -44,8 +46,8 @@ public class BiddingPolicy {
      */
     public void validateFirstBid(BigDecimal bidAmount, BigDecimal minPrice) {
         if (bidAmount.compareTo(minPrice) < 0) {
-            throw new org.springframework.web.server.ResponseStatusException(
-                org.springframework.http.HttpStatus.BAD_REQUEST, 
+            throw new BusinessRuleViolationException(
+                HttpStatus.BAD_REQUEST, 
                 "ההצעה נמוכה מהמחיר ההתחלתי"
             );
         }
@@ -56,8 +58,8 @@ public class BiddingPolicy {
      */
     public void validateLeaderBidIncrease(BigDecimal newBid, BigDecimal previousMax) {
         if (previousMax == null || newBid.compareTo(previousMax) <= 0) {
-            throw new org.springframework.web.server.ResponseStatusException(
-                org.springframework.http.HttpStatus.BAD_REQUEST,
+            throw new BusinessRuleViolationException(
+                HttpStatus.BAD_REQUEST,
                 "עליך להעלות מעל ההצעה הקודמת שלך"
             );
         }
@@ -68,8 +70,8 @@ public class BiddingPolicy {
      */
     public void validateChallengerBid(BigDecimal bidAmount, BigDecimal minRequired) {
         if (bidAmount.compareTo(minRequired) < 0) {
-            throw new org.springframework.web.server.ResponseStatusException(
-                org.springframework.http.HttpStatus.BAD_REQUEST,
+            throw new BusinessRuleViolationException(
+                HttpStatus.BAD_REQUEST,
                 "ההצעה נמוכה מהמינימום המותר"
             );
         }
@@ -80,22 +82,22 @@ public class BiddingPolicy {
      */
     public void validateAuctionState(BidsDao.AuctionRow auction, Long bidderId) {
         if (!"active".equalsIgnoreCase(auction.status())) {
-            throw new org.springframework.web.server.ResponseStatusException(
-                org.springframework.http.HttpStatus.CONFLICT, 
+            throw new BusinessRuleViolationException(
+                HttpStatus.CONFLICT, 
                 "המכרז אינו פעיל"
             );
         }
         
         if (auction.endDate() != null && auction.endDate().isBefore(java.time.OffsetDateTime.now())) {
-            throw new org.springframework.web.server.ResponseStatusException(
-                org.springframework.http.HttpStatus.CONFLICT, 
+            throw new BusinessRuleViolationException(
+                HttpStatus.CONFLICT, 
                 "המכרז הסתיים"
             );
         }
         
         if (bidderId.equals(auction.sellerId())) {
-            throw new org.springframework.web.server.ResponseStatusException(
-                org.springframework.http.HttpStatus.FORBIDDEN, 
+            throw new BusinessRuleViolationException(
+                HttpStatus.FORBIDDEN, 
                 "לא ניתן להגיש הצעה למכרז של עצמך"
             );
         }

@@ -1,0 +1,7 @@
+{
+  "defaultCap": 150,
+  "exceptions": {
+    "server/src/main/java/com/myapp/server/bids/repository/BidsJdbcWriteOps.java": 179,
+    "server/src/main/java/com/myapp/server/auctions/repository/impl/UserAuctionsQueries.java": 169
+  }
+}

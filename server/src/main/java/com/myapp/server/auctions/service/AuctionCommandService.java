@@ -4,12 +4,17 @@ import com.myapp.server.auctions.dto.CreateAuctionRequest;
 import com.myapp.server.auctions.dto.CreateAuctionResponse;
 import com.myapp.server.auctions.entity.Auction;
 import com.myapp.server.auctions.entity.enums.AuctionCategory;
+import com.myapp.server.auctions.entity.enums.AuctionCondition;
 import com.myapp.server.auctions.entity.enums.AuctionStatus;
-import com.myapp.server.auctions.mapper.AuctionMapper;
+import com.myapp.server.auctions.mapper.AuctionFormMapper;
 import com.myapp.server.auctions.repository.AuctionRepository;
+import com.myapp.server.auctions.service.policy.AuctionDefaults;
+import com.myapp.server.auctions.service.policy.AuctionValidationPolicy;
 import com.myapp.server.auth.entity.User;
 import com.myapp.server.auth.repository.UserRepository;
+import com.myapp.server.common.exception.BusinessRuleViolationException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +22,6 @@ import java.time.LocalDateTime;
 
 /**
  * Handles all write operations for auctions.
- * Responsible for creating, updating, and managing auction lifecycle.
  */
 @Service
 @RequiredArgsConstructor
@@ -26,8 +30,9 @@ public class AuctionCommandService {
     
     private final AuctionRepository auctionRepository;
     private final UserRepository userRepository;
-    private final AuctionMapper auctionMapper;
-    private final AuctionPolicy auctionPolicy;
+    private final AuctionFormMapper auctionFormMapper;
+    private final AuctionValidationPolicy validationPolicy;
+    private final AuctionDefaults auctionDefaults;
     
     /**
      * יוצר מכרז חדש
@@ -35,10 +40,10 @@ public class AuctionCommandService {
     public CreateAuctionResponse createAuction(CreateAuctionRequest request, Long sellerId) {
         // Validate user exists
         User seller = userRepository.findById(sellerId)
-            .orElseThrow(() -> new RuntimeException("User not found"));
+            .orElseThrow(() -> new BusinessRuleViolationException(HttpStatus.NOT_FOUND, "User not found"));
         
         // Validate business rules
-        auctionPolicy.validateCreateAuctionRequest(request);
+        validationPolicy.validateCreateAuctionRequest(request);
         
         // Build auction entity
         Auction auction = buildAuctionFromRequest(request, seller);
@@ -47,15 +52,31 @@ public class AuctionCommandService {
         Auction savedAuction = auctionRepository.save(auction);
         
         // Map to response
-        return auctionMapper.toCreateAuctionResponse(savedAuction);
+        return auctionFormMapper.toCreateAuctionResponse(savedAuction, "Auction created successfully");
     }
     
     /**
      * בונה entity של מכרז מה-DTO
      */
     private Auction buildAuctionFromRequest(CreateAuctionRequest request, User seller) {
-        // Delegate to the mapper for proper conversion
-        return auctionMapper.fromCreateAuctionRequest(request, seller.getId());
+        // Validate and convert business data using policy
+        AuctionCondition validatedCondition = validationPolicy.validateAndParseCondition(request.condition());
+        AuctionStatus validatedStatus = validationPolicy.validateAndParseStatus(request.status());
+        validationPolicy.validateCategoriesStrict(request.categories());
+        
+        // Serialize categories to JSON
+        String categoriesJson = auctionFormMapper.serializeCategories(request.categories());
+        String imageUrlsJson = auctionDefaults.getDefaultImageUrls();
+        
+        // Use pure mapper with validated data
+        return auctionFormMapper.fromCreateAuctionRequest(
+            request, 
+            seller.getId(),
+            validatedCondition,
+            validatedStatus,
+            categoriesJson,
+            imageUrlsJson
+        );
     }
     
     /**
@@ -66,7 +87,7 @@ public class AuctionCommandService {
             .orElseThrow(() -> new RuntimeException("Auction not found"));
         
         // Verify ownership
-        if (!auction.getSeller().getId().equals(sellerId)) {
+        if (!auction.getSellerId().equals(sellerId)) {
             throw new RuntimeException("Not authorized to update this auction");
         }
         
@@ -94,7 +115,7 @@ public class AuctionCommandService {
             .orElseThrow(() -> new RuntimeException("Auction not found"));
         
         if (auction.getStatus() == AuctionStatus.ACTIVE) {
-            auction.setStatus(AuctionStatus.ENDED);
+            auction.setStatus(AuctionStatus.UNSOLD);
             auctionRepository.save(auction);
         }
     }
@@ -107,17 +128,17 @@ public class AuctionCommandService {
             .orElseThrow(() -> new RuntimeException("Auction not found"));
         
         // Verify ownership
-        if (!auction.getSeller().getId().equals(sellerId)) {
+        if (!auction.getSellerId().equals(sellerId)) {
             throw new RuntimeException("Not authorized to cancel this auction");
         }
         
         // Verify no bids
-        if (auction.getTotalBids() > 0) {
+        if (auction.getBidsCount() > 0) {
             throw new RuntimeException("Cannot cancel auction with existing bids");
         }
         
         // Cancel auction
-        auction.setStatus(AuctionStatus.ENDED);
+        auction.setStatus(AuctionStatus.UNSOLD);
         auctionRepository.save(auction);
     }
 }

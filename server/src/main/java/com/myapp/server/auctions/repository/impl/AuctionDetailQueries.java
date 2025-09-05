@@ -1,30 +1,34 @@
 package com.myapp.server.auctions.repository.impl;
 
 import com.myapp.server.auctions.dto.AuctionDetail;
+import com.myapp.server.auctions.entity.Auction;
 import com.myapp.server.auctions.entity.enums.AuctionStatus;
-import com.myapp.server.auctions.mapper.AuctionMapper;
+import com.myapp.server.auctions.mapper.AuctionDetailMapper;
 import com.myapp.server.auctions.repository.AuctionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.EntityManager;
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 /**
  * Handles auction detail lookups by ID with status filtering.
  * Extracted from AuctionRepositoryImpl to focus on detail operations.
+ * Uses direct JPQL queries via EntityManager to avoid circular dependencies.
  */
 @Component
 @RequiredArgsConstructor
 public class AuctionDetailQueries {
 
-    private final AuctionRepository auctionRepository;
-    private final AuctionMapper auctionMapper;
+    private final EntityManager entityManager;
+    private final AuctionDetailMapper auctionDetailMapper;
 
     /**
      * Get auction detail by ID with status validation.
      */
     public AuctionDetail getAuctionDetailById(Long id) {
-        var auction = auctionRepository.findById(id).orElse(null);
+        var auction = entityManager.find(Auction.class, id);
         if (auction == null) {
             return null;
         }
@@ -34,14 +38,19 @@ public class AuctionDetailQueries {
             return null;
         }
         
-        return auctionMapper.toAuctionDetail(auction);
+        // Calculate minBidToPlace directly without policy to avoid circular dependency
+        BigDecimal minBidToPlace = auction.getCurrentBidAmount() != null 
+            ? auction.getCurrentBidAmount().add(auction.getBidIncrement())
+            : auction.getMinPrice();
+        
+        return auctionDetailMapper.toAuctionDetail(auction, minBidToPlace);
     }
 
     /**
      * Check if auction exists and is in valid status for bidding.
      */
     public boolean isAuctionValidForBidding(Long auctionId) {
-        var auction = auctionRepository.findById(auctionId).orElse(null);
+        var auction = entityManager.find(Auction.class, auctionId);
         if (auction == null) {
             return false;
         }
@@ -56,7 +65,25 @@ public class AuctionDetailQueries {
      */
     private boolean isAuctionViewable(AuctionStatus status) {
         return status == AuctionStatus.ACTIVE ||
-               status == AuctionStatus.ENDED ||
-               status == AuctionStatus.COMPLETED;
+               status == AuctionStatus.SOLD ||
+               status == AuctionStatus.UNSOLD;
+    }
+
+    // === EXACT SIGNATURE DELEGATION METHODS (352→Custom migration) ===
+    
+    public AuctionRepository.AuctionProjection findAuctionDetailById(Long id, com.myapp.server.auctions.entity.enums.AuctionStatus status) {
+        var auction = entityManager.find(Auction.class, id);
+        if (auction != null && auction.getStatus() == status) {
+            return new AuctionProjectionImpl(auction);
+        }
+        return null;
+    }
+    
+    public AuctionRepository.AuctionProjection findAuctionDetailByIdAnyStatus(Long id) {
+        var auction = entityManager.find(Auction.class, id);
+        if (auction != null) {
+            return new AuctionProjectionImpl(auction);
+        }
+        return null;
     }
 }

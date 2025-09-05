@@ -4,6 +4,7 @@ import com.myapp.server.auctions.dto.CreateAuctionRequest;
 import com.myapp.server.auctions.entity.Auction;
 import com.myapp.server.auctions.entity.enums.AuctionCategory;
 import com.myapp.server.auctions.entity.enums.AuctionCondition;
+import com.myapp.server.auctions.entity.enums.AuctionStatus;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -169,5 +170,79 @@ public class AuctionPolicy {
         }
         
         return null;
+    }
+
+    /**
+     * Validates and converts condition string to enum (moved from AuctionMapper).
+     */
+    public AuctionCondition validateAndParseCondition(String condition) {
+        if (condition == null || condition.trim().isEmpty()) {
+            throw new IllegalArgumentException("Condition is required");
+        }
+        
+        try {
+            return AuctionCondition.fromValue(condition);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid condition: " + condition);
+        }
+    }
+
+    /**
+     * Validates and converts status string to enum (moved from AuctionMapper).
+     */
+    public AuctionStatus validateAndParseStatus(String status) {
+        if (status == null || status.trim().isEmpty()) {
+            throw new IllegalArgumentException("Status is required");
+        }
+        
+        try {
+            return AuctionStatus.valueOf(status.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid status: " + status);
+        }
+    }
+
+    /**
+     * Validates categories list and throws on invalid entries (moved from AuctionMapper).
+     */
+    public void validateCategoriesStrict(List<String> categories) {
+        if (categories == null || categories.isEmpty()) {
+            throw new IllegalArgumentException("At least one category is required");
+        }
+        
+        for (String categoryCode : categories) {
+            if (!AuctionCategory.isValidCode(categoryCode)) {
+                throw new IllegalArgumentException("Invalid category: " + categoryCode);
+            }
+        }
+    }
+
+    /**
+     * Computes minimum bid to place for auction (business rule).
+     */
+    public BigDecimal computeMinBidToPlace(BigDecimal currentBidAmount, BigDecimal bidIncrement) {
+        return currentBidAmount.add(bidIncrement);
+    }
+
+    /**
+     * Provides default empty image URLs JSON (business rule).
+     */
+    public String getDefaultImageUrls() {
+        return "[]";
+    }
+
+    /**
+     * Provides default values for UserAuctionProjection mapping (business rules).
+     */
+    public static class UserAuctionDefaults {
+        public static final String DESCRIPTION = "";
+        public static final String CONDITION = "";
+        public static final String CATEGORIES = "";
+        public static final BigDecimal BID_INCREMENT = BigDecimal.ZERO;
+        public static final List<String> IMAGE_URLS = List.of();
+        
+        public static BigDecimal approximateMinBidToPlace(BigDecimal currentPrice) {
+            return currentPrice != null ? currentPrice.add(BigDecimal.ONE) : BigDecimal.ONE;
+        }
     }
 }
