@@ -11,9 +11,6 @@ import java.util.List;
 @Repository
 public class BidsDao {
 
-    private final JdbcTemplate jdbc;
-    private final NamedParameterJdbcTemplate namedJdbc;
-    
     // Package-private helpers - not Spring beans to avoid circular dependencies
     private final BidsJdbcReadHistory historyOps;
     private final BidsJdbcUserSummaries userSummariesOps;
@@ -21,8 +18,6 @@ public class BidsDao {
     private final AuctionLockingJdbcOps lockingOps;
     
     public BidsDao(JdbcTemplate jdbc, NamedParameterJdbcTemplate namedJdbc) {
-        this.jdbc = jdbc;
-        this.namedJdbc = namedJdbc;
         
         // Initialize helpers
         BidsRowMappers mappers = new BidsRowMappers();

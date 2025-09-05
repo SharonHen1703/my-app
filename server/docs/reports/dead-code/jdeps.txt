@@ -1,0 +1,1288 @@
+classes -> java.base
+classes -> java.sql
+classes -> not found
+   com.myapp.server.ServerApplication                 -> java.lang.Class                                    java.base
+   com.myapp.server.ServerApplication                 -> java.lang.Object                                   java.base
+   com.myapp.server.ServerApplication                 -> java.lang.String                                   java.base
+   com.myapp.server.ServerApplication                 -> org.springframework.boot.SpringApplication         not found
+   com.myapp.server.ServerApplication                 -> org.springframework.boot.autoconfigure.SpringBootApplication not found
+   com.myapp.server.ServerApplication                 -> org.springframework.context.ConfigurableApplicationContext not found
+   com.myapp.server.ServerApplication                 -> org.springframework.scheduling.annotation.EnableScheduling not found
+   com.myapp.server.auctions.controller.AuctionsController -> com.myapp.server.auctions.dto.AuctionDetail        classes
+   com.myapp.server.auctions.controller.AuctionsController -> com.myapp.server.auctions.dto.CreateAuctionRequest classes
+   com.myapp.server.auctions.controller.AuctionsController -> com.myapp.server.auctions.dto.CreateAuctionResponse classes
+   com.myapp.server.auctions.controller.AuctionsController -> com.myapp.server.auctions.service.AuctionService   classes
+   com.myapp.server.auctions.controller.AuctionsController -> com.myapp.server.auth.service.JwtService           classes
+   com.myapp.server.auctions.controller.AuctionsController -> jakarta.servlet.http.Cookie                        not found
+   com.myapp.server.auctions.controller.AuctionsController -> jakarta.servlet.http.HttpServletRequest            not found
+   com.myapp.server.auctions.controller.AuctionsController -> jakarta.validation.Valid                           not found
+   com.myapp.server.auctions.controller.AuctionsController -> java.lang.Exception                                java.base
+   com.myapp.server.auctions.controller.AuctionsController -> java.lang.IllegalArgumentException                 java.base
+   com.myapp.server.auctions.controller.AuctionsController -> java.lang.Integer                                  java.base
+   com.myapp.server.auctions.controller.AuctionsController -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.controller.AuctionsController -> java.lang.Math                                     java.base
+   com.myapp.server.auctions.controller.AuctionsController -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.controller.AuctionsController -> java.lang.RuntimeException                         java.base
+   com.myapp.server.auctions.controller.AuctionsController -> java.lang.String                                   java.base
+   com.myapp.server.auctions.controller.AuctionsController -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.auctions.controller.AuctionsController -> java.lang.invoke.LambdaMetafactory                 java.base
+   com.myapp.server.auctions.controller.AuctionsController -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.auctions.controller.AuctionsController -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auctions.controller.AuctionsController -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auctions.controller.AuctionsController -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.auctions.controller.AuctionsController -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.controller.AuctionsController -> java.util.HashMap                                  java.base
+   com.myapp.server.auctions.controller.AuctionsController -> java.util.List                                     java.base
+   com.myapp.server.auctions.controller.AuctionsController -> java.util.Map                                      java.base
+   com.myapp.server.auctions.controller.AuctionsController -> java.util.function.Predicate                       java.base
+   com.myapp.server.auctions.controller.AuctionsController -> java.util.stream.Collector                         java.base
+   com.myapp.server.auctions.controller.AuctionsController -> java.util.stream.Collectors                        java.base
+   com.myapp.server.auctions.controller.AuctionsController -> java.util.stream.Stream                            java.base
+   com.myapp.server.auctions.controller.AuctionsController -> org.springframework.beans.factory.annotation.Value not found
+   com.myapp.server.auctions.controller.AuctionsController -> org.springframework.data.domain.Page               not found
+   com.myapp.server.auctions.controller.AuctionsController -> org.springframework.http.HttpStatus                not found
+   com.myapp.server.auctions.controller.AuctionsController -> org.springframework.http.HttpStatusCode            not found
+   com.myapp.server.auctions.controller.AuctionsController -> org.springframework.http.ResponseEntity            not found
+   com.myapp.server.auctions.controller.AuctionsController -> org.springframework.http.ResponseEntity$HeadersBuilder not found
+   com.myapp.server.auctions.controller.AuctionsController -> org.springframework.web.bind.annotation.GetMapping not found
+   com.myapp.server.auctions.controller.AuctionsController -> org.springframework.web.bind.annotation.PathVariable not found
+   com.myapp.server.auctions.controller.AuctionsController -> org.springframework.web.bind.annotation.PostMapping not found
+   com.myapp.server.auctions.controller.AuctionsController -> org.springframework.web.bind.annotation.RequestBody not found
+   com.myapp.server.auctions.controller.AuctionsController -> org.springframework.web.bind.annotation.RequestParam not found
+   com.myapp.server.auctions.controller.AuctionsController -> org.springframework.web.bind.annotation.ResponseStatus not found
+   com.myapp.server.auctions.controller.AuctionsController -> org.springframework.web.bind.annotation.RestController not found
+   com.myapp.server.auctions.controller.AuctionsController -> org.springframework.web.server.ResponseStatusException not found
+   com.myapp.server.auctions.converter.AuctionConditionConverter -> com.myapp.server.auctions.entity.enums.AuctionCondition classes
+   com.myapp.server.auctions.converter.AuctionConditionConverter -> jakarta.persistence.AttributeConverter             not found
+   com.myapp.server.auctions.converter.AuctionConditionConverter -> jakarta.persistence.Converter                      not found
+   com.myapp.server.auctions.converter.AuctionConditionConverter -> java.lang.IllegalArgumentException                 java.base
+   com.myapp.server.auctions.converter.AuctionConditionConverter -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.converter.AuctionConditionConverter -> java.lang.String                                   java.base
+   com.myapp.server.auctions.converter.AuctionConditionConverter -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.auctions.converter.AuctionConditionConverter -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auctions.converter.AuctionConditionConverter -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auctions.converter.AuctionConditionConverter -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.auctions.converter.AuctionConditionConverter -> java.lang.invoke.StringConcatFactory               java.base
+   com.myapp.server.auctions.converter.AuctionStatusConverter -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.converter.AuctionStatusConverter -> jakarta.persistence.AttributeConverter             not found
+   com.myapp.server.auctions.converter.AuctionStatusConverter -> jakarta.persistence.Converter                      not found
+   com.myapp.server.auctions.converter.AuctionStatusConverter -> java.lang.IllegalArgumentException                 java.base
+   com.myapp.server.auctions.converter.AuctionStatusConverter -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.converter.AuctionStatusConverter -> java.lang.String                                   java.base
+   com.myapp.server.auctions.converter.AuctionStatusConverter -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.auctions.converter.AuctionStatusConverter -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auctions.converter.AuctionStatusConverter -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auctions.converter.AuctionStatusConverter -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.auctions.converter.AuctionStatusConverter -> java.lang.invoke.StringConcatFactory               java.base
+   com.myapp.server.auctions.dto.AuctionDetail        -> java.lang.Class                                    java.base
+   com.myapp.server.auctions.dto.AuctionDetail        -> java.lang.Integer                                  java.base
+   com.myapp.server.auctions.dto.AuctionDetail        -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.dto.AuctionDetail        -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.dto.AuctionDetail        -> java.lang.Record                                   java.base
+   com.myapp.server.auctions.dto.AuctionDetail        -> java.lang.String                                   java.base
+   com.myapp.server.auctions.dto.AuctionDetail        -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.auctions.dto.AuctionDetail        -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auctions.dto.AuctionDetail        -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auctions.dto.AuctionDetail        -> java.lang.invoke.TypeDescriptor                    java.base
+   com.myapp.server.auctions.dto.AuctionDetail        -> java.lang.runtime.ObjectMethods                    java.base
+   com.myapp.server.auctions.dto.AuctionDetail        -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.dto.AuctionDetail        -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.auctions.dto.AuctionDetail        -> java.util.List                                     java.base
+   com.myapp.server.auctions.dto.AuctionListItem      -> java.lang.Class                                    java.base
+   com.myapp.server.auctions.dto.AuctionListItem      -> java.lang.Integer                                  java.base
+   com.myapp.server.auctions.dto.AuctionListItem      -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.dto.AuctionListItem      -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.dto.AuctionListItem      -> java.lang.Record                                   java.base
+   com.myapp.server.auctions.dto.AuctionListItem      -> java.lang.String                                   java.base
+   com.myapp.server.auctions.dto.AuctionListItem      -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.auctions.dto.AuctionListItem      -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auctions.dto.AuctionListItem      -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auctions.dto.AuctionListItem      -> java.lang.invoke.TypeDescriptor                    java.base
+   com.myapp.server.auctions.dto.AuctionListItem      -> java.lang.runtime.ObjectMethods                    java.base
+   com.myapp.server.auctions.dto.AuctionListItem      -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.dto.AuctionListItem      -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.auctions.dto.AuctionListItem      -> java.util.List                                     java.base
+   com.myapp.server.auctions.dto.CreateAuctionRequest -> jakarta.validation.constraints.DecimalMin          not found
+   com.myapp.server.auctions.dto.CreateAuctionRequest -> jakarta.validation.constraints.Digits              not found
+   com.myapp.server.auctions.dto.CreateAuctionRequest -> jakarta.validation.constraints.Min                 not found
+   com.myapp.server.auctions.dto.CreateAuctionRequest -> jakarta.validation.constraints.NotBlank            not found
+   com.myapp.server.auctions.dto.CreateAuctionRequest -> jakarta.validation.constraints.NotNull             not found
+   com.myapp.server.auctions.dto.CreateAuctionRequest -> jakarta.validation.constraints.Size                not found
+   com.myapp.server.auctions.dto.CreateAuctionRequest -> java.lang.Class                                    java.base
+   com.myapp.server.auctions.dto.CreateAuctionRequest -> java.lang.Integer                                  java.base
+   com.myapp.server.auctions.dto.CreateAuctionRequest -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.dto.CreateAuctionRequest -> java.lang.Record                                   java.base
+   com.myapp.server.auctions.dto.CreateAuctionRequest -> java.lang.String                                   java.base
+   com.myapp.server.auctions.dto.CreateAuctionRequest -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.auctions.dto.CreateAuctionRequest -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auctions.dto.CreateAuctionRequest -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auctions.dto.CreateAuctionRequest -> java.lang.invoke.TypeDescriptor                    java.base
+   com.myapp.server.auctions.dto.CreateAuctionRequest -> java.lang.runtime.ObjectMethods                    java.base
+   com.myapp.server.auctions.dto.CreateAuctionRequest -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.dto.CreateAuctionRequest -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.auctions.dto.CreateAuctionRequest -> java.util.List                                     java.base
+   com.myapp.server.auctions.dto.CreateAuctionResponse -> java.lang.Class                                    java.base
+   com.myapp.server.auctions.dto.CreateAuctionResponse -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.dto.CreateAuctionResponse -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.dto.CreateAuctionResponse -> java.lang.Record                                   java.base
+   com.myapp.server.auctions.dto.CreateAuctionResponse -> java.lang.String                                   java.base
+   com.myapp.server.auctions.dto.CreateAuctionResponse -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.auctions.dto.CreateAuctionResponse -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auctions.dto.CreateAuctionResponse -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auctions.dto.CreateAuctionResponse -> java.lang.invoke.TypeDescriptor                    java.base
+   com.myapp.server.auctions.dto.CreateAuctionResponse -> java.lang.runtime.ObjectMethods                    java.base
+   com.myapp.server.auctions.entity.Auction           -> com.myapp.server.auctions.entity.enums.AuctionCondition classes
+   com.myapp.server.auctions.entity.Auction           -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.entity.Auction           -> jakarta.persistence.Column                         not found
+   com.myapp.server.auctions.entity.Auction           -> jakarta.persistence.Convert                        not found
+   com.myapp.server.auctions.entity.Auction           -> jakarta.persistence.Entity                         not found
+   com.myapp.server.auctions.entity.Auction           -> jakarta.persistence.GeneratedValue                 not found
+   com.myapp.server.auctions.entity.Auction           -> jakarta.persistence.Id                             not found
+   com.myapp.server.auctions.entity.Auction           -> jakarta.persistence.PrePersist                     not found
+   com.myapp.server.auctions.entity.Auction           -> jakarta.persistence.PreUpdate                      not found
+   com.myapp.server.auctions.entity.Auction           -> jakarta.persistence.Table                          not found
+   com.myapp.server.auctions.entity.Auction           -> java.lang.Integer                                  java.base
+   com.myapp.server.auctions.entity.Auction           -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.entity.Auction           -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.entity.Auction           -> java.lang.String                                   java.base
+   com.myapp.server.auctions.entity.Auction           -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.entity.Auction           -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.auctions.entity.enums.AuctionCategory -> com.fasterxml.jackson.annotation.JsonValue         not found
+   com.myapp.server.auctions.entity.enums.AuctionCategory -> java.lang.Class                                    java.base
+   com.myapp.server.auctions.entity.enums.AuctionCategory -> java.lang.Enum                                     java.base
+   com.myapp.server.auctions.entity.enums.AuctionCategory -> java.lang.IllegalArgumentException                 java.base
+   com.myapp.server.auctions.entity.enums.AuctionCategory -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.entity.enums.AuctionCategory -> java.lang.String                                   java.base
+   com.myapp.server.auctions.entity.enums.AuctionCategory -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.auctions.entity.enums.AuctionCategory -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auctions.entity.enums.AuctionCategory -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auctions.entity.enums.AuctionCategory -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.auctions.entity.enums.AuctionCategory -> java.lang.invoke.StringConcatFactory               java.base
+   com.myapp.server.auctions.entity.enums.AuctionCondition -> java.lang.Class                                    java.base
+   com.myapp.server.auctions.entity.enums.AuctionCondition -> java.lang.Enum                                     java.base
+   com.myapp.server.auctions.entity.enums.AuctionCondition -> java.lang.IllegalArgumentException                 java.base
+   com.myapp.server.auctions.entity.enums.AuctionCondition -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.entity.enums.AuctionCondition -> java.lang.String                                   java.base
+   com.myapp.server.auctions.entity.enums.AuctionCondition -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.auctions.entity.enums.AuctionCondition -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auctions.entity.enums.AuctionCondition -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auctions.entity.enums.AuctionCondition -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.auctions.entity.enums.AuctionCondition -> java.lang.invoke.StringConcatFactory               java.base
+   com.myapp.server.auctions.entity.enums.AuctionStatus -> java.lang.Class                                    java.base
+   com.myapp.server.auctions.entity.enums.AuctionStatus -> java.lang.Enum                                     java.base
+   com.myapp.server.auctions.entity.enums.AuctionStatus -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.entity.enums.AuctionStatus -> java.lang.String                                   java.base
+   com.myapp.server.auctions.mapper.AuctionDetailMapper -> com.fasterxml.jackson.core.type.TypeReference      not found
+   com.myapp.server.auctions.mapper.AuctionDetailMapper -> com.fasterxml.jackson.databind.ObjectMapper        not found
+   com.myapp.server.auctions.mapper.AuctionDetailMapper -> com.myapp.server.auctions.dto.AuctionDetail        classes
+   com.myapp.server.auctions.mapper.AuctionDetailMapper -> com.myapp.server.auctions.entity.Auction           classes
+   com.myapp.server.auctions.mapper.AuctionDetailMapper -> com.myapp.server.auctions.entity.enums.AuctionCondition classes
+   com.myapp.server.auctions.mapper.AuctionDetailMapper -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.mapper.AuctionDetailMapper -> com.myapp.server.auctions.mapper.AuctionDetailMapper$1 classes
+   com.myapp.server.auctions.mapper.AuctionDetailMapper -> com.myapp.server.auctions.repository.AuctionRepository classes
+   com.myapp.server.auctions.mapper.AuctionDetailMapper -> com.myapp.server.auctions.repository.AuctionRepository$AuctionProjection classes
+   com.myapp.server.auctions.mapper.AuctionDetailMapper -> java.lang.Exception                                java.base
+   com.myapp.server.auctions.mapper.AuctionDetailMapper -> java.lang.Integer                                  java.base
+   com.myapp.server.auctions.mapper.AuctionDetailMapper -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.mapper.AuctionDetailMapper -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.mapper.AuctionDetailMapper -> java.lang.String                                   java.base
+   com.myapp.server.auctions.mapper.AuctionDetailMapper -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.mapper.AuctionDetailMapper -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.auctions.mapper.AuctionDetailMapper -> java.util.List                                     java.base
+   com.myapp.server.auctions.mapper.AuctionDetailMapper -> org.springframework.stereotype.Component           not found
+   com.myapp.server.auctions.mapper.AuctionDetailMapper$1 -> com.fasterxml.jackson.core.type.TypeReference      not found
+   com.myapp.server.auctions.mapper.AuctionDetailMapper$1 -> com.myapp.server.auctions.mapper.AuctionDetailMapper classes
+   com.myapp.server.auctions.mapper.AuctionDetailMapper$1 -> java.lang.String                                   java.base
+   com.myapp.server.auctions.mapper.AuctionDetailMapper$1 -> java.util.List                                     java.base
+   com.myapp.server.auctions.mapper.AuctionFormMapper -> com.fasterxml.jackson.databind.ObjectMapper        not found
+   com.myapp.server.auctions.mapper.AuctionFormMapper -> com.myapp.server.auctions.dto.CreateAuctionRequest classes
+   com.myapp.server.auctions.mapper.AuctionFormMapper -> com.myapp.server.auctions.dto.CreateAuctionResponse classes
+   com.myapp.server.auctions.mapper.AuctionFormMapper -> com.myapp.server.auctions.entity.Auction           classes
+   com.myapp.server.auctions.mapper.AuctionFormMapper -> com.myapp.server.auctions.entity.enums.AuctionCondition classes
+   com.myapp.server.auctions.mapper.AuctionFormMapper -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.mapper.AuctionFormMapper -> java.lang.Exception                                java.base
+   com.myapp.server.auctions.mapper.AuctionFormMapper -> java.lang.Integer                                  java.base
+   com.myapp.server.auctions.mapper.AuctionFormMapper -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.mapper.AuctionFormMapper -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.mapper.AuctionFormMapper -> java.lang.RuntimeException                         java.base
+   com.myapp.server.auctions.mapper.AuctionFormMapper -> java.lang.String                                   java.base
+   com.myapp.server.auctions.mapper.AuctionFormMapper -> java.lang.Throwable                                java.base
+   com.myapp.server.auctions.mapper.AuctionFormMapper -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.mapper.AuctionFormMapper -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.auctions.mapper.AuctionFormMapper -> java.util.List                                     java.base
+   com.myapp.server.auctions.mapper.AuctionFormMapper -> org.springframework.stereotype.Component           not found
+   com.myapp.server.auctions.mapper.AuctionListMapper -> com.fasterxml.jackson.core.type.TypeReference      not found
+   com.myapp.server.auctions.mapper.AuctionListMapper -> com.fasterxml.jackson.databind.ObjectMapper        not found
+   com.myapp.server.auctions.mapper.AuctionListMapper -> com.myapp.server.auctions.dto.AuctionListItem      classes
+   com.myapp.server.auctions.mapper.AuctionListMapper -> com.myapp.server.auctions.mapper.AuctionListMapper$1 classes
+   com.myapp.server.auctions.mapper.AuctionListMapper -> com.myapp.server.auctions.repository.AuctionRepository classes
+   com.myapp.server.auctions.mapper.AuctionListMapper -> com.myapp.server.auctions.repository.AuctionRepository$AuctionProjection classes
+   com.myapp.server.auctions.mapper.AuctionListMapper -> com.myapp.server.auctions.repository.AuctionRepository$UserAuctionProjection classes
+   com.myapp.server.auctions.mapper.AuctionListMapper -> java.lang.Exception                                java.base
+   com.myapp.server.auctions.mapper.AuctionListMapper -> java.lang.Integer                                  java.base
+   com.myapp.server.auctions.mapper.AuctionListMapper -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.mapper.AuctionListMapper -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.mapper.AuctionListMapper -> java.lang.String                                   java.base
+   com.myapp.server.auctions.mapper.AuctionListMapper -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.mapper.AuctionListMapper -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.auctions.mapper.AuctionListMapper -> java.util.List                                     java.base
+   com.myapp.server.auctions.mapper.AuctionListMapper -> org.springframework.stereotype.Component           not found
+   com.myapp.server.auctions.mapper.AuctionListMapper$1 -> com.fasterxml.jackson.core.type.TypeReference      not found
+   com.myapp.server.auctions.mapper.AuctionListMapper$1 -> com.myapp.server.auctions.mapper.AuctionListMapper classes
+   com.myapp.server.auctions.mapper.AuctionListMapper$1 -> java.lang.String                                   java.base
+   com.myapp.server.auctions.mapper.AuctionListMapper$1 -> java.util.List                                     java.base
+   com.myapp.server.auctions.mapper.UserAuctionMapper -> com.myapp.server.auctions.dto.AuctionListItem      classes
+   com.myapp.server.auctions.mapper.UserAuctionMapper -> com.myapp.server.auctions.mapper.AuctionListMapper classes
+   com.myapp.server.auctions.mapper.UserAuctionMapper -> com.myapp.server.auctions.repository.AuctionRepository classes
+   com.myapp.server.auctions.mapper.UserAuctionMapper -> com.myapp.server.auctions.repository.AuctionRepository$UserAuctionProjection classes
+   com.myapp.server.auctions.mapper.UserAuctionMapper -> com.myapp.server.auctions.service.policy.AuctionDefaults classes
+   com.myapp.server.auctions.mapper.UserAuctionMapper -> com.myapp.server.auctions.service.policy.AuctionDefaults$UserAuctionDefaults classes
+   com.myapp.server.auctions.mapper.UserAuctionMapper -> com.myapp.server.users.dto.UserAuctionItem         classes
+   com.myapp.server.auctions.mapper.UserAuctionMapper -> java.lang.Integer                                  java.base
+   com.myapp.server.auctions.mapper.UserAuctionMapper -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.mapper.UserAuctionMapper -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.mapper.UserAuctionMapper -> java.lang.String                                   java.base
+   com.myapp.server.auctions.mapper.UserAuctionMapper -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.mapper.UserAuctionMapper -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.auctions.mapper.UserAuctionMapper -> java.util.List                                     java.base
+   com.myapp.server.auctions.repository.AuctionActiveQueries -> com.myapp.server.auctions.dto.AuctionListItem      classes
+   com.myapp.server.auctions.repository.AuctionActiveQueries -> com.myapp.server.auctions.entity.enums.AuctionCondition classes
+   com.myapp.server.auctions.repository.AuctionActiveQueries -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.repository.AuctionActiveQueries -> com.myapp.server.auctions.repository.AuctionRepository classes
+   com.myapp.server.auctions.repository.AuctionActiveQueries -> com.myapp.server.auctions.repository.AuctionRepository$AuctionProjection classes
+   com.myapp.server.auctions.repository.AuctionActiveQueries -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.repository.AuctionActiveQueries -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.repository.AuctionActiveQueries -> java.lang.String                                   java.base
+   com.myapp.server.auctions.repository.AuctionActiveQueries -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.repository.AuctionActiveQueries -> java.util.List                                     java.base
+   com.myapp.server.auctions.repository.AuctionActiveQueries -> org.springframework.data.domain.Page               not found
+   com.myapp.server.auctions.repository.AuctionActiveQueries -> org.springframework.data.domain.Pageable           not found
+   com.myapp.server.auctions.repository.AuctionDetailQueriesFragment -> com.myapp.server.auctions.dto.AuctionDetail        classes
+   com.myapp.server.auctions.repository.AuctionDetailQueriesFragment -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.repository.AuctionDetailQueriesFragment -> com.myapp.server.auctions.repository.AuctionRepository classes
+   com.myapp.server.auctions.repository.AuctionDetailQueriesFragment -> com.myapp.server.auctions.repository.AuctionRepository$AuctionProjection classes
+   com.myapp.server.auctions.repository.AuctionDetailQueriesFragment -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.repository.AuctionDetailQueriesFragment -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.repository.AuctionRepository -> com.myapp.server.auctions.entity.Auction           classes
+   com.myapp.server.auctions.repository.AuctionRepository -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.repository.AuctionRepository -> com.myapp.server.auctions.repository.AuctionActiveQueries classes
+   com.myapp.server.auctions.repository.AuctionRepository -> com.myapp.server.auctions.repository.AuctionDetailQueriesFragment classes
+   com.myapp.server.auctions.repository.AuctionRepository -> com.myapp.server.auctions.repository.AuctionRepository$AuctionProjection classes
+   com.myapp.server.auctions.repository.AuctionRepository -> com.myapp.server.auctions.repository.AuctionRepository$UserAuctionProjection classes
+   com.myapp.server.auctions.repository.AuctionRepository -> com.myapp.server.auctions.repository.AuctionUserQueries classes
+   com.myapp.server.auctions.repository.AuctionRepository -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.repository.AuctionRepository -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.repository.AuctionRepository -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.auctions.repository.AuctionRepository -> java.util.List                                     java.base
+   com.myapp.server.auctions.repository.AuctionRepository -> org.springframework.data.domain.Page               not found
+   com.myapp.server.auctions.repository.AuctionRepository -> org.springframework.data.domain.Pageable           not found
+   com.myapp.server.auctions.repository.AuctionRepository -> org.springframework.data.jpa.repository.JpaRepository not found
+   com.myapp.server.auctions.repository.AuctionRepository -> org.springframework.stereotype.Repository          not found
+   com.myapp.server.auctions.repository.AuctionRepository$AuctionProjection -> com.myapp.server.auctions.repository.AuctionRepository classes
+   com.myapp.server.auctions.repository.AuctionRepository$AuctionProjection -> java.lang.Integer                                  java.base
+   com.myapp.server.auctions.repository.AuctionRepository$AuctionProjection -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.repository.AuctionRepository$AuctionProjection -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.repository.AuctionRepository$AuctionProjection -> java.lang.String                                   java.base
+   com.myapp.server.auctions.repository.AuctionRepository$AuctionProjection -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.repository.AuctionRepository$AuctionProjection -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.auctions.repository.AuctionRepository$UserAuctionProjection -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.repository.AuctionRepository$UserAuctionProjection -> com.myapp.server.auctions.repository.AuctionRepository classes
+   com.myapp.server.auctions.repository.AuctionRepository$UserAuctionProjection -> java.lang.Integer                                  java.base
+   com.myapp.server.auctions.repository.AuctionRepository$UserAuctionProjection -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.repository.AuctionRepository$UserAuctionProjection -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.repository.AuctionRepository$UserAuctionProjection -> java.lang.String                                   java.base
+   com.myapp.server.auctions.repository.AuctionRepository$UserAuctionProjection -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.repository.AuctionRepository$UserAuctionProjection -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> com.myapp.server.auctions.dto.AuctionDetail        classes
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> com.myapp.server.auctions.dto.AuctionListItem      classes
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> com.myapp.server.auctions.entity.Auction           classes
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> com.myapp.server.auctions.entity.enums.AuctionCondition classes
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> com.myapp.server.auctions.mapper.AuctionListMapper classes
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> com.myapp.server.auctions.repository.AuctionActiveQueries classes
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> com.myapp.server.auctions.repository.AuctionDetailQueriesFragment classes
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> com.myapp.server.auctions.repository.AuctionRepository classes
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> com.myapp.server.auctions.repository.AuctionRepository$AuctionProjection classes
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> com.myapp.server.auctions.repository.AuctionRepository$UserAuctionProjection classes
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> com.myapp.server.auctions.repository.AuctionUserQueries classes
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> com.myapp.server.auctions.repository.impl.ActiveAuctionsPaging classes
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries classes
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> com.myapp.server.auctions.repository.impl.AuctionDetailQueries classes
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> com.myapp.server.auctions.repository.impl.UserAuctionsQueries classes
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> java.lang.String                                   java.base
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> java.lang.invoke.LambdaMetafactory                 java.base
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> java.util.List                                     java.base
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> java.util.Objects                                  java.base
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> java.util.function.Function                        java.base
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> java.util.function.Supplier                        java.base
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> org.springframework.data.domain.Page               not found
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> org.springframework.data.domain.Pageable           not found
+   com.myapp.server.auctions.repository.AuctionRepositoryImpl -> org.springframework.stereotype.Repository          not found
+   com.myapp.server.auctions.repository.AuctionUserQueries -> com.myapp.server.auctions.dto.AuctionListItem      classes
+   com.myapp.server.auctions.repository.AuctionUserQueries -> com.myapp.server.auctions.repository.AuctionRepository classes
+   com.myapp.server.auctions.repository.AuctionUserQueries -> com.myapp.server.auctions.repository.AuctionRepository$UserAuctionProjection classes
+   com.myapp.server.auctions.repository.AuctionUserQueries -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.repository.AuctionUserQueries -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.repository.AuctionUserQueries -> java.util.List                                     java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsPaging -> com.myapp.server.auctions.entity.Auction           classes
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsPaging -> com.myapp.server.auctions.repository.AuctionRepository classes
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsPaging -> com.myapp.server.auctions.repository.AuctionRepository$AuctionProjection classes
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsPaging -> com.myapp.server.auctions.repository.impl.AuctionProjectionImpl classes
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsPaging -> java.lang.IllegalArgumentException                 java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsPaging -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsPaging -> java.lang.String                                   java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsPaging -> java.util.ArrayList                                java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsPaging -> java.util.Iterator                                 java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsPaging -> java.util.List                                     java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsPaging -> org.springframework.data.domain.Page               not found
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsPaging -> org.springframework.data.domain.PageImpl           not found
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsPaging -> org.springframework.data.domain.Pageable           not found
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsPaging -> org.springframework.stereotype.Component           not found
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries -> com.myapp.server.auctions.entity.Auction           classes
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries -> com.myapp.server.auctions.entity.enums.AuctionCondition classes
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries -> com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries$QueryParameterSetter classes
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries -> jakarta.persistence.EntityManager                  not found
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries -> jakarta.persistence.TypedQuery                     not found
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries -> java.lang.Class                                    java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries -> java.lang.String                                   java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries -> java.lang.StringBuilder                            java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries -> java.lang.invoke.LambdaMetafactory                 java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries -> java.lang.invoke.StringConcatFactory               java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries -> java.util.List                                     java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries -> org.springframework.stereotype.Component           not found
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries$QueryParameterSetter -> com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries classes
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries$QueryParameterSetter -> jakarta.persistence.TypedQuery                     not found
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries$QueryParameterSetter -> java.lang.FunctionalInterface                      java.base
+   com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries$QueryParameterSetter -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.repository.impl.AuctionDetailQueries -> com.myapp.server.auctions.dto.AuctionDetail        classes
+   com.myapp.server.auctions.repository.impl.AuctionDetailQueries -> com.myapp.server.auctions.entity.Auction           classes
+   com.myapp.server.auctions.repository.impl.AuctionDetailQueries -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.repository.impl.AuctionDetailQueries -> com.myapp.server.auctions.mapper.AuctionDetailMapper classes
+   com.myapp.server.auctions.repository.impl.AuctionDetailQueries -> com.myapp.server.auctions.repository.AuctionRepository classes
+   com.myapp.server.auctions.repository.impl.AuctionDetailQueries -> com.myapp.server.auctions.repository.AuctionRepository$AuctionProjection classes
+   com.myapp.server.auctions.repository.impl.AuctionDetailQueries -> com.myapp.server.auctions.repository.impl.AuctionProjectionImpl classes
+   com.myapp.server.auctions.repository.impl.AuctionDetailQueries -> jakarta.persistence.EntityManager                  not found
+   com.myapp.server.auctions.repository.impl.AuctionDetailQueries -> java.lang.Class                                    java.base
+   com.myapp.server.auctions.repository.impl.AuctionDetailQueries -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.repository.impl.AuctionDetailQueries -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.repository.impl.AuctionDetailQueries -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.repository.impl.AuctionDetailQueries -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.auctions.repository.impl.AuctionDetailQueries -> org.springframework.stereotype.Component           not found
+   com.myapp.server.auctions.repository.impl.AuctionProjectionImpl -> com.myapp.server.auctions.entity.Auction           classes
+   com.myapp.server.auctions.repository.impl.AuctionProjectionImpl -> com.myapp.server.auctions.entity.enums.AuctionCondition classes
+   com.myapp.server.auctions.repository.impl.AuctionProjectionImpl -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.repository.impl.AuctionProjectionImpl -> com.myapp.server.auctions.repository.AuctionRepository classes
+   com.myapp.server.auctions.repository.impl.AuctionProjectionImpl -> com.myapp.server.auctions.repository.AuctionRepository$AuctionProjection classes
+   com.myapp.server.auctions.repository.impl.AuctionProjectionImpl -> java.lang.Integer                                  java.base
+   com.myapp.server.auctions.repository.impl.AuctionProjectionImpl -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.repository.impl.AuctionProjectionImpl -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.repository.impl.AuctionProjectionImpl -> java.lang.String                                   java.base
+   com.myapp.server.auctions.repository.impl.AuctionProjectionImpl -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.repository.impl.AuctionProjectionImpl -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionProjectionForUser -> com.myapp.server.auctions.entity.Auction           classes
+   com.myapp.server.auctions.repository.impl.UserAuctionProjectionForUser -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.repository.impl.UserAuctionProjectionForUser -> com.myapp.server.auctions.repository.AuctionRepository classes
+   com.myapp.server.auctions.repository.impl.UserAuctionProjectionForUser -> com.myapp.server.auctions.repository.AuctionRepository$UserAuctionProjection classes
+   com.myapp.server.auctions.repository.impl.UserAuctionProjectionForUser -> java.lang.Integer                                  java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionProjectionForUser -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionProjectionForUser -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionProjectionForUser -> java.lang.String                                   java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionProjectionForUser -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionProjectionForUser -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionProjectionImpl -> com.myapp.server.auctions.entity.Auction           classes
+   com.myapp.server.auctions.repository.impl.UserAuctionProjectionImpl -> com.myapp.server.auctions.entity.enums.AuctionCondition classes
+   com.myapp.server.auctions.repository.impl.UserAuctionProjectionImpl -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.repository.impl.UserAuctionProjectionImpl -> com.myapp.server.auctions.repository.AuctionRepository classes
+   com.myapp.server.auctions.repository.impl.UserAuctionProjectionImpl -> com.myapp.server.auctions.repository.AuctionRepository$AuctionProjection classes
+   com.myapp.server.auctions.repository.impl.UserAuctionProjectionImpl -> java.lang.Integer                                  java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionProjectionImpl -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionProjectionImpl -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionProjectionImpl -> java.lang.String                                   java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionProjectionImpl -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionProjectionImpl -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> com.myapp.server.auctions.dto.AuctionListItem      classes
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> com.myapp.server.auctions.entity.Auction           classes
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> com.myapp.server.auctions.entity.enums.AuctionCondition classes
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> com.myapp.server.auctions.repository.AuctionRepository classes
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> com.myapp.server.auctions.repository.AuctionRepository$UserAuctionProjection classes
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> com.myapp.server.auctions.repository.impl.UserAuctionProjectionForUser classes
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> jakarta.persistence.EntityManager                  not found
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> jakarta.persistence.TypedQuery                     not found
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> java.lang.Class                                    java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> java.lang.Exception                                java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> java.lang.Integer                                  java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> java.lang.String                                   java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> java.lang.invoke.LambdaMetafactory                 java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> java.util.List                                     java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> java.util.function.Function                        java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> java.util.function.Predicate                       java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> java.util.stream.Collector                         java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> java.util.stream.Collectors                        java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> java.util.stream.Stream                            java.base
+   com.myapp.server.auctions.repository.impl.UserAuctionsQueries -> org.springframework.stereotype.Component           not found
+   com.myapp.server.auctions.service.AuctionCommandService -> com.myapp.server.auctions.dto.CreateAuctionRequest classes
+   com.myapp.server.auctions.service.AuctionCommandService -> com.myapp.server.auctions.dto.CreateAuctionResponse classes
+   com.myapp.server.auctions.service.AuctionCommandService -> com.myapp.server.auctions.entity.Auction           classes
+   com.myapp.server.auctions.service.AuctionCommandService -> com.myapp.server.auctions.entity.enums.AuctionCondition classes
+   com.myapp.server.auctions.service.AuctionCommandService -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.service.AuctionCommandService -> com.myapp.server.auctions.mapper.AuctionFormMapper classes
+   com.myapp.server.auctions.service.AuctionCommandService -> com.myapp.server.auctions.repository.AuctionRepository classes
+   com.myapp.server.auctions.service.AuctionCommandService -> com.myapp.server.auctions.service.policy.AuctionDefaults classes
+   com.myapp.server.auctions.service.AuctionCommandService -> com.myapp.server.auctions.service.policy.AuctionValidationPolicy classes
+   com.myapp.server.auctions.service.AuctionCommandService -> com.myapp.server.auth.entity.User                  classes
+   com.myapp.server.auctions.service.AuctionCommandService -> com.myapp.server.auth.repository.UserRepository    classes
+   com.myapp.server.auctions.service.AuctionCommandService -> com.myapp.server.common.exception.BusinessRuleViolationException classes
+   com.myapp.server.auctions.service.AuctionCommandService -> java.lang.Integer                                  java.base
+   com.myapp.server.auctions.service.AuctionCommandService -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.service.AuctionCommandService -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.service.AuctionCommandService -> java.lang.RuntimeException                         java.base
+   com.myapp.server.auctions.service.AuctionCommandService -> java.lang.String                                   java.base
+   com.myapp.server.auctions.service.AuctionCommandService -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.auctions.service.AuctionCommandService -> java.lang.invoke.LambdaMetafactory                 java.base
+   com.myapp.server.auctions.service.AuctionCommandService -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.auctions.service.AuctionCommandService -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auctions.service.AuctionCommandService -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auctions.service.AuctionCommandService -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.auctions.service.AuctionCommandService -> java.util.List                                     java.base
+   com.myapp.server.auctions.service.AuctionCommandService -> java.util.Optional                                 java.base
+   com.myapp.server.auctions.service.AuctionCommandService -> java.util.function.Supplier                        java.base
+   com.myapp.server.auctions.service.AuctionCommandService -> org.springframework.http.HttpStatus                not found
+   com.myapp.server.auctions.service.AuctionCommandService -> org.springframework.stereotype.Service             not found
+   com.myapp.server.auctions.service.AuctionCommandService -> org.springframework.transaction.annotation.Transactional not found
+   com.myapp.server.auctions.service.AuctionPolicy    -> com.myapp.server.auctions.dto.CreateAuctionRequest classes
+   com.myapp.server.auctions.service.AuctionPolicy    -> com.myapp.server.auctions.entity.Auction           classes
+   com.myapp.server.auctions.service.AuctionPolicy    -> com.myapp.server.auctions.entity.enums.AuctionCategory classes
+   com.myapp.server.auctions.service.AuctionPolicy    -> com.myapp.server.auctions.entity.enums.AuctionCondition classes
+   com.myapp.server.auctions.service.AuctionPolicy    -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.service.AuctionPolicy    -> com.myapp.server.auctions.service.AuctionPolicy$UserAuctionDefaults classes
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.io.PrintStream                                java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.lang.Exception                                java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.lang.IllegalArgumentException                 java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.lang.IllegalStateException                    java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.lang.Integer                                  java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.lang.String                                   java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.lang.System                                   java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.lang.invoke.LambdaMetafactory                 java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.lang.invoke.StringConcatFactory               java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.util.Iterator                                 java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.util.List                                     java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.util.Objects                                  java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.util.function.Function                        java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.util.function.Predicate                       java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.util.stream.Collector                         java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.util.stream.Collectors                        java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> java.util.stream.Stream                            java.base
+   com.myapp.server.auctions.service.AuctionPolicy    -> org.springframework.stereotype.Component           not found
+   com.myapp.server.auctions.service.AuctionPolicy$UserAuctionDefaults -> com.myapp.server.auctions.service.AuctionPolicy    classes
+   com.myapp.server.auctions.service.AuctionPolicy$UserAuctionDefaults -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.service.AuctionPolicy$UserAuctionDefaults -> java.lang.String                                   java.base
+   com.myapp.server.auctions.service.AuctionPolicy$UserAuctionDefaults -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.service.AuctionPolicy$UserAuctionDefaults -> java.util.List                                     java.base
+   com.myapp.server.auctions.service.AuctionQueryService -> com.myapp.server.auctions.dto.AuctionDetail        classes
+   com.myapp.server.auctions.service.AuctionQueryService -> com.myapp.server.auctions.dto.AuctionListItem      classes
+   com.myapp.server.auctions.service.AuctionQueryService -> com.myapp.server.auctions.entity.enums.AuctionCategory classes
+   com.myapp.server.auctions.service.AuctionQueryService -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.service.AuctionQueryService -> com.myapp.server.auctions.mapper.AuctionDetailMapper classes
+   com.myapp.server.auctions.service.AuctionQueryService -> com.myapp.server.auctions.repository.AuctionRepository classes
+   com.myapp.server.auctions.service.AuctionQueryService -> com.myapp.server.auctions.repository.AuctionRepository$AuctionProjection classes
+   com.myapp.server.auctions.service.AuctionQueryService -> com.myapp.server.auctions.repository.AuctionRepository$UserAuctionProjection classes
+   com.myapp.server.auctions.service.AuctionQueryService -> com.myapp.server.auctions.service.AuctionQueryService$1 classes
+   com.myapp.server.auctions.service.AuctionQueryService -> com.myapp.server.auctions.service.policy.AuctionValidationPolicy classes
+   com.myapp.server.auctions.service.AuctionQueryService -> com.myapp.server.common.exception.BusinessRuleViolationException classes
+   com.myapp.server.auctions.service.AuctionQueryService -> com.myapp.server.users.dto.UserAuctionItem         classes
+   com.myapp.server.auctions.service.AuctionQueryService -> java.lang.Integer                                  java.base
+   com.myapp.server.auctions.service.AuctionQueryService -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.service.AuctionQueryService -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.service.AuctionQueryService -> java.lang.String                                   java.base
+   com.myapp.server.auctions.service.AuctionQueryService -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.auctions.service.AuctionQueryService -> java.lang.invoke.LambdaMetafactory                 java.base
+   com.myapp.server.auctions.service.AuctionQueryService -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.auctions.service.AuctionQueryService -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auctions.service.AuctionQueryService -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auctions.service.AuctionQueryService -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.auctions.service.AuctionQueryService -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.service.AuctionQueryService -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.auctions.service.AuctionQueryService -> java.util.Arrays                                   java.base
+   com.myapp.server.auctions.service.AuctionQueryService -> java.util.List                                     java.base
+   com.myapp.server.auctions.service.AuctionQueryService -> java.util.Map                                      java.base
+   com.myapp.server.auctions.service.AuctionQueryService -> java.util.function.Function                        java.base
+   com.myapp.server.auctions.service.AuctionQueryService -> java.util.function.Supplier                        java.base
+   com.myapp.server.auctions.service.AuctionQueryService -> java.util.stream.Collector                         java.base
+   com.myapp.server.auctions.service.AuctionQueryService -> java.util.stream.Collectors                        java.base
+   com.myapp.server.auctions.service.AuctionQueryService -> java.util.stream.Stream                            java.base
+   com.myapp.server.auctions.service.AuctionQueryService -> org.springframework.data.domain.Page               not found
+   com.myapp.server.auctions.service.AuctionQueryService -> org.springframework.data.domain.PageRequest        not found
+   com.myapp.server.auctions.service.AuctionQueryService -> org.springframework.data.domain.Pageable           not found
+   com.myapp.server.auctions.service.AuctionQueryService -> org.springframework.http.HttpStatus                not found
+   com.myapp.server.auctions.service.AuctionQueryService -> org.springframework.stereotype.Service             not found
+   com.myapp.server.auctions.service.AuctionQueryService -> org.springframework.transaction.annotation.Transactional not found
+   com.myapp.server.auctions.service.AuctionQueryService$1 -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.service.AuctionQueryService$1 -> com.myapp.server.auctions.service.AuctionQueryService classes
+   com.myapp.server.auctions.service.AuctionQueryService$1 -> java.lang.NoSuchFieldError                         java.base
+   com.myapp.server.auctions.service.AuctionQueryService$1 -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.service.AuctionService   -> com.myapp.server.auctions.dto.AuctionDetail        classes
+   com.myapp.server.auctions.service.AuctionService   -> com.myapp.server.auctions.dto.AuctionListItem      classes
+   com.myapp.server.auctions.service.AuctionService   -> com.myapp.server.auctions.dto.CreateAuctionRequest classes
+   com.myapp.server.auctions.service.AuctionService   -> com.myapp.server.auctions.dto.CreateAuctionResponse classes
+   com.myapp.server.auctions.service.AuctionService   -> com.myapp.server.auctions.service.AuctionCommandService classes
+   com.myapp.server.auctions.service.AuctionService   -> com.myapp.server.auctions.service.AuctionQueryService classes
+   com.myapp.server.auctions.service.AuctionService   -> com.myapp.server.users.dto.UserAuctionItem         classes
+   com.myapp.server.auctions.service.AuctionService   -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.service.AuctionService   -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.service.AuctionService   -> java.lang.String                                   java.base
+   com.myapp.server.auctions.service.AuctionService   -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.service.AuctionService   -> java.util.List                                     java.base
+   com.myapp.server.auctions.service.AuctionService   -> java.util.Map                                      java.base
+   com.myapp.server.auctions.service.AuctionService   -> org.springframework.data.domain.Page               not found
+   com.myapp.server.auctions.service.AuctionService   -> org.springframework.stereotype.Service             not found
+   com.myapp.server.auctions.service.AuctionService   -> org.springframework.transaction.annotation.Transactional not found
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> com.myapp.server.auctions.entity.Auction           classes
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> com.myapp.server.auctions.repository.AuctionRepository classes
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> java.io.PrintStream                                java.base
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> java.lang.Integer                                  java.base
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> java.lang.Long                                     java.base
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> java.lang.String                                   java.base
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> java.lang.System                                   java.base
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> java.lang.invoke.StringConcatFactory               java.base
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> java.util.Iterator                                 java.base
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> java.util.List                                     java.base
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> java.util.Optional                                 java.base
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> org.springframework.beans.factory.annotation.Autowired not found
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> org.springframework.scheduling.annotation.Scheduled not found
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> org.springframework.stereotype.Service             not found
+   com.myapp.server.auctions.service.AuctionStatusUpdateService -> org.springframework.transaction.annotation.Transactional not found
+   com.myapp.server.auctions.service.policy.AuctionDefaults -> com.myapp.server.auctions.entity.Auction           classes
+   com.myapp.server.auctions.service.policy.AuctionDefaults -> com.myapp.server.auctions.service.policy.AuctionDefaults$UserAuctionDefaults classes
+   com.myapp.server.auctions.service.policy.AuctionDefaults -> java.lang.Integer                                  java.base
+   com.myapp.server.auctions.service.policy.AuctionDefaults -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.service.policy.AuctionDefaults -> java.lang.String                                   java.base
+   com.myapp.server.auctions.service.policy.AuctionDefaults -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.service.policy.AuctionDefaults -> org.springframework.stereotype.Component           not found
+   com.myapp.server.auctions.service.policy.AuctionDefaults$UserAuctionDefaults -> com.myapp.server.auctions.service.policy.AuctionDefaults classes
+   com.myapp.server.auctions.service.policy.AuctionDefaults$UserAuctionDefaults -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.service.policy.AuctionDefaults$UserAuctionDefaults -> java.lang.String                                   java.base
+   com.myapp.server.auctions.service.policy.AuctionDefaults$UserAuctionDefaults -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.service.policy.AuctionDefaults$UserAuctionDefaults -> java.util.List                                     java.base
+   com.myapp.server.auctions.service.policy.AuctionRulesPolicy -> com.myapp.server.auctions.entity.Auction           classes
+   com.myapp.server.auctions.service.policy.AuctionRulesPolicy -> com.myapp.server.common.exception.BusinessRuleViolationException classes
+   com.myapp.server.auctions.service.policy.AuctionRulesPolicy -> java.lang.Integer                                  java.base
+   com.myapp.server.auctions.service.policy.AuctionRulesPolicy -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.service.policy.AuctionRulesPolicy -> java.lang.String                                   java.base
+   com.myapp.server.auctions.service.policy.AuctionRulesPolicy -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.service.policy.AuctionRulesPolicy -> org.springframework.http.HttpStatus                not found
+   com.myapp.server.auctions.service.policy.AuctionRulesPolicy -> org.springframework.stereotype.Component           not found
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> com.myapp.server.auctions.dto.CreateAuctionRequest classes
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> com.myapp.server.auctions.entity.enums.AuctionCategory classes
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> com.myapp.server.auctions.entity.enums.AuctionCondition classes
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> com.myapp.server.common.exception.BusinessRuleViolationException classes
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.io.PrintStream                                java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.lang.Exception                                java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.lang.IllegalArgumentException                 java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.lang.String                                   java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.lang.System                                   java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.lang.invoke.LambdaMetafactory                 java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.lang.invoke.StringConcatFactory               java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.math.BigDecimal                               java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.util.Iterator                                 java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.util.List                                     java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.util.Objects                                  java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.util.function.Function                        java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.util.function.Predicate                       java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.util.stream.Collector                         java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.util.stream.Collectors                        java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> java.util.stream.Stream                            java.base
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> org.springframework.http.HttpStatus                not found
+   com.myapp.server.auctions.service.policy.AuctionValidationPolicy -> org.springframework.stereotype.Component           not found
+   com.myapp.server.auctions.utils.AuctionStatusTranslator -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.utils.AuctionStatusTranslator -> com.myapp.server.auctions.utils.AuctionStatusTranslator$1 classes
+   com.myapp.server.auctions.utils.AuctionStatusTranslator -> java.lang.Object                                   java.base
+   com.myapp.server.auctions.utils.AuctionStatusTranslator -> java.lang.String                                   java.base
+   com.myapp.server.auctions.utils.AuctionStatusTranslator$1 -> com.myapp.server.auctions.entity.enums.AuctionStatus classes
+   com.myapp.server.auctions.utils.AuctionStatusTranslator$1 -> com.myapp.server.auctions.utils.AuctionStatusTranslator classes
+   com.myapp.server.auctions.utils.AuctionStatusTranslator$1 -> java.lang.NoSuchFieldError                         java.base
+   com.myapp.server.auctions.utils.AuctionStatusTranslator$1 -> java.lang.Object                                   java.base
+   com.myapp.server.auth.controller.AuthLoginController -> com.myapp.server.auth.dto.LoginRequest             classes
+   com.myapp.server.auth.controller.AuthLoginController -> com.myapp.server.auth.dto.UserResponse             classes
+   com.myapp.server.auth.controller.AuthLoginController -> com.myapp.server.auth.entity.User                  classes
+   com.myapp.server.auth.controller.AuthLoginController -> com.myapp.server.auth.mapper.AuthMapper            classes
+   com.myapp.server.auth.controller.AuthLoginController -> com.myapp.server.auth.service.AuthService          classes
+   com.myapp.server.auth.controller.AuthLoginController -> com.myapp.server.auth.service.JwtService           classes
+   com.myapp.server.auth.controller.AuthLoginController -> com.myapp.server.auth.service.LoginRateLimiter     classes
+   com.myapp.server.auth.controller.AuthLoginController -> jakarta.servlet.http.Cookie                        not found
+   com.myapp.server.auth.controller.AuthLoginController -> jakarta.servlet.http.HttpServletRequest            not found
+   com.myapp.server.auth.controller.AuthLoginController -> jakarta.servlet.http.HttpServletResponse           not found
+   com.myapp.server.auth.controller.AuthLoginController -> jakarta.validation.Valid                           not found
+   com.myapp.server.auth.controller.AuthLoginController -> java.lang.Boolean                                  java.base
+   com.myapp.server.auth.controller.AuthLoginController -> java.lang.Exception                                java.base
+   com.myapp.server.auth.controller.AuthLoginController -> java.lang.Long                                     java.base
+   com.myapp.server.auth.controller.AuthLoginController -> java.lang.Object                                   java.base
+   com.myapp.server.auth.controller.AuthLoginController -> java.lang.String                                   java.base
+   com.myapp.server.auth.controller.AuthLoginController -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.auth.controller.AuthLoginController -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auth.controller.AuthLoginController -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auth.controller.AuthLoginController -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.auth.controller.AuthLoginController -> java.lang.invoke.StringConcatFactory               java.base
+   com.myapp.server.auth.controller.AuthLoginController -> java.util.Map                                      java.base
+   com.myapp.server.auth.controller.AuthLoginController -> java.util.Optional                                 java.base
+   com.myapp.server.auth.controller.AuthLoginController -> org.springframework.beans.factory.annotation.Value not found
+   com.myapp.server.auth.controller.AuthLoginController -> org.springframework.http.HttpStatus                not found
+   com.myapp.server.auth.controller.AuthLoginController -> org.springframework.http.HttpStatusCode            not found
+   com.myapp.server.auth.controller.AuthLoginController -> org.springframework.http.ResponseEntity            not found
+   com.myapp.server.auth.controller.AuthLoginController -> org.springframework.http.ResponseEntity$BodyBuilder not found
+   com.myapp.server.auth.controller.AuthLoginController -> org.springframework.web.bind.annotation.GetMapping not found
+   com.myapp.server.auth.controller.AuthLoginController -> org.springframework.web.bind.annotation.PostMapping not found
+   com.myapp.server.auth.controller.AuthLoginController -> org.springframework.web.bind.annotation.RequestBody not found
+   com.myapp.server.auth.controller.AuthLoginController -> org.springframework.web.bind.annotation.RequestMapping not found
+   com.myapp.server.auth.controller.AuthLoginController -> org.springframework.web.bind.annotation.RestController not found
+   com.myapp.server.auth.controller.AuthSignupController -> com.myapp.server.auth.dto.SignupRequest            classes
+   com.myapp.server.auth.controller.AuthSignupController -> com.myapp.server.auth.dto.UserResponse             classes
+   com.myapp.server.auth.controller.AuthSignupController -> com.myapp.server.auth.entity.User                  classes
+   com.myapp.server.auth.controller.AuthSignupController -> com.myapp.server.auth.mapper.AuthMapper            classes
+   com.myapp.server.auth.controller.AuthSignupController -> com.myapp.server.auth.service.AuthService          classes
+   com.myapp.server.auth.controller.AuthSignupController -> com.myapp.server.auth.service.JwtService           classes
+   com.myapp.server.auth.controller.AuthSignupController -> jakarta.servlet.http.Cookie                        not found
+   com.myapp.server.auth.controller.AuthSignupController -> jakarta.servlet.http.HttpServletResponse           not found
+   com.myapp.server.auth.controller.AuthSignupController -> jakarta.validation.Valid                           not found
+   com.myapp.server.auth.controller.AuthSignupController -> java.lang.IllegalArgumentException                 java.base
+   com.myapp.server.auth.controller.AuthSignupController -> java.lang.Long                                     java.base
+   com.myapp.server.auth.controller.AuthSignupController -> java.lang.Object                                   java.base
+   com.myapp.server.auth.controller.AuthSignupController -> java.lang.String                                   java.base
+   com.myapp.server.auth.controller.AuthSignupController -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.auth.controller.AuthSignupController -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auth.controller.AuthSignupController -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auth.controller.AuthSignupController -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.auth.controller.AuthSignupController -> java.lang.invoke.StringConcatFactory               java.base
+   com.myapp.server.auth.controller.AuthSignupController -> java.util.Map                                      java.base
+   com.myapp.server.auth.controller.AuthSignupController -> org.springframework.beans.factory.annotation.Value not found
+   com.myapp.server.auth.controller.AuthSignupController -> org.springframework.dao.DataIntegrityViolationException not found
+   com.myapp.server.auth.controller.AuthSignupController -> org.springframework.http.HttpStatus                not found
+   com.myapp.server.auth.controller.AuthSignupController -> org.springframework.http.HttpStatusCode            not found
+   com.myapp.server.auth.controller.AuthSignupController -> org.springframework.http.ResponseEntity            not found
+   com.myapp.server.auth.controller.AuthSignupController -> org.springframework.http.ResponseEntity$BodyBuilder not found
+   com.myapp.server.auth.controller.AuthSignupController -> org.springframework.web.bind.annotation.PostMapping not found
+   com.myapp.server.auth.controller.AuthSignupController -> org.springframework.web.bind.annotation.RequestBody not found
+   com.myapp.server.auth.controller.AuthSignupController -> org.springframework.web.bind.annotation.RequestMapping not found
+   com.myapp.server.auth.controller.AuthSignupController -> org.springframework.web.bind.annotation.RestController not found
+   com.myapp.server.auth.dto.LoginRequest             -> jakarta.validation.constraints.Email               not found
+   com.myapp.server.auth.dto.LoginRequest             -> jakarta.validation.constraints.NotBlank            not found
+   com.myapp.server.auth.dto.LoginRequest             -> java.lang.Object                                   java.base
+   com.myapp.server.auth.dto.LoginRequest             -> java.lang.String                                   java.base
+   com.myapp.server.auth.dto.LoginRequest             -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.auth.dto.LoginRequest             -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auth.dto.LoginRequest             -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auth.dto.LoginRequest             -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.auth.dto.LoginRequest             -> java.lang.invoke.StringConcatFactory               java.base
+   com.myapp.server.auth.dto.SignupRequest            -> com.fasterxml.jackson.annotation.JsonIgnoreProperties not found
+   com.myapp.server.auth.dto.SignupRequest            -> jakarta.validation.constraints.NotBlank            not found
+   com.myapp.server.auth.dto.SignupRequest            -> jakarta.validation.constraints.Size                not found
+   com.myapp.server.auth.dto.SignupRequest            -> java.lang.Object                                   java.base
+   com.myapp.server.auth.dto.SignupRequest            -> java.lang.String                                   java.base
+   com.myapp.server.auth.dto.SignupRequest            -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.auth.dto.SignupRequest            -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auth.dto.SignupRequest            -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auth.dto.SignupRequest            -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.auth.dto.SignupRequest            -> java.lang.invoke.StringConcatFactory               java.base
+   com.myapp.server.auth.dto.UserResponse             -> java.lang.Long                                     java.base
+   com.myapp.server.auth.dto.UserResponse             -> java.lang.Object                                   java.base
+   com.myapp.server.auth.dto.UserResponse             -> java.lang.String                                   java.base
+   com.myapp.server.auth.dto.UserResponse             -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.auth.dto.UserResponse             -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auth.dto.UserResponse             -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auth.dto.UserResponse             -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.auth.dto.UserResponse             -> java.lang.invoke.StringConcatFactory               java.base
+   com.myapp.server.auth.entity.User                  -> jakarta.persistence.Column                         not found
+   com.myapp.server.auth.entity.User                  -> jakarta.persistence.Entity                         not found
+   com.myapp.server.auth.entity.User                  -> jakarta.persistence.GeneratedValue                 not found
+   com.myapp.server.auth.entity.User                  -> jakarta.persistence.Id                             not found
+   com.myapp.server.auth.entity.User                  -> jakarta.persistence.PrePersist                     not found
+   com.myapp.server.auth.entity.User                  -> jakarta.persistence.PreUpdate                      not found
+   com.myapp.server.auth.entity.User                  -> jakarta.persistence.Table                          not found
+   com.myapp.server.auth.entity.User                  -> java.lang.Long                                     java.base
+   com.myapp.server.auth.entity.User                  -> java.lang.Object                                   java.base
+   com.myapp.server.auth.entity.User                  -> java.lang.String                                   java.base
+   com.myapp.server.auth.entity.User                  -> java.time.LocalDateTime                            java.base
+   com.myapp.server.auth.mapper.AuthMapper            -> com.myapp.server.auth.dto.UserResponse             classes
+   com.myapp.server.auth.mapper.AuthMapper            -> com.myapp.server.auth.entity.User                  classes
+   com.myapp.server.auth.mapper.AuthMapper            -> java.lang.Long                                     java.base
+   com.myapp.server.auth.mapper.AuthMapper            -> java.lang.Object                                   java.base
+   com.myapp.server.auth.mapper.AuthMapper            -> java.lang.String                                   java.base
+   com.myapp.server.auth.mapper.AuthMapper            -> org.springframework.stereotype.Component           not found
+   com.myapp.server.auth.repository.UserRepository    -> com.myapp.server.auth.entity.User                  classes
+   com.myapp.server.auth.repository.UserRepository    -> java.lang.Long                                     java.base
+   com.myapp.server.auth.repository.UserRepository    -> java.lang.Object                                   java.base
+   com.myapp.server.auth.repository.UserRepository    -> java.lang.String                                   java.base
+   com.myapp.server.auth.repository.UserRepository    -> java.util.Optional                                 java.base
+   com.myapp.server.auth.repository.UserRepository    -> org.springframework.data.jpa.repository.JpaRepository not found
+   com.myapp.server.auth.repository.UserRepository    -> org.springframework.data.jpa.repository.Query      not found
+   com.myapp.server.auth.repository.UserRepository    -> org.springframework.data.repository.query.Param    not found
+   com.myapp.server.auth.service.AuthService          -> com.myapp.server.auth.dto.SignupRequest            classes
+   com.myapp.server.auth.service.AuthService          -> com.myapp.server.auth.entity.User                  classes
+   com.myapp.server.auth.service.AuthService          -> com.myapp.server.auth.repository.UserRepository    classes
+   com.myapp.server.auth.service.AuthService          -> java.lang.CharSequence                             java.base
+   com.myapp.server.auth.service.AuthService          -> java.lang.IllegalArgumentException                 java.base
+   com.myapp.server.auth.service.AuthService          -> java.lang.Long                                     java.base
+   com.myapp.server.auth.service.AuthService          -> java.lang.Object                                   java.base
+   com.myapp.server.auth.service.AuthService          -> java.lang.RuntimeException                         java.base
+   com.myapp.server.auth.service.AuthService          -> java.lang.String                                   java.base
+   com.myapp.server.auth.service.AuthService          -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.auth.service.AuthService          -> java.lang.invoke.LambdaMetafactory                 java.base
+   com.myapp.server.auth.service.AuthService          -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.auth.service.AuthService          -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auth.service.AuthService          -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auth.service.AuthService          -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.auth.service.AuthService          -> java.util.Optional                                 java.base
+   com.myapp.server.auth.service.AuthService          -> java.util.function.Consumer                        java.base
+   com.myapp.server.auth.service.AuthService          -> java.util.function.Predicate                       java.base
+   com.myapp.server.auth.service.AuthService          -> org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder not found
+   com.myapp.server.auth.service.AuthService          -> org.springframework.security.crypto.password.PasswordEncoder not found
+   com.myapp.server.auth.service.AuthService          -> org.springframework.stereotype.Service             not found
+   com.myapp.server.auth.service.JwtService           -> io.jsonwebtoken.Claims                             not found
+   com.myapp.server.auth.service.JwtService           -> io.jsonwebtoken.Jws                                not found
+   com.myapp.server.auth.service.JwtService           -> io.jsonwebtoken.JwtBuilder                         not found
+   com.myapp.server.auth.service.JwtService           -> io.jsonwebtoken.JwtParser                          not found
+   com.myapp.server.auth.service.JwtService           -> io.jsonwebtoken.JwtParserBuilder                   not found
+   com.myapp.server.auth.service.JwtService           -> io.jsonwebtoken.Jwts                               not found
+   com.myapp.server.auth.service.JwtService           -> io.jsonwebtoken.SignatureAlgorithm                 not found
+   com.myapp.server.auth.service.JwtService           -> io.jsonwebtoken.security.Keys                      not found
+   com.myapp.server.auth.service.JwtService           -> java.lang.CharSequence                             java.base
+   com.myapp.server.auth.service.JwtService           -> java.lang.Object                                   java.base
+   com.myapp.server.auth.service.JwtService           -> java.lang.String                                   java.base
+   com.myapp.server.auth.service.JwtService           -> java.security.Key                                  java.base
+   com.myapp.server.auth.service.JwtService           -> java.time.Instant                                  java.base
+   com.myapp.server.auth.service.JwtService           -> java.util.Date                                     java.base
+   com.myapp.server.auth.service.JwtService           -> java.util.Map                                      java.base
+   com.myapp.server.auth.service.JwtService           -> javax.crypto.SecretKey                             java.base
+   com.myapp.server.auth.service.JwtService           -> org.springframework.beans.factory.annotation.Value not found
+   com.myapp.server.auth.service.JwtService           -> org.springframework.stereotype.Service             not found
+   com.myapp.server.auth.service.LoginRateLimiter     -> com.myapp.server.auth.service.LoginRateLimiter$Entry classes
+   com.myapp.server.auth.service.LoginRateLimiter     -> java.lang.Object                                   java.base
+   com.myapp.server.auth.service.LoginRateLimiter     -> java.lang.String                                   java.base
+   com.myapp.server.auth.service.LoginRateLimiter     -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.auth.service.LoginRateLimiter     -> java.lang.invoke.LambdaMetafactory                 java.base
+   com.myapp.server.auth.service.LoginRateLimiter     -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.auth.service.LoginRateLimiter     -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.auth.service.LoginRateLimiter     -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.auth.service.LoginRateLimiter     -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.auth.service.LoginRateLimiter     -> java.lang.invoke.StringConcatFactory               java.base
+   com.myapp.server.auth.service.LoginRateLimiter     -> java.time.Instant                                  java.base
+   com.myapp.server.auth.service.LoginRateLimiter     -> java.util.Map                                      java.base
+   com.myapp.server.auth.service.LoginRateLimiter     -> java.util.concurrent.ConcurrentHashMap             java.base
+   com.myapp.server.auth.service.LoginRateLimiter     -> java.util.function.BiFunction                      java.base
+   com.myapp.server.auth.service.LoginRateLimiter     -> org.springframework.stereotype.Component           not found
+   com.myapp.server.auth.service.LoginRateLimiter$Entry -> com.myapp.server.auth.service.LoginRateLimiter     classes
+   com.myapp.server.auth.service.LoginRateLimiter$Entry -> java.lang.Object                                   java.base
+   com.myapp.server.bids.controller.BidsController    -> com.myapp.server.auth.service.JwtService           classes
+   com.myapp.server.bids.controller.BidsController    -> com.myapp.server.bids.dto.PlaceBidRequest          classes
+   com.myapp.server.bids.controller.BidsController    -> com.myapp.server.bids.dto.PlaceBidResponse         classes
+   com.myapp.server.bids.controller.BidsController    -> com.myapp.server.bids.service.BidsService          classes
+   com.myapp.server.bids.controller.BidsController    -> com.myapp.server.bids.service.BidsService$BidHistoryItem classes
+   com.myapp.server.bids.controller.BidsController    -> jakarta.servlet.http.Cookie                        not found
+   com.myapp.server.bids.controller.BidsController    -> jakarta.servlet.http.HttpServletRequest            not found
+   com.myapp.server.bids.controller.BidsController    -> jakarta.validation.Valid                           not found
+   com.myapp.server.bids.controller.BidsController    -> java.lang.Exception                                java.base
+   com.myapp.server.bids.controller.BidsController    -> java.lang.Long                                     java.base
+   com.myapp.server.bids.controller.BidsController    -> java.lang.Object                                   java.base
+   com.myapp.server.bids.controller.BidsController    -> java.lang.String                                   java.base
+   com.myapp.server.bids.controller.BidsController    -> java.util.List                                     java.base
+   com.myapp.server.bids.controller.BidsController    -> org.springframework.beans.factory.annotation.Value not found
+   com.myapp.server.bids.controller.BidsController    -> org.springframework.http.HttpStatus                not found
+   com.myapp.server.bids.controller.BidsController    -> org.springframework.http.HttpStatusCode            not found
+   com.myapp.server.bids.controller.BidsController    -> org.springframework.web.bind.annotation.GetMapping not found
+   com.myapp.server.bids.controller.BidsController    -> org.springframework.web.bind.annotation.PathVariable not found
+   com.myapp.server.bids.controller.BidsController    -> org.springframework.web.bind.annotation.PostMapping not found
+   com.myapp.server.bids.controller.BidsController    -> org.springframework.web.bind.annotation.RequestBody not found
+   com.myapp.server.bids.controller.BidsController    -> org.springframework.web.bind.annotation.RequestMapping not found
+   com.myapp.server.bids.controller.BidsController    -> org.springframework.web.bind.annotation.ResponseStatus not found
+   com.myapp.server.bids.controller.BidsController    -> org.springframework.web.bind.annotation.RestController not found
+   com.myapp.server.bids.controller.BidsController    -> org.springframework.web.server.ResponseStatusException not found
+   com.myapp.server.bids.dto.NextBidInfo              -> java.lang.Class                                    java.base
+   com.myapp.server.bids.dto.NextBidInfo              -> java.lang.Object                                   java.base
+   com.myapp.server.bids.dto.NextBidInfo              -> java.lang.Record                                   java.base
+   com.myapp.server.bids.dto.NextBidInfo              -> java.lang.String                                   java.base
+   com.myapp.server.bids.dto.NextBidInfo              -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.bids.dto.NextBidInfo              -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.bids.dto.NextBidInfo              -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.bids.dto.NextBidInfo              -> java.lang.invoke.TypeDescriptor                    java.base
+   com.myapp.server.bids.dto.NextBidInfo              -> java.lang.runtime.ObjectMethods                    java.base
+   com.myapp.server.bids.dto.NextBidInfo              -> java.math.BigDecimal                               java.base
+   com.myapp.server.bids.dto.PlaceBidRequest          -> jakarta.validation.constraints.NotNull             not found
+   com.myapp.server.bids.dto.PlaceBidRequest          -> jakarta.validation.constraints.Positive            not found
+   com.myapp.server.bids.dto.PlaceBidRequest          -> java.lang.Class                                    java.base
+   com.myapp.server.bids.dto.PlaceBidRequest          -> java.lang.Object                                   java.base
+   com.myapp.server.bids.dto.PlaceBidRequest          -> java.lang.Record                                   java.base
+   com.myapp.server.bids.dto.PlaceBidRequest          -> java.lang.String                                   java.base
+   com.myapp.server.bids.dto.PlaceBidRequest          -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.bids.dto.PlaceBidRequest          -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.bids.dto.PlaceBidRequest          -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.bids.dto.PlaceBidRequest          -> java.lang.invoke.TypeDescriptor                    java.base
+   com.myapp.server.bids.dto.PlaceBidRequest          -> java.lang.runtime.ObjectMethods                    java.base
+   com.myapp.server.bids.dto.PlaceBidRequest          -> java.math.BigDecimal                               java.base
+   com.myapp.server.bids.dto.PlaceBidResponse         -> java.lang.Class                                    java.base
+   com.myapp.server.bids.dto.PlaceBidResponse         -> java.lang.Long                                     java.base
+   com.myapp.server.bids.dto.PlaceBidResponse         -> java.lang.Object                                   java.base
+   com.myapp.server.bids.dto.PlaceBidResponse         -> java.lang.Record                                   java.base
+   com.myapp.server.bids.dto.PlaceBidResponse         -> java.lang.String                                   java.base
+   com.myapp.server.bids.dto.PlaceBidResponse         -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.bids.dto.PlaceBidResponse         -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.bids.dto.PlaceBidResponse         -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.bids.dto.PlaceBidResponse         -> java.lang.invoke.TypeDescriptor                    java.base
+   com.myapp.server.bids.dto.PlaceBidResponse         -> java.lang.runtime.ObjectMethods                    java.base
+   com.myapp.server.bids.dto.PlaceBidResponse         -> java.math.BigDecimal                               java.base
+   com.myapp.server.bids.dto.PlaceBidResponse         -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.bids.dto.UserBidSummaryItem       -> java.lang.Class                                    java.base
+   com.myapp.server.bids.dto.UserBidSummaryItem       -> java.lang.Long                                     java.base
+   com.myapp.server.bids.dto.UserBidSummaryItem       -> java.lang.Object                                   java.base
+   com.myapp.server.bids.dto.UserBidSummaryItem       -> java.lang.Record                                   java.base
+   com.myapp.server.bids.dto.UserBidSummaryItem       -> java.lang.String                                   java.base
+   com.myapp.server.bids.dto.UserBidSummaryItem       -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.bids.dto.UserBidSummaryItem       -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.bids.dto.UserBidSummaryItem       -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.bids.dto.UserBidSummaryItem       -> java.lang.invoke.TypeDescriptor                    java.base
+   com.myapp.server.bids.dto.UserBidSummaryItem       -> java.lang.runtime.ObjectMethods                    java.base
+   com.myapp.server.bids.dto.UserBidSummaryItem       -> java.math.BigDecimal                               java.base
+   com.myapp.server.bids.dto.UserBidSummaryItem       -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.bids.repository.AuctionLockingJdbcOps -> com.myapp.server.bids.repository.BidsDao           classes
+   com.myapp.server.bids.repository.AuctionLockingJdbcOps -> com.myapp.server.bids.repository.BidsDao$AuctionRow classes
+   com.myapp.server.bids.repository.AuctionLockingJdbcOps -> com.myapp.server.bids.repository.BidsRowMappers    classes
+   com.myapp.server.bids.repository.AuctionLockingJdbcOps -> java.lang.Boolean                                  java.base
+   com.myapp.server.bids.repository.AuctionLockingJdbcOps -> java.lang.Class                                    java.base
+   com.myapp.server.bids.repository.AuctionLockingJdbcOps -> java.lang.Long                                     java.base
+   com.myapp.server.bids.repository.AuctionLockingJdbcOps -> java.lang.Object                                   java.base
+   com.myapp.server.bids.repository.AuctionLockingJdbcOps -> java.lang.String                                   java.base
+   com.myapp.server.bids.repository.AuctionLockingJdbcOps -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.bids.repository.AuctionLockingJdbcOps -> java.lang.invoke.LambdaMetafactory                 java.base
+   com.myapp.server.bids.repository.AuctionLockingJdbcOps -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.bids.repository.AuctionLockingJdbcOps -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.bids.repository.AuctionLockingJdbcOps -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.bids.repository.AuctionLockingJdbcOps -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.bids.repository.AuctionLockingJdbcOps -> java.sql.ResultSet                                 java.sql
+   com.myapp.server.bids.repository.AuctionLockingJdbcOps -> java.sql.SQLException                              java.sql
+   com.myapp.server.bids.repository.AuctionLockingJdbcOps -> java.util.List                                     java.base
+   com.myapp.server.bids.repository.AuctionLockingJdbcOps -> java.util.Optional                                 java.base
+   com.myapp.server.bids.repository.AuctionLockingJdbcOps -> java.util.stream.Stream                            java.base
+   com.myapp.server.bids.repository.AuctionLockingJdbcOps -> org.springframework.jdbc.core.JdbcTemplate         not found
+   com.myapp.server.bids.repository.AuctionLockingJdbcOps -> org.springframework.jdbc.core.RowMapper            not found
+   com.myapp.server.bids.repository.BidsDao           -> com.myapp.server.bids.repository.AuctionLockingJdbcOps classes
+   com.myapp.server.bids.repository.BidsDao           -> com.myapp.server.bids.repository.BidsDao$AuctionRow classes
+   com.myapp.server.bids.repository.BidsDao           -> com.myapp.server.bids.repository.BidsDao$HistoryRow classes
+   com.myapp.server.bids.repository.BidsDao           -> com.myapp.server.bids.repository.BidsDao$TopBidRow classes
+   com.myapp.server.bids.repository.BidsDao           -> com.myapp.server.bids.repository.BidsDao$UserBidSummaryRow classes
+   com.myapp.server.bids.repository.BidsDao           -> com.myapp.server.bids.repository.BidsJdbcReadHistory classes
+   com.myapp.server.bids.repository.BidsDao           -> com.myapp.server.bids.repository.BidsJdbcUserSummaries classes
+   com.myapp.server.bids.repository.BidsDao           -> com.myapp.server.bids.repository.BidsJdbcWriteOps  classes
+   com.myapp.server.bids.repository.BidsDao           -> com.myapp.server.bids.repository.BidsRowMappers    classes
+   com.myapp.server.bids.repository.BidsDao           -> java.lang.Long                                     java.base
+   com.myapp.server.bids.repository.BidsDao           -> java.lang.Object                                   java.base
+   com.myapp.server.bids.repository.BidsDao           -> java.lang.String                                   java.base
+   com.myapp.server.bids.repository.BidsDao           -> java.math.BigDecimal                               java.base
+   com.myapp.server.bids.repository.BidsDao           -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.bids.repository.BidsDao           -> java.util.List                                     java.base
+   com.myapp.server.bids.repository.BidsDao           -> org.springframework.jdbc.core.JdbcTemplate         not found
+   com.myapp.server.bids.repository.BidsDao           -> org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate not found
+   com.myapp.server.bids.repository.BidsDao           -> org.springframework.stereotype.Repository          not found
+   com.myapp.server.bids.repository.BidsDao$AuctionRow -> com.myapp.server.bids.repository.BidsDao           classes
+   com.myapp.server.bids.repository.BidsDao$AuctionRow -> java.lang.Class                                    java.base
+   com.myapp.server.bids.repository.BidsDao$AuctionRow -> java.lang.Long                                     java.base
+   com.myapp.server.bids.repository.BidsDao$AuctionRow -> java.lang.Object                                   java.base
+   com.myapp.server.bids.repository.BidsDao$AuctionRow -> java.lang.Record                                   java.base
+   com.myapp.server.bids.repository.BidsDao$AuctionRow -> java.lang.String                                   java.base
+   com.myapp.server.bids.repository.BidsDao$AuctionRow -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.bids.repository.BidsDao$AuctionRow -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.bids.repository.BidsDao$AuctionRow -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.bids.repository.BidsDao$AuctionRow -> java.lang.invoke.TypeDescriptor                    java.base
+   com.myapp.server.bids.repository.BidsDao$AuctionRow -> java.lang.runtime.ObjectMethods                    java.base
+   com.myapp.server.bids.repository.BidsDao$AuctionRow -> java.math.BigDecimal                               java.base
+   com.myapp.server.bids.repository.BidsDao$AuctionRow -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.bids.repository.BidsDao$HistoryRow -> com.myapp.server.bids.repository.BidsDao           classes
+   com.myapp.server.bids.repository.BidsDao$HistoryRow -> java.lang.Class                                    java.base
+   com.myapp.server.bids.repository.BidsDao$HistoryRow -> java.lang.Object                                   java.base
+   com.myapp.server.bids.repository.BidsDao$HistoryRow -> java.lang.Record                                   java.base
+   com.myapp.server.bids.repository.BidsDao$HistoryRow -> java.lang.String                                   java.base
+   com.myapp.server.bids.repository.BidsDao$HistoryRow -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.bids.repository.BidsDao$HistoryRow -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.bids.repository.BidsDao$HistoryRow -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.bids.repository.BidsDao$HistoryRow -> java.lang.invoke.TypeDescriptor                    java.base
+   com.myapp.server.bids.repository.BidsDao$HistoryRow -> java.lang.runtime.ObjectMethods                    java.base
+   com.myapp.server.bids.repository.BidsDao$HistoryRow -> java.math.BigDecimal                               java.base
+   com.myapp.server.bids.repository.BidsDao$HistoryRow -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.bids.repository.BidsDao$TopBidRow -> com.myapp.server.bids.repository.BidsDao           classes
+   com.myapp.server.bids.repository.BidsDao$TopBidRow -> java.lang.Class                                    java.base
+   com.myapp.server.bids.repository.BidsDao$TopBidRow -> java.lang.Object                                   java.base
+   com.myapp.server.bids.repository.BidsDao$TopBidRow -> java.lang.Record                                   java.base
+   com.myapp.server.bids.repository.BidsDao$TopBidRow -> java.lang.String                                   java.base
+   com.myapp.server.bids.repository.BidsDao$TopBidRow -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.bids.repository.BidsDao$TopBidRow -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.bids.repository.BidsDao$TopBidRow -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.bids.repository.BidsDao$TopBidRow -> java.lang.invoke.TypeDescriptor                    java.base
+   com.myapp.server.bids.repository.BidsDao$TopBidRow -> java.lang.runtime.ObjectMethods                    java.base
+   com.myapp.server.bids.repository.BidsDao$TopBidRow -> java.math.BigDecimal                               java.base
+   com.myapp.server.bids.repository.BidsDao$TopBidRow -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.bids.repository.BidsDao$UserBidSummaryRow -> com.myapp.server.bids.repository.BidsDao           classes
+   com.myapp.server.bids.repository.BidsDao$UserBidSummaryRow -> java.lang.Class                                    java.base
+   com.myapp.server.bids.repository.BidsDao$UserBidSummaryRow -> java.lang.Long                                     java.base
+   com.myapp.server.bids.repository.BidsDao$UserBidSummaryRow -> java.lang.Object                                   java.base
+   com.myapp.server.bids.repository.BidsDao$UserBidSummaryRow -> java.lang.Record                                   java.base
+   com.myapp.server.bids.repository.BidsDao$UserBidSummaryRow -> java.lang.String                                   java.base
+   com.myapp.server.bids.repository.BidsDao$UserBidSummaryRow -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.bids.repository.BidsDao$UserBidSummaryRow -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.bids.repository.BidsDao$UserBidSummaryRow -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.bids.repository.BidsDao$UserBidSummaryRow -> java.lang.invoke.TypeDescriptor                    java.base
+   com.myapp.server.bids.repository.BidsDao$UserBidSummaryRow -> java.lang.runtime.ObjectMethods                    java.base
+   com.myapp.server.bids.repository.BidsDao$UserBidSummaryRow -> java.math.BigDecimal                               java.base
+   com.myapp.server.bids.repository.BidsDao$UserBidSummaryRow -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.bids.repository.BidsJdbcReadHistory -> com.myapp.server.bids.repository.BidsDao           classes
+   com.myapp.server.bids.repository.BidsJdbcReadHistory -> com.myapp.server.bids.repository.BidsDao$HistoryRow classes
+   com.myapp.server.bids.repository.BidsJdbcReadHistory -> java.lang.Class                                    java.base
+   com.myapp.server.bids.repository.BidsJdbcReadHistory -> java.lang.Long                                     java.base
+   com.myapp.server.bids.repository.BidsJdbcReadHistory -> java.lang.Object                                   java.base
+   com.myapp.server.bids.repository.BidsJdbcReadHistory -> java.lang.String                                   java.base
+   com.myapp.server.bids.repository.BidsJdbcReadHistory -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.bids.repository.BidsJdbcReadHistory -> java.lang.invoke.LambdaMetafactory                 java.base
+   com.myapp.server.bids.repository.BidsJdbcReadHistory -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.bids.repository.BidsJdbcReadHistory -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.bids.repository.BidsJdbcReadHistory -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.bids.repository.BidsJdbcReadHistory -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.bids.repository.BidsJdbcReadHistory -> java.math.BigDecimal                               java.base
+   com.myapp.server.bids.repository.BidsJdbcReadHistory -> java.sql.ResultSet                                 java.sql
+   com.myapp.server.bids.repository.BidsJdbcReadHistory -> java.sql.SQLException                              java.sql
+   com.myapp.server.bids.repository.BidsJdbcReadHistory -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.bids.repository.BidsJdbcReadHistory -> java.util.List                                     java.base
+   com.myapp.server.bids.repository.BidsJdbcReadHistory -> org.springframework.jdbc.core.JdbcTemplate         not found
+   com.myapp.server.bids.repository.BidsJdbcReadHistory -> org.springframework.jdbc.core.RowMapper            not found
+   com.myapp.server.bids.repository.BidsJdbcUserSummaries -> com.myapp.server.bids.repository.BidsDao           classes
+   com.myapp.server.bids.repository.BidsJdbcUserSummaries -> com.myapp.server.bids.repository.BidsDao$TopBidRow classes
+   com.myapp.server.bids.repository.BidsJdbcUserSummaries -> com.myapp.server.bids.repository.BidsDao$UserBidSummaryRow classes
+   com.myapp.server.bids.repository.BidsJdbcUserSummaries -> java.lang.Class                                    java.base
+   com.myapp.server.bids.repository.BidsJdbcUserSummaries -> java.lang.Integer                                  java.base
+   com.myapp.server.bids.repository.BidsJdbcUserSummaries -> java.lang.Long                                     java.base
+   com.myapp.server.bids.repository.BidsJdbcUserSummaries -> java.lang.Object                                   java.base
+   com.myapp.server.bids.repository.BidsJdbcUserSummaries -> java.lang.String                                   java.base
+   com.myapp.server.bids.repository.BidsJdbcUserSummaries -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.bids.repository.BidsJdbcUserSummaries -> java.lang.invoke.LambdaMetafactory                 java.base
+   com.myapp.server.bids.repository.BidsJdbcUserSummaries -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.bids.repository.BidsJdbcUserSummaries -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.bids.repository.BidsJdbcUserSummaries -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.bids.repository.BidsJdbcUserSummaries -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.bids.repository.BidsJdbcUserSummaries -> java.math.BigDecimal                               java.base
+   com.myapp.server.bids.repository.BidsJdbcUserSummaries -> java.sql.ResultSet                                 java.sql
+   com.myapp.server.bids.repository.BidsJdbcUserSummaries -> java.sql.SQLException                              java.sql
+   com.myapp.server.bids.repository.BidsJdbcUserSummaries -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.bids.repository.BidsJdbcUserSummaries -> java.util.List                                     java.base
+   com.myapp.server.bids.repository.BidsJdbcUserSummaries -> org.springframework.jdbc.core.JdbcTemplate         not found
+   com.myapp.server.bids.repository.BidsJdbcUserSummaries -> org.springframework.jdbc.core.RowMapper            not found
+   com.myapp.server.bids.repository.BidsJdbcWriteOps  -> java.lang.Class                                    java.base
+   com.myapp.server.bids.repository.BidsJdbcWriteOps  -> java.lang.Integer                                  java.base
+   com.myapp.server.bids.repository.BidsJdbcWriteOps  -> java.lang.Long                                     java.base
+   com.myapp.server.bids.repository.BidsJdbcWriteOps  -> java.lang.Object                                   java.base
+   com.myapp.server.bids.repository.BidsJdbcWriteOps  -> java.lang.String                                   java.base
+   com.myapp.server.bids.repository.BidsJdbcWriteOps  -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.bids.repository.BidsJdbcWriteOps  -> java.lang.invoke.LambdaMetafactory                 java.base
+   com.myapp.server.bids.repository.BidsJdbcWriteOps  -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.bids.repository.BidsJdbcWriteOps  -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.bids.repository.BidsJdbcWriteOps  -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.bids.repository.BidsJdbcWriteOps  -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.bids.repository.BidsJdbcWriteOps  -> java.math.BigDecimal                               java.base
+   com.myapp.server.bids.repository.BidsJdbcWriteOps  -> java.sql.ResultSet                                 java.sql
+   com.myapp.server.bids.repository.BidsJdbcWriteOps  -> java.sql.SQLException                              java.sql
+   com.myapp.server.bids.repository.BidsJdbcWriteOps  -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.bids.repository.BidsJdbcWriteOps  -> org.springframework.dao.DataAccessException        not found
+   com.myapp.server.bids.repository.BidsJdbcWriteOps  -> org.springframework.jdbc.core.JdbcTemplate         not found
+   com.myapp.server.bids.repository.BidsJdbcWriteOps  -> org.springframework.jdbc.core.ResultSetExtractor   not found
+   com.myapp.server.bids.repository.BidsJdbcWriteOps  -> org.springframework.jdbc.core.namedparam.MapSqlParameterSource not found
+   com.myapp.server.bids.repository.BidsJdbcWriteOps  -> org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate not found
+   com.myapp.server.bids.repository.BidsJdbcWriteOps  -> org.springframework.jdbc.core.namedparam.SqlParameterSource not found
+   com.myapp.server.bids.repository.BidsRecords       -> com.myapp.server.bids.repository.BidsRecords$AuctionRow classes
+   com.myapp.server.bids.repository.BidsRecords       -> com.myapp.server.bids.repository.BidsRecords$HistoryRow classes
+   com.myapp.server.bids.repository.BidsRecords       -> com.myapp.server.bids.repository.BidsRecords$TopBidRow classes
+   com.myapp.server.bids.repository.BidsRecords       -> com.myapp.server.bids.repository.BidsRecords$UserBidSummaryRow classes
+   com.myapp.server.bids.repository.BidsRecords       -> java.lang.Object                                   java.base
+   com.myapp.server.bids.repository.BidsRecords$AuctionRow -> com.myapp.server.bids.repository.BidsRecords       classes
+   com.myapp.server.bids.repository.BidsRecords$AuctionRow -> java.lang.Class                                    java.base
+   com.myapp.server.bids.repository.BidsRecords$AuctionRow -> java.lang.Long                                     java.base
+   com.myapp.server.bids.repository.BidsRecords$AuctionRow -> java.lang.Object                                   java.base
+   com.myapp.server.bids.repository.BidsRecords$AuctionRow -> java.lang.Record                                   java.base
+   com.myapp.server.bids.repository.BidsRecords$AuctionRow -> java.lang.String                                   java.base
+   com.myapp.server.bids.repository.BidsRecords$AuctionRow -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.bids.repository.BidsRecords$AuctionRow -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.bids.repository.BidsRecords$AuctionRow -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.bids.repository.BidsRecords$AuctionRow -> java.lang.invoke.TypeDescriptor                    java.base
+   com.myapp.server.bids.repository.BidsRecords$AuctionRow -> java.lang.runtime.ObjectMethods                    java.base
+   com.myapp.server.bids.repository.BidsRecords$AuctionRow -> java.math.BigDecimal                               java.base
+   com.myapp.server.bids.repository.BidsRecords$AuctionRow -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.bids.repository.BidsRecords$HistoryRow -> com.myapp.server.bids.repository.BidsRecords       classes
+   com.myapp.server.bids.repository.BidsRecords$HistoryRow -> java.lang.Class                                    java.base
+   com.myapp.server.bids.repository.BidsRecords$HistoryRow -> java.lang.Object                                   java.base
+   com.myapp.server.bids.repository.BidsRecords$HistoryRow -> java.lang.Record                                   java.base
+   com.myapp.server.bids.repository.BidsRecords$HistoryRow -> java.lang.String                                   java.base
+   com.myapp.server.bids.repository.BidsRecords$HistoryRow -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.bids.repository.BidsRecords$HistoryRow -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.bids.repository.BidsRecords$HistoryRow -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.bids.repository.BidsRecords$HistoryRow -> java.lang.invoke.TypeDescriptor                    java.base
+   com.myapp.server.bids.repository.BidsRecords$HistoryRow -> java.lang.runtime.ObjectMethods                    java.base
+   com.myapp.server.bids.repository.BidsRecords$HistoryRow -> java.math.BigDecimal                               java.base
+   com.myapp.server.bids.repository.BidsRecords$HistoryRow -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.bids.repository.BidsRecords$TopBidRow -> com.myapp.server.bids.repository.BidsRecords       classes
+   com.myapp.server.bids.repository.BidsRecords$TopBidRow -> java.lang.Class                                    java.base
+   com.myapp.server.bids.repository.BidsRecords$TopBidRow -> java.lang.Object                                   java.base
+   com.myapp.server.bids.repository.BidsRecords$TopBidRow -> java.lang.Record                                   java.base
+   com.myapp.server.bids.repository.BidsRecords$TopBidRow -> java.lang.String                                   java.base
+   com.myapp.server.bids.repository.BidsRecords$TopBidRow -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.bids.repository.BidsRecords$TopBidRow -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.bids.repository.BidsRecords$TopBidRow -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.bids.repository.BidsRecords$TopBidRow -> java.lang.invoke.TypeDescriptor                    java.base
+   com.myapp.server.bids.repository.BidsRecords$TopBidRow -> java.lang.runtime.ObjectMethods                    java.base
+   com.myapp.server.bids.repository.BidsRecords$TopBidRow -> java.math.BigDecimal                               java.base
+   com.myapp.server.bids.repository.BidsRecords$TopBidRow -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.bids.repository.BidsRecords$UserBidSummaryRow -> com.myapp.server.bids.repository.BidsRecords       classes
+   com.myapp.server.bids.repository.BidsRecords$UserBidSummaryRow -> java.lang.Class                                    java.base
+   com.myapp.server.bids.repository.BidsRecords$UserBidSummaryRow -> java.lang.Long                                     java.base
+   com.myapp.server.bids.repository.BidsRecords$UserBidSummaryRow -> java.lang.Object                                   java.base
+   com.myapp.server.bids.repository.BidsRecords$UserBidSummaryRow -> java.lang.Record                                   java.base
+   com.myapp.server.bids.repository.BidsRecords$UserBidSummaryRow -> java.lang.String                                   java.base
+   com.myapp.server.bids.repository.BidsRecords$UserBidSummaryRow -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.bids.repository.BidsRecords$UserBidSummaryRow -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.bids.repository.BidsRecords$UserBidSummaryRow -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.bids.repository.BidsRecords$UserBidSummaryRow -> java.lang.invoke.TypeDescriptor                    java.base
+   com.myapp.server.bids.repository.BidsRecords$UserBidSummaryRow -> java.lang.runtime.ObjectMethods                    java.base
+   com.myapp.server.bids.repository.BidsRecords$UserBidSummaryRow -> java.math.BigDecimal                               java.base
+   com.myapp.server.bids.repository.BidsRecords$UserBidSummaryRow -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.bids.repository.BidsRowMappers    -> com.myapp.server.bids.repository.BidsDao           classes
+   com.myapp.server.bids.repository.BidsRowMappers    -> com.myapp.server.bids.repository.BidsDao$AuctionRow classes
+   com.myapp.server.bids.repository.BidsRowMappers    -> java.lang.CharSequence                             java.base
+   com.myapp.server.bids.repository.BidsRowMappers    -> java.lang.Class                                    java.base
+   com.myapp.server.bids.repository.BidsRowMappers    -> java.lang.Exception                                java.base
+   com.myapp.server.bids.repository.BidsRowMappers    -> java.lang.Long                                     java.base
+   com.myapp.server.bids.repository.BidsRowMappers    -> java.lang.Object                                   java.base
+   com.myapp.server.bids.repository.BidsRowMappers    -> java.lang.String                                   java.base
+   com.myapp.server.bids.repository.BidsRowMappers    -> java.math.BigDecimal                               java.base
+   com.myapp.server.bids.repository.BidsRowMappers    -> java.sql.ResultSet                                 java.sql
+   com.myapp.server.bids.repository.BidsRowMappers    -> java.sql.SQLException                              java.sql
+   com.myapp.server.bids.repository.BidsRowMappers    -> java.sql.Timestamp                                 java.sql
+   com.myapp.server.bids.repository.BidsRowMappers    -> java.time.Instant                                  java.base
+   com.myapp.server.bids.repository.BidsRowMappers    -> java.time.LocalDateTime                            java.base
+   com.myapp.server.bids.repository.BidsRowMappers    -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.bids.repository.BidsRowMappers    -> java.time.ZoneOffset                               java.base
+   com.myapp.server.bids.service.BidPlacementService  -> com.myapp.server.bids.dto.PlaceBidRequest          classes
+   com.myapp.server.bids.service.BidPlacementService  -> com.myapp.server.bids.dto.PlaceBidResponse         classes
+   com.myapp.server.bids.service.BidPlacementService  -> com.myapp.server.bids.repository.BidsDao           classes
+   com.myapp.server.bids.service.BidPlacementService  -> com.myapp.server.bids.repository.BidsDao$AuctionRow classes
+   com.myapp.server.bids.service.BidPlacementService  -> com.myapp.server.bids.repository.BidsDao$TopBidRow classes
+   com.myapp.server.bids.service.BidPlacementService  -> com.myapp.server.bids.service.BiddingPolicy        classes
+   com.myapp.server.bids.service.BidPlacementService  -> java.lang.Long                                     java.base
+   com.myapp.server.bids.service.BidPlacementService  -> java.lang.Object                                   java.base
+   com.myapp.server.bids.service.BidPlacementService  -> java.lang.String                                   java.base
+   com.myapp.server.bids.service.BidPlacementService  -> java.math.BigDecimal                               java.base
+   com.myapp.server.bids.service.BidPlacementService  -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.bids.service.BidPlacementService  -> java.util.List                                     java.base
+   com.myapp.server.bids.service.BidPlacementService  -> org.springframework.stereotype.Service             not found
+   com.myapp.server.bids.service.BidPlacementService  -> org.springframework.transaction.annotation.Transactional not found
+   com.myapp.server.bids.service.BidQueryService      -> com.myapp.server.bids.dto.UserBidSummaryItem       classes
+   com.myapp.server.bids.service.BidQueryService      -> com.myapp.server.bids.repository.BidsDao           classes
+   com.myapp.server.bids.service.BidQueryService      -> com.myapp.server.bids.repository.BidsDao$HistoryRow classes
+   com.myapp.server.bids.service.BidQueryService      -> com.myapp.server.bids.repository.BidsDao$UserBidSummaryRow classes
+   com.myapp.server.bids.service.BidQueryService      -> com.myapp.server.bids.service.BidsMapper           classes
+   com.myapp.server.bids.service.BidQueryService      -> com.myapp.server.bids.service.BidsService          classes
+   com.myapp.server.bids.service.BidQueryService      -> com.myapp.server.bids.service.BidsService$BidHistoryItem classes
+   com.myapp.server.bids.service.BidQueryService      -> java.lang.Long                                     java.base
+   com.myapp.server.bids.service.BidQueryService      -> java.lang.Object                                   java.base
+   com.myapp.server.bids.service.BidQueryService      -> java.util.List                                     java.base
+   com.myapp.server.bids.service.BidQueryService      -> org.springframework.stereotype.Service             not found
+   com.myapp.server.bids.service.BidQueryService      -> org.springframework.transaction.annotation.Transactional not found
+   com.myapp.server.bids.service.BiddingPolicy        -> com.myapp.server.bids.repository.BidsDao           classes
+   com.myapp.server.bids.service.BiddingPolicy        -> com.myapp.server.bids.repository.BidsDao$AuctionRow classes
+   com.myapp.server.bids.service.BiddingPolicy        -> com.myapp.server.common.exception.BusinessRuleViolationException classes
+   com.myapp.server.bids.service.BiddingPolicy        -> java.lang.Long                                     java.base
+   com.myapp.server.bids.service.BiddingPolicy        -> java.lang.Object                                   java.base
+   com.myapp.server.bids.service.BiddingPolicy        -> java.lang.String                                   java.base
+   com.myapp.server.bids.service.BiddingPolicy        -> java.math.BigDecimal                               java.base
+   com.myapp.server.bids.service.BiddingPolicy        -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.bids.service.BiddingPolicy        -> org.springframework.http.HttpStatus                not found
+   com.myapp.server.bids.service.BiddingPolicy        -> org.springframework.stereotype.Component           not found
+   com.myapp.server.bids.service.BidsMapper           -> com.myapp.server.bids.dto.UserBidSummaryItem       classes
+   com.myapp.server.bids.service.BidsMapper           -> com.myapp.server.bids.repository.BidsDao           classes
+   com.myapp.server.bids.service.BidsMapper           -> com.myapp.server.bids.repository.BidsDao$HistoryRow classes
+   com.myapp.server.bids.service.BidsMapper           -> com.myapp.server.bids.repository.BidsDao$UserBidSummaryRow classes
+   com.myapp.server.bids.service.BidsMapper           -> com.myapp.server.bids.service.BidsService          classes
+   com.myapp.server.bids.service.BidsMapper           -> com.myapp.server.bids.service.BidsService$BidHistoryItem classes
+   com.myapp.server.bids.service.BidsMapper           -> java.lang.Long                                     java.base
+   com.myapp.server.bids.service.BidsMapper           -> java.lang.Object                                   java.base
+   com.myapp.server.bids.service.BidsMapper           -> java.lang.String                                   java.base
+   com.myapp.server.bids.service.BidsMapper           -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.bids.service.BidsMapper           -> java.lang.invoke.LambdaMetafactory                 java.base
+   com.myapp.server.bids.service.BidsMapper           -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.bids.service.BidsMapper           -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.bids.service.BidsMapper           -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.bids.service.BidsMapper           -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.bids.service.BidsMapper           -> java.math.BigDecimal                               java.base
+   com.myapp.server.bids.service.BidsMapper           -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.bids.service.BidsMapper           -> java.util.List                                     java.base
+   com.myapp.server.bids.service.BidsMapper           -> java.util.function.Function                        java.base
+   com.myapp.server.bids.service.BidsMapper           -> java.util.stream.Stream                            java.base
+   com.myapp.server.bids.service.BidsMapper           -> org.springframework.stereotype.Component           not found
+   com.myapp.server.bids.service.BidsService          -> com.myapp.server.bids.dto.PlaceBidRequest          classes
+   com.myapp.server.bids.service.BidsService          -> com.myapp.server.bids.dto.PlaceBidResponse         classes
+   com.myapp.server.bids.service.BidsService          -> com.myapp.server.bids.dto.UserBidSummaryItem       classes
+   com.myapp.server.bids.service.BidsService          -> com.myapp.server.bids.service.BidPlacementService  classes
+   com.myapp.server.bids.service.BidsService          -> com.myapp.server.bids.service.BidQueryService      classes
+   com.myapp.server.bids.service.BidsService          -> com.myapp.server.bids.service.BidsService$BidHistoryItem classes
+   com.myapp.server.bids.service.BidsService          -> java.lang.Long                                     java.base
+   com.myapp.server.bids.service.BidsService          -> java.lang.Object                                   java.base
+   com.myapp.server.bids.service.BidsService          -> java.util.List                                     java.base
+   com.myapp.server.bids.service.BidsService          -> org.springframework.stereotype.Service             not found
+   com.myapp.server.bids.service.BidsService$BidHistoryItem -> com.myapp.server.bids.service.BidsService          classes
+   com.myapp.server.bids.service.BidsService$BidHistoryItem -> java.lang.Class                                    java.base
+   com.myapp.server.bids.service.BidsService$BidHistoryItem -> java.lang.Long                                     java.base
+   com.myapp.server.bids.service.BidsService$BidHistoryItem -> java.lang.Object                                   java.base
+   com.myapp.server.bids.service.BidsService$BidHistoryItem -> java.lang.Record                                   java.base
+   com.myapp.server.bids.service.BidsService$BidHistoryItem -> java.lang.String                                   java.base
+   com.myapp.server.bids.service.BidsService$BidHistoryItem -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.bids.service.BidsService$BidHistoryItem -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.bids.service.BidsService$BidHistoryItem -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.bids.service.BidsService$BidHistoryItem -> java.lang.invoke.TypeDescriptor                    java.base
+   com.myapp.server.bids.service.BidsService$BidHistoryItem -> java.lang.runtime.ObjectMethods                    java.base
+   com.myapp.server.bids.service.BidsService$BidHistoryItem -> java.math.BigDecimal                               java.base
+   com.myapp.server.bids.service.BidsService$BidHistoryItem -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.common.exception.BusinessRuleViolationException -> java.lang.RuntimeException                         java.base
+   com.myapp.server.common.exception.BusinessRuleViolationException -> java.lang.String                                   java.base
+   com.myapp.server.common.exception.BusinessRuleViolationException -> org.springframework.http.HttpStatus                not found
+   com.myapp.server.common.exception.RestExceptionHandler -> com.myapp.server.common.exception.BusinessRuleViolationException classes
+   com.myapp.server.common.exception.RestExceptionHandler -> java.lang.Exception                                java.base
+   com.myapp.server.common.exception.RestExceptionHandler -> java.lang.Integer                                  java.base
+   com.myapp.server.common.exception.RestExceptionHandler -> java.lang.Object                                   java.base
+   com.myapp.server.common.exception.RestExceptionHandler -> java.lang.String                                   java.base
+   com.myapp.server.common.exception.RestExceptionHandler -> java.lang.Throwable                                java.base
+   com.myapp.server.common.exception.RestExceptionHandler -> java.lang.invoke.CallSite                          java.base
+   com.myapp.server.common.exception.RestExceptionHandler -> java.lang.invoke.LambdaMetafactory                 java.base
+   com.myapp.server.common.exception.RestExceptionHandler -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.common.exception.RestExceptionHandler -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.common.exception.RestExceptionHandler -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.common.exception.RestExceptionHandler -> java.lang.invoke.MethodType                        java.base
+   com.myapp.server.common.exception.RestExceptionHandler -> java.time.OffsetDateTime                           java.base
+   com.myapp.server.common.exception.RestExceptionHandler -> java.util.HashMap                                  java.base
+   com.myapp.server.common.exception.RestExceptionHandler -> java.util.List                                     java.base
+   com.myapp.server.common.exception.RestExceptionHandler -> java.util.Map                                      java.base
+   com.myapp.server.common.exception.RestExceptionHandler -> java.util.function.Function                        java.base
+   com.myapp.server.common.exception.RestExceptionHandler -> java.util.stream.Collector                         java.base
+   com.myapp.server.common.exception.RestExceptionHandler -> java.util.stream.Collectors                        java.base
+   com.myapp.server.common.exception.RestExceptionHandler -> java.util.stream.Stream                            java.base
+   com.myapp.server.common.exception.RestExceptionHandler -> org.springframework.context.support.DefaultMessageSourceResolvable not found
+   com.myapp.server.common.exception.RestExceptionHandler -> org.springframework.http.HttpStatus                not found
+   com.myapp.server.common.exception.RestExceptionHandler -> org.springframework.http.HttpStatusCode            not found
+   com.myapp.server.common.exception.RestExceptionHandler -> org.springframework.http.ResponseEntity            not found
+   com.myapp.server.common.exception.RestExceptionHandler -> org.springframework.http.ResponseEntity$BodyBuilder not found
+   com.myapp.server.common.exception.RestExceptionHandler -> org.springframework.http.converter.HttpMessageNotReadableException not found
+   com.myapp.server.common.exception.RestExceptionHandler -> org.springframework.validation.BindingResult       not found
+   com.myapp.server.common.exception.RestExceptionHandler -> org.springframework.validation.FieldError          not found
+   com.myapp.server.common.exception.RestExceptionHandler -> org.springframework.web.bind.MethodArgumentNotValidException not found
+   com.myapp.server.common.exception.RestExceptionHandler -> org.springframework.web.bind.annotation.ExceptionHandler not found
+   com.myapp.server.common.exception.RestExceptionHandler -> org.springframework.web.bind.annotation.RestControllerAdvice not found
+   com.myapp.server.common.exception.RestExceptionHandler -> org.springframework.web.server.ResponseStatusException not found
+   com.myapp.server.common.health.HealthController    -> java.lang.Object                                   java.base
+   com.myapp.server.common.health.HealthController    -> java.lang.String                                   java.base
+   com.myapp.server.common.health.HealthController    -> java.util.Map                                      java.base
+   com.myapp.server.common.health.HealthController    -> org.springframework.web.bind.annotation.GetMapping not found
+   com.myapp.server.common.health.HealthController    -> org.springframework.web.bind.annotation.RestController not found
+   com.myapp.server.config.CorsConfig                 -> java.lang.Boolean                                  java.base
+   com.myapp.server.config.CorsConfig                 -> java.lang.Object                                   java.base
+   com.myapp.server.config.CorsConfig                 -> java.lang.String                                   java.base
+   com.myapp.server.config.CorsConfig                 -> java.util.Arrays                                   java.base
+   com.myapp.server.config.CorsConfig                 -> java.util.List                                     java.base
+   com.myapp.server.config.CorsConfig                 -> org.springframework.context.annotation.Bean        not found
+   com.myapp.server.config.CorsConfig                 -> org.springframework.context.annotation.Configuration not found
+   com.myapp.server.config.CorsConfig                 -> org.springframework.web.cors.CorsConfiguration     not found
+   com.myapp.server.config.CorsConfig                 -> org.springframework.web.cors.CorsConfigurationSource not found
+   com.myapp.server.config.CorsConfig                 -> org.springframework.web.cors.UrlBasedCorsConfigurationSource not found
+   com.myapp.server.config.CorsConfig                 -> org.springframework.web.filter.CorsFilter          not found
+   com.myapp.server.config.WebConfig                  -> com.myapp.server.config.WebConfig$1                classes
+   com.myapp.server.config.WebConfig                  -> java.lang.Object                                   java.base
+   com.myapp.server.config.WebConfig                  -> org.springframework.context.annotation.Bean        not found
+   com.myapp.server.config.WebConfig                  -> org.springframework.context.annotation.Configuration not found
+   com.myapp.server.config.WebConfig                  -> org.springframework.web.servlet.config.annotation.WebMvcConfigurer not found
+   com.myapp.server.config.WebConfig$1                -> com.myapp.server.config.WebConfig                  classes
+   com.myapp.server.config.WebConfig$1                -> java.lang.Object                                   java.base
+   com.myapp.server.config.WebConfig$1                -> java.lang.String                                   java.base
+   com.myapp.server.config.WebConfig$1                -> org.springframework.web.servlet.config.annotation.CorsRegistration not found
+   com.myapp.server.config.WebConfig$1                -> org.springframework.web.servlet.config.annotation.CorsRegistry not found
+   com.myapp.server.config.WebConfig$1                -> org.springframework.web.servlet.config.annotation.WebMvcConfigurer not found
+   com.myapp.server.users.controller.UsersController  -> com.myapp.server.auctions.service.AuctionService   classes
+   com.myapp.server.users.controller.UsersController  -> com.myapp.server.auth.service.JwtService           classes
+   com.myapp.server.users.controller.UsersController  -> com.myapp.server.bids.dto.UserBidSummaryItem       classes
+   com.myapp.server.users.controller.UsersController  -> com.myapp.server.bids.service.BidsService          classes
+   com.myapp.server.users.controller.UsersController  -> com.myapp.server.users.dto.UserAuctionItem         classes
+   com.myapp.server.users.controller.UsersController  -> jakarta.servlet.http.Cookie                        not found
+   com.myapp.server.users.controller.UsersController  -> jakarta.servlet.http.HttpServletRequest            not found
+   com.myapp.server.users.controller.UsersController  -> java.lang.Exception                                java.base
+   com.myapp.server.users.controller.UsersController  -> java.lang.Long                                     java.base
+   com.myapp.server.users.controller.UsersController  -> java.lang.Object                                   java.base
+   com.myapp.server.users.controller.UsersController  -> java.lang.String                                   java.base
+   com.myapp.server.users.controller.UsersController  -> java.util.List                                     java.base
+   com.myapp.server.users.controller.UsersController  -> org.springframework.beans.factory.annotation.Value not found
+   com.myapp.server.users.controller.UsersController  -> org.springframework.http.HttpStatus                not found
+   com.myapp.server.users.controller.UsersController  -> org.springframework.http.HttpStatusCode            not found
+   com.myapp.server.users.controller.UsersController  -> org.springframework.http.ResponseEntity            not found
+   com.myapp.server.users.controller.UsersController  -> org.springframework.web.bind.annotation.GetMapping not found
+   com.myapp.server.users.controller.UsersController  -> org.springframework.web.bind.annotation.PathVariable not found
+   com.myapp.server.users.controller.UsersController  -> org.springframework.web.bind.annotation.RequestMapping not found
+   com.myapp.server.users.controller.UsersController  -> org.springframework.web.bind.annotation.RestController not found
+   com.myapp.server.users.controller.UsersController  -> org.springframework.web.server.ResponseStatusException not found
+   com.myapp.server.users.dto.UserAuctionItem         -> java.lang.Class                                    java.base
+   com.myapp.server.users.dto.UserAuctionItem         -> java.lang.Integer                                  java.base
+   com.myapp.server.users.dto.UserAuctionItem         -> java.lang.Long                                     java.base
+   com.myapp.server.users.dto.UserAuctionItem         -> java.lang.Object                                   java.base
+   com.myapp.server.users.dto.UserAuctionItem         -> java.lang.Record                                   java.base
+   com.myapp.server.users.dto.UserAuctionItem         -> java.lang.String                                   java.base
+   com.myapp.server.users.dto.UserAuctionItem         -> java.lang.invoke.MethodHandle                      java.base
+   com.myapp.server.users.dto.UserAuctionItem         -> java.lang.invoke.MethodHandles                     java.base
+   com.myapp.server.users.dto.UserAuctionItem         -> java.lang.invoke.MethodHandles$Lookup              java.base
+   com.myapp.server.users.dto.UserAuctionItem         -> java.lang.invoke.TypeDescriptor                    java.base
+   com.myapp.server.users.dto.UserAuctionItem         -> java.lang.runtime.ObjectMethods                    java.base
+   com.myapp.server.users.dto.UserAuctionItem         -> java.math.BigDecimal                               java.base
