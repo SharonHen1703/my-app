@@ -1,0 +1,70 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------------< com.myapp:server >--------------------------
+[INFO] Building server 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.5.4:run (default-cli) > test-compile @ server >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ server ---
+[INFO] Copying 23 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ server ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 59 source files with javac [debug parameters release 21] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[198,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[199,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[200,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[201,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[202,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[203,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[204,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[205,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[206,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[207,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[208,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[209,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[210,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[212,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[213,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/service/AuctionPolicy.java:[148,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/service/AuctionPolicy.java:[149,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/service/AuctionPolicy.java:[150,1] class, interface, enum, or record expected
+[INFO] 18 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.787 s
+[INFO] Finished at: 2025-09-04T18:42:32+03:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.0:compile (default-compile) on project server: Compilation failure: Compilation failure: 
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[198,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[199,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[200,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[201,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[202,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[203,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[204,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[205,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[206,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[207,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[208,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[209,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[210,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[212,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/mapper/AuctionMapper.java:[213,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/service/AuctionPolicy.java:[148,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/service/AuctionPolicy.java:[149,1] class, interface, enum, or record expected
+[ERROR] /C:/projects/my-app/server/src/main/java/com/myapp/server/auctions/service/AuctionPolicy.java:[150,1] class, interface, enum, or record expected
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

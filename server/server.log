@@ -1,0 +1,72 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.4)
+
+2025-09-04T17:56:53.219+03:00  INFO 4232 --- [server] [           main] com.myapp.server.ServerApplication       : Starting ServerApplication using Java 21.0.8 with PID 4232 (C:\projects\my-app\server\target\classes started by OWNER in C:\projects\my-app\server)
+2025-09-04T17:56:53.220+03:00  INFO 4232 --- [server] [           main] com.myapp.server.ServerApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-09-04T17:56:53.879+03:00  INFO 4232 --- [server] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-04T17:56:53.954+03:00  INFO 4232 --- [server] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 69 ms. Found 2 JPA repository interfaces.
+2025-09-04T17:56:54.456+03:00  INFO 4232 --- [server] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-09-04T17:56:54.468+03:00  INFO 4232 --- [server] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-04T17:56:54.468+03:00  INFO 4232 --- [server] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-09-04T17:56:54.515+03:00  INFO 4232 --- [server] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-04T17:56:54.516+03:00  INFO 4232 --- [server] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1248 ms
+2025-09-04T17:56:54.745+03:00  INFO 4232 --- [server] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-04T17:56:54.904+03:00  INFO 4232 --- [server] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@58a765ce
+2025-09-04T17:56:54.906+03:00  INFO 4232 --- [server] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-04T17:56:54.929+03:00  INFO 4232 --- [server] [           main] o.f.c.i.resource.ResourceNameValidator   : 2 SQL migrations were detected but not run because they did not follow the filename convention.
+2025-09-04T17:56:54.930+03:00  INFO 4232 --- [server] [           main] o.f.c.i.resource.ResourceNameValidator   : Set 'validateMigrationNaming' to true to fail fast and see a list of the invalid file names.
+2025-09-04T17:56:54.933+03:00  INFO 4232 --- [server] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/myapp_dev (PostgreSQL 17.5)
+2025-09-04T17:56:55.055+03:00  INFO 4232 --- [server] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 19
+2025-09-04T17:56:55.058+03:00  INFO 4232 --- [server] [           main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2025-09-04T17:56:55.134+03:00  INFO 4232 --- [server] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-04T17:56:55.182+03:00  INFO 4232 --- [server] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-09-04T17:56:55.210+03:00  INFO 4232 --- [server] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-04T17:56:55.455+03:00  INFO 4232 --- [server] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-04T17:56:55.503+03:00  WARN 4232 --- [server] [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-04T17:56:55.516+03:00  INFO 4232 --- [server] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-09-04T17:56:56.283+03:00  INFO 4232 --- [server] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-04T17:56:56.285+03:00  INFO 4232 --- [server] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-04T17:56:56.520+03:00  INFO 4232 --- [server] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-09-04T17:56:57.219+03:00  WARN 4232 --- [server] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-04T17:56:57.445+03:00  WARN 4232 --- [server] [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-09-04T17:56:57.446+03:00  INFO 4232 --- [server] [           main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-04T17:56:57.447+03:00  INFO 4232 --- [server] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-09-04T17:56:57.450+03:00  INFO 4232 --- [server] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-09-04T17:56:57.461+03:00  INFO 4232 --- [server] [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-09-04T17:56:57.474+03:00 ERROR 4232 --- [server] [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8081 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8081 or configure this application to listen on another port.
+
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.5.4:run (default-cli) on project server: Process terminated with exit code: 1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
