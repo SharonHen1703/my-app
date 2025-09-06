@@ -54,3 +54,19 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
+
+# Root hygiene
+/*.log
+/*.csv
+/*.txt
+/*.patch
+/cookie*.txt
+/login_response.txt
+
+# Keep essential files and tracked dirs
+!README.md
+!LICENSE*
+!docs/**
+!tools/**
+!server/**
+!client/**
