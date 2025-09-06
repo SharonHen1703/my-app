@@ -40,10 +40,10 @@ REPORT_EOF
 
 # Calculate file type statistics
 for type in java sql xml properties cmd; do
-    files=$(tail -n +2 analysis.csv | grep ",$type," | wc -l)
+    files=$(tail -n +2 docs/reports/analysis.csv | grep ",$type," | wc -l)
     if [[ $files -gt 0 ]]; then
-        lines=$(tail -n +2 analysis.csv | grep ",$type," | awk -F',' '{sum+=$2} END {print sum}')
-        largest=$(tail -n +2 analysis.csv | grep ",$type," | sort -t',' -k2 -nr | head -1 | awk -F',' '{print $1 " (" $2 " lines)"}')
+        lines=$(tail -n +2 docs/reports/analysis.csv | grep ",$type," | awk -F',' '{sum+=$2} END {print sum}')
+        largest=$(tail -n +2 docs/reports/analysis.csv | grep ",$type," | sort -t',' -k2 -nr | head -1 | awk -F',' '{print $1 " (" $2 " lines)"}')
         echo "| $type | $files | $lines | $largest |" >> docs/server-structure.md
     fi
 done
@@ -56,10 +56,10 @@ cat >> docs/server-structure.md << "REPORT_EOF"
 |--------|------------|-------------|----------------|
 REPORT_EOF
 
-java_total=$(tail -n +2 analysis.csv | grep ",java," | awk -F',' '{sum+=$2} END {print sum}')
+java_total=$(tail -n +2 docs/reports/analysis.csv | grep ",java," | awk -F',' '{sum+=$2} END {print sum}')
 for module in auctions auth bids users common config; do
-    files=$(tail -n +2 analysis.csv | grep ",java,$module," | wc -l)
-    lines=$(tail -n +2 analysis.csv | grep ",java,$module," | awk -F',' '{sum+=$2} END {print sum+0}')
+    files=$(tail -n +2 docs/reports/analysis.csv | grep ",java,$module," | wc -l)
+    lines=$(tail -n +2 docs/reports/analysis.csv | grep ",java,$module," | awk -F',' '{sum+=$2} END {print sum+0}')
     if [[ $lines -gt 0 ]]; then
         percentage=$(awk "BEGIN {printf \"%.1f\", $lines * 100 / $java_total}")
         echo "| $module | $files | $lines | $percentage% |" >> docs/server-structure.md
@@ -77,8 +77,8 @@ cat >> docs/server-structure.md << "REPORT_EOF"
 REPORT_EOF
 
 for layer in repository service controller migration mapper entity dto converter config utils; do
-    files=$(tail -n +2 analysis.csv | grep ",$layer$" | wc -l)
-    lines=$(tail -n +2 analysis.csv | grep ",$layer$" | awk -F',' '{sum+=$2} END {print sum+0}')
+    files=$(tail -n +2 docs/reports/analysis.csv | grep ",$layer$" | wc -l)
+    lines=$(tail -n +2 docs/reports/analysis.csv | grep ",$layer$" | awk -F',' '{sum+=$2} END {print sum+0}')
     if [[ $lines -gt 0 ]]; then
         echo "| $layer | $files | $lines |" >> docs/server-structure.md
     fi
@@ -93,7 +93,7 @@ cat >> docs/server-structure.md << "REPORT_EOF"
 REPORT_EOF
 
 # Sort by lines descending and add to table
-tail -n +2 analysis.csv | sort -t',' -k2 -nr | while IFS=',' read -r path lines type module layer; do
+tail -n +2 docs/reports/analysis.csv | sort -t',' -k2 -nr | while IFS=',' read -r path lines type module layer; do
     notes=""
     if [[ $lines -gt 150 ]]; then
         notes="í´´ >150 lines"
@@ -119,7 +119,7 @@ cat >> docs/server-structure.md << "REPORT_EOF"
 
 REPORT_EOF
 
-tail -n +2 analysis.csv | awk -F',' '$2 > 150 {print $1 " (" $2 " lines)"}' | sort -t'(' -k2 -nr >> docs/server-structure.md
+tail -n +2 docs/reports/analysis.csv | awk -F',' '$2 > 150 {print $1 " (" $2 " lines)"}' | sort -t'(' -k2 -nr >> docs/server-structure.md
 
 cat >> docs/server-structure.md << "REPORT_EOF"
 

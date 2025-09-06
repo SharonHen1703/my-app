@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "path,lines,type,module,layer" > analysis.csv
+echo "path,lines,type,module,layer" > docs/reports/analysis.csv
 
 while IFS= read -r file; do
     if [[ -f "$file" ]]; then
@@ -31,9 +31,9 @@ while IFS= read -r file; do
             layer="config"
         fi
         
-        echo "$file,$lines,$type,$module,$layer" >> analysis.csv
+        echo "$file,$lines,$type,$module,$layer" >> docs/reports/analysis.csv
     fi
 done < server_files.txt
 
 echo "Analysis complete. First 10 lines:"
-head -10 analysis.csv
+head -10 docs/reports/analysis.csv

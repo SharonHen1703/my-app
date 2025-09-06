@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Calculate accurate statistics from CSV
-java_files=$(tail -n +2 server_analysis.csv | grep ",java," | wc -l)
-java_lines=$(tail -n +2 server_analysis.csv | grep ",java," | awk -F',' '{sum+=$2} END {print sum}')
-sql_files=$(tail -n +2 server_analysis.csv | grep ",sql," | wc -l)
-sql_lines=$(tail -n +2 server_analysis.csv | grep ",sql," | awk -F',' '{sum+=$2} END {print sum}')
-largest_java=$(tail -n +2 server_analysis.csv | grep ",java," | sort -t',' -k2 -nr | head -1 | awk -F',' '{print $1 " (" $2 " lines)"}')
-largest_sql=$(tail -n +2 server_analysis.csv | grep ",sql," | sort -t',' -k2 -nr | head -1 | awk -F',' '{print $1 " (" $2 " lines)"}')
+java_files=$(tail -n +2 docs/reports/server_analysis.csv | grep ",java," | wc -l)
+java_lines=$(tail -n +2 docs/reports/server_analysis.csv | grep ",java," | awk -F',' '{sum+=$2} END {print sum}')
+sql_files=$(tail -n +2 docs/reports/server_analysis.csv | grep ",sql," | wc -l)
+sql_lines=$(tail -n +2 docs/reports/server_analysis.csv | grep ",sql," | awk -F',' '{sum+=$2} END {print sum}')
+largest_java=$(tail -n +2 docs/reports/server_analysis.csv | grep ",java," | sort -t',' -k2 -nr | head -1 | awk -F',' '{print $1 " (" $2 " lines)"}')
+largest_sql=$(tail -n +2 docs/reports/server_analysis.csv | grep ",sql," | sort -t',' -k2 -nr | head -1 | awk -F',' '{print $1 " (" $2 " lines)"}')
 
 # Generate timestamp
 timestamp=$(date '+%Y-%m-%d %H:%M:%S UTC')
@@ -59,8 +59,8 @@ REPORT_EOF
 
 # Calculate module statistics
 for module in auctions auth bids users common config; do
-    module_files=$(tail -n +2 server_analysis.csv | grep ",java,$module," | wc -l)
-    module_lines=$(tail -n +2 server_analysis.csv | grep ",java,$module," | awk -F',' '{sum+=$2} END {print sum+0}')
+    module_files=$(tail -n +2 docs/reports/server_analysis.csv | grep ",java,$module," | wc -l)
+    module_lines=$(tail -n +2 docs/reports/server_analysis.csv | grep ",java,$module," | awk -F',' '{sum+=$2} END {print sum+0}')
     if [[ $module_lines -gt 0 ]]; then
         percentage=$(echo "scale=1; $module_lines * 100 / $java_lines" | awk "{print $1/$2*100}")
         echo "| $module | $module_files | $module_lines | $percentage% |" >> docs/server-structure.md
@@ -77,8 +77,8 @@ REPORT_EOF
 
 # Calculate layer statistics
 for layer in repository service controller migration mapper entity dto converter config utils; do
-    layer_files=$(tail -n +2 server_analysis.csv | grep ",$layer$" | wc -l)
-    layer_lines=$(tail -n +2 server_analysis.csv | grep ",$layer$" | awk -F',' '{sum+=$2} END {print sum+0}')
+    layer_files=$(tail -n +2 docs/reports/server_analysis.csv | grep ",$layer$" | wc -l)
+    layer_lines=$(tail -n +2 docs/reports/server_analysis.csv | grep ",$layer$" | awk -F',' '{sum+=$2} END {print sum+0}')
     if [[ $layer_lines -gt 0 ]]; then
         echo "| $layer | $layer_files | $layer_lines |" >> docs/server-structure.md
     fi
@@ -93,7 +93,7 @@ cat >> docs/server-structure.md << REPORT_EOF
 REPORT_EOF
 
 # Sort by lines descending and add to table
-tail -n +2 server_analysis.csv | sort -t',' -k2 -nr | while IFS=',' read -r path lines type module layer; do
+tail -n +2 docs/reports/server_analysis.csv | sort -t',' -k2 -nr | while IFS=',' read -r path lines type module layer; do
     notes=""
     if [[ $lines -gt 150 ]]; then
         notes="í´´ >150 lines"
@@ -120,7 +120,7 @@ cat >> docs/server-structure.md << REPORT_EOF
 REPORT_EOF
 
 # Add large files section
-tail -n +2 server_analysis.csv | awk -F',' '$2 > 150 {print $1 " (" $2 " lines)"}' | sort -t'(' -k2 -nr >> docs/server-structure.md
+tail -n +2 docs/reports/server_analysis.csv | awk -F',' '$2 > 150 {print $1 " (" $2 " lines)"}' | sort -t'(' -k2 -nr >> docs/server-structure.md
 
 cat >> docs/server-structure.md << REPORT_EOF
 
@@ -132,7 +132,7 @@ cat >> docs/server-structure.md << REPORT_EOF
 **Exceptions (>150 lines):**
 REPORT_EOF
 
-tail -n +2 server_analysis.csv | awk -F',' '$2 > 150 {print "- " $1 " (" $2 " lines)"}' | sort -t'(' -k2 -nr >> docs/server-structure.md
+tail -n +2 docs/reports/server_analysis.csv | awk -F',' '$2 > 150 {print "- " $1 " (" $2 " lines)"}' | sort -t'(' -k2 -nr >> docs/server-structure.md
 
 cat >> docs/server-structure.md << REPORT_EOF
 

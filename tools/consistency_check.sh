@@ -1,21 +1,21 @@
 #!/bin/bash
 
 # Calculate total Java lines
-java_total=$(tail -n +2 analysis.csv | grep ",java," | awk -F',' '{sum+=$2} END {print sum+0}')
+java_total=$(tail -n +2 docs/reports/docs/reports/analysis.csv | grep ",java," | awk -F',' '{sum+=$2} END {print sum+0}')
 
 # Calculate module breakdown
 echo "=== MODULE ANALYSIS ==="
 echo "Module,Files,Lines"
 for module in auctions auth bids users common config; do
-    files=$(tail -n +2 analysis.csv | grep ",java,$module," | wc -l)
-    lines=$(tail -n +2 analysis.csv | grep ",java,$module," | awk -F',' '{sum+=$2} END {print sum+0}')
+    files=$(tail -n +2 docs/reports/analysis.csv | grep ",java,$module," | wc -l)
+    lines=$(tail -n +2 docs/reports/analysis.csv | grep ",java,$module," | awk -F',' '{sum+=$2} END {print sum+0}')
     if [[ $lines -gt 0 ]]; then
         echo "$module,$files,$lines"
     fi
 done
 
 # Calculate module total
-module_total=$(tail -n +2 analysis.csv | grep ",java," | grep -v ",,," | awk -F',' '{sum+=$2} END {print sum+0}')
+module_total=$(tail -n +2 docs/reports/analysis.csv | grep ",java," | grep -v ",,," | awk -F',' '{sum+=$2} END {print sum+0}')
 
 echo ""
 echo "=== CONSISTENCY CHECK ==="
@@ -26,7 +26,7 @@ echo "Delta: $((java_total - module_total))"
 if [[ $((java_total - module_total)) -ne 0 ]]; then
     echo ""
     echo "=== UNATTRIBUTED JAVA FILES ==="
-    tail -n +2 analysis.csv | grep ",java," | grep ",,," | awk -F',' '{print $1 " (" $2 " lines)"}'
+    tail -n +2 docs/reports/analysis.csv | grep ",java," | grep ",,," | awk -F',' '{print $1 " (" $2 " lines)"}'
 fi
 
 # Check for specific files
@@ -46,7 +46,7 @@ expected_files=(
 )
 
 for file in "${expected_files[@]}"; do
-    lines=$(grep "^$file," analysis.csv | cut -d',' -f2)
+    lines=$(grep "^$file," docs/reports/analysis.csv | cut -d',' -f2)
     if [[ -n "$lines" ]]; then
         if [[ "$file" == *"AuthController.java" ]]; then
             echo "⚠️  REGRESSION: $file exists ($lines lines) - should be split"
