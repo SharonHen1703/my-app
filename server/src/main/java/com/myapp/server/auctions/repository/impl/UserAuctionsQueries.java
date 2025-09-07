@@ -59,7 +59,9 @@ class UserAuctionProjectionForUser implements AuctionRepository.UserAuctionProje
     @Override public AuctionStatus getAuctionStatus() { return auction.getStatus(); }
     @Override public Integer getBidsCount() { return auction.getBidsCount(); }
     @Override public OffsetDateTime getEndDate() { return auction.getEndDate(); }
-    @Override public BigDecimal getCurrentPrice() { return auction.getCurrentBidAmount(); }
+    @Override public BigDecimal getCurrentPrice() { 
+        return auction.getCurrentBidAmount() != null ? auction.getCurrentBidAmount() : auction.getMinPrice(); 
+    }
     @Override public BigDecimal getMinPrice() { return auction.getMinPrice(); }
 }
 
@@ -73,29 +75,24 @@ class UserAuctionProjectionForUser implements AuctionRepository.UserAuctionProje
 public class UserAuctionsQueries {
 
     private final EntityManager entityManager;
-    // Removed AuctionListMapper to break circular dependency
 
     /**
-     * Find auctions by seller ID.
-     * Uses direct JPQL query via EntityManager to avoid circular dependencies.
+     * Find auctions by seller ID - returns domain entities.
+     * Uses direct JPQL query via EntityManager.
      */
-    public List<AuctionListItem> findBySellerId(Long sellerId) {
+    public List<Auction> findBySellerIdDomain(Long sellerId) {
         String jpql = "SELECT a FROM Auction a WHERE a.sellerId = :sellerId ORDER BY a.createdAt DESC";
         TypedQuery<Auction> query = entityManager.createQuery(jpql, Auction.class);
         query.setParameter("sellerId", sellerId);
         
-        List<Auction> auctions = query.getResultList();
-        
-        return auctions.stream()
-            .map(this::convertToAuctionListItem)
-            .toList();
+        return query.getResultList();
     }
 
     /**
-     * Find auctions with bids by user ID.
+     * Find auctions with bids by user ID - returns domain entities.
      * TODO: Implement when bid tracking is available
      */
-    public List<AuctionListItem> findAuctionsWithBidsByUserId(Long userId) {
+    public List<Auction> findAuctionsWithBidsByUserIdDomain(Long userId) {
         // Placeholder implementation - would require bids table join
         return List.of();
     }
@@ -112,58 +109,5 @@ public class UserAuctionsQueries {
         return auctions.stream()
             .map(UserAuctionProjectionForUser::new)
             .collect(java.util.stream.Collectors.toList());
-    }
-    
-    /**
-     * Convert auction entity to AuctionListItem DTO inline to avoid circular dependency
-     */
-    private AuctionListItem convertToAuctionListItem(Auction auction) {
-        List<String> imageUrls = parseImageUrls(auction.getImageUrls());
-        
-        return new AuctionListItem(
-            auction.getId(),
-            auction.getTitle(),
-            auction.getDescription(),
-            auction.getCondition() != null ? auction.getCondition().name() : null,
-            auction.getCategories(),
-            auction.getMinPrice(),
-            auction.getBidIncrement(),
-            auction.getCurrentBidAmount(),
-            auction.getBidsCount(),
-            calculateMinBidToPlace(auction.getCurrentBidAmount(), auction.getBidIncrement(), auction.getMinPrice()),
-            auction.getEndDate(),
-            imageUrls
-        );
-    }
-    
-    private List<String> parseImageUrls(String imageUrlsJson) {
-        if (imageUrlsJson == null || imageUrlsJson.trim().isEmpty()) {
-            return List.of();
-        }
-        
-        try {
-            if (imageUrlsJson.startsWith("[") && imageUrlsJson.endsWith("]")) {
-                String content = imageUrlsJson.substring(1, imageUrlsJson.length() - 1);
-                if (content.trim().isEmpty()) {
-                    return List.of();
-                }
-                return List.of(content.split(","))
-                    .stream()
-                    .map(String::trim)
-                    .map(s -> s.replaceAll("^\"|\"$", ""))
-                    .filter(s -> !s.isEmpty())
-                    .collect(java.util.stream.Collectors.toList());
-            }
-            return List.of(imageUrlsJson);
-        } catch (Exception e) {
-            return List.of();
-        }
-    }
-    
-    private BigDecimal calculateMinBidToPlace(BigDecimal currentBid, BigDecimal bidIncrement, BigDecimal minPrice) {
-        if (currentBid != null && currentBid.compareTo(BigDecimal.ZERO) > 0) {
-            return currentBid.add(bidIncrement != null ? bidIncrement : BigDecimal.ONE);
-        }
-        return minPrice != null ? minPrice : BigDecimal.ZERO;
     }
 }

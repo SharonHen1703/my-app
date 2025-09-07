@@ -46,5 +46,5 @@ public class BidsService {
 
     // Keep the BidHistoryItem record here for backward compatibility
     public record BidHistoryItem(Long snapshotId, Long bidId, Long bidderId,
-                                 BigDecimal displayedBid, OffsetDateTime snapshotTime, String kind) {}
+                                 BigDecimal displayedBid, OffsetDateTime snapshotTime, String kind, String bidType) {}
 }

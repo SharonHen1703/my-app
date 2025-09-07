@@ -44,15 +44,6 @@ class BidsJdbcUserSummaries {
         ), userId, userId);
     }
 
-    boolean isLeader(long auctionId, long userId) {
-        Long highest = jdbc.queryForObject(
-                "SELECT highest_user_id FROM public.auctions WHERE id = ?",
-                Long.class,
-                auctionId
-        );
-        return highest != null && highest.equals(userId);
-    }
-
     List<BidsDao.TopBidRow> getTopBids(long auctionId, int limit) {
         return jdbc.query("""
             SELECT bidder_id AS user_id, max_bid, created_at, id

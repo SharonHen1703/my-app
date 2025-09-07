@@ -5,6 +5,7 @@ import com.myapp.server.auctions.dto.AuctionListItem;
 import com.myapp.server.auctions.entity.enums.AuctionCategory;
 import com.myapp.server.auctions.entity.enums.AuctionStatus;
 import com.myapp.server.auctions.mapper.AuctionDetailMapper;
+import com.myapp.server.auctions.mapper.AuctionListMapper;
 import com.myapp.server.auctions.repository.AuctionRepository;
 import com.myapp.server.auctions.service.policy.AuctionValidationPolicy;
 import com.myapp.server.common.exception.BusinessRuleViolationException;
@@ -32,58 +33,28 @@ public class AuctionQueryService {
     
     private final AuctionRepository auctionRepository;
     private final AuctionDetailMapper auctionDetailMapper;
+    private final AuctionListMapper auctionListMapper;
     private final AuctionValidationPolicy validationPolicy;
-    
-    public Page<AuctionListItem> findActiveAuctions(int page, int size) {
-        return runQueryMapToPage(() -> auctionRepository.findActiveAuctions(PageRequest.of(page, size)));
-    }
-
-    public Page<AuctionListItem> findActiveAuctions(int page, int size, String category) {
-        return runQueryMapToPage(() -> auctionRepository.findActiveAuctions(PageRequest.of(page, size), category));
-    }
-
-    public Page<AuctionListItem> findActiveAuctions(int page, int size, String category, BigDecimal minPrice, BigDecimal maxPrice) {
-        return findActiveAuctions(page, size, category, minPrice, maxPrice, null, null, null);
-    }
-
-    public Page<AuctionListItem> findActiveAuctions(int page, int size, String category, BigDecimal minPrice, BigDecimal maxPrice, List<String> conditions, String searchText) {
-        return findActiveAuctions(page, size, category, minPrice, maxPrice, conditions, searchText, null);
-    }
 
     public Page<AuctionListItem> findActiveAuctions(int page, int size, String category, BigDecimal minPrice, BigDecimal maxPrice, List<String> conditions, String searchText, Long excludeSellerId) {
-        return runQueryMapToPage(() -> auctionRepository.findActiveAuctions(PageRequest.of(page, size), category, minPrice, maxPrice, validationPolicy.validateAndParseConditions(conditions), validationPolicy.validateSearchText(searchText), excludeSellerId));
-    }
-
-    public long countActiveAuctions() {
-        return auctionRepository.countActiveAuctions(AuctionStatus.ACTIVE);
-    }
-
-    public AuctionDetail findAuctionDetail(Long id) {
-        return runQueryMapToObject(() -> auctionRepository.findAuctionDetailById(id, AuctionStatus.ACTIVE), () -> "Auction not found or not active");
+        return auctionRepository.findActiveAuctionsDomain(PageRequest.of(page, size), category, minPrice, maxPrice, validationPolicy.validateAndParseConditions(conditions), validationPolicy.validateSearchText(searchText), excludeSellerId)
+            .map(auctionListMapper::toAuctionListItem);
     }
 
     public AuctionDetail findAuctionDetailAnyStatus(Long id) {
         return runQueryMapToObject(() -> auctionRepository.findAuctionDetailByIdAnyStatus(id), () -> "Auction not found");
     }
 
-    public List<String> getAllCategories() {
-        return Arrays.stream(AuctionCategory.values()).map(AuctionCategory::getDisplayName).sorted().toList();
-    }
-
-    public List<String> getAllCategoryCodes() {
-        return Arrays.stream(AuctionCategory.values()).map(AuctionCategory::getCode).sorted().toList();
-    }
-
     public Map<String, String> getCategoryMapping() {
         return Arrays.stream(AuctionCategory.values()).collect(Collectors.toMap(AuctionCategory::getCode, AuctionCategory::getDisplayName));
     }
 
-    public List<com.myapp.server.users.dto.UserAuctionItem> getUserAuctions(Long userId) {
+    public List<com.myapp.server.auctions.dto.UserAuctionItem> getUserAuctions(Long userId) {
         List<AuctionRepository.UserAuctionProjection> projections = 
             auctionRepository.findBySellerIdOrderByCreatedAtDesc(userId);
         
         return projections.stream()
-            .map(p -> new com.myapp.server.users.dto.UserAuctionItem(
+            .map(p -> new com.myapp.server.auctions.dto.UserAuctionItem(
                 p.getId(),
                 p.getTitle(),
                 p.getCurrentPrice(),
@@ -101,10 +72,6 @@ public class AuctionQueryService {
             case UNSOLD -> "הסתיים ללא זכייה";
             default -> status.toString();
         };
-    }
-
-    private Page<AuctionListItem> runQueryMapToPage(Supplier<Page<AuctionListItem>> querySupplier) {
-        return querySupplier.get();
     }
 
     private AuctionDetail runQueryMapToObject(Supplier<AuctionRepository.AuctionProjection> querySupplier, Supplier<String> errorMessageSupplier) {

@@ -48,10 +48,6 @@ public class AuthService {
         return emailNormalized;
     }
 
-    public Optional<User> findByEmailNormalized(String emailNormalized) {
-        return userRepository.findByEmailNormalized(emailNormalized);
-    }
-
     public boolean existsByEmailNormalized(String emailNormalized) {
         return userRepository.findByEmailNormalized(emailNormalized).isPresent();
     }

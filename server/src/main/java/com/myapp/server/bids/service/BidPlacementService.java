@@ -35,19 +35,24 @@ public class BidPlacementService {
             auction.currentBid(), auction.minPrice(), auction.bidIncrement(), auction.bidsCount()
         );
         
-        // Fetch bidder's previous max and determine if they're currently leading
-        BigDecimal userPrevMax = dao.getUserPrevMax(auctionId, bidderId);
-        boolean userIsLeader = auction.highestUserId() != null && auction.highestUserId().equals(bidderId);
-        
-        // B) Bid amount validations based on leader/challenger status
+        // B) Validate bid amount - all bids must meet the minimum requirement
         if (auction.bidsCount() == 0) {
+            // First bid: must be at least starting price
             biddingPolicy.validateFirstBid(req.maxBid(), auction.minPrice());
-        } else if (userIsLeader) {
-            // Leader raising own max: must exceed previous max
-            biddingPolicy.validateLeaderBidIncrease(req.maxBid(), userPrevMax);
         } else {
-            // Challenger must meet public minimum
-            biddingPolicy.validateChallengerBid(req.maxBid(), minToPlace);
+            // Check if bidder is current leader
+            BigDecimal userPrevMax = dao.getUserPrevMax(auctionId, bidderId);
+            boolean isCurrentLeader = auction.highestUserId() != null && 
+                                    auction.highestUserId().equals(bidderId);
+            
+            if (isCurrentLeader && userPrevMax != null) {
+                // Leader bidding again: must increase their own max AND meet general minimum
+                biddingPolicy.validateLeaderBidIncrease(req.maxBid(), userPrevMax);
+                biddingPolicy.validateChallengerBid(req.maxBid(), minToPlace);
+            } else {
+                // Non-leader (challenger): must be at least current price + increment
+                biddingPolicy.validateChallengerBid(req.maxBid(), minToPlace);
+            }
         }
         
         // C) Execute bid placement
@@ -104,27 +109,30 @@ public class BidPlacementService {
         boolean currentChanged = auction.currentBid() == null || newCurrent.compareTo(auction.currentBid()) != 0;
         boolean userIsLeader = leaderUserId != null && leaderUserId.equals(bidderId);
         
-        if (runnerUserId == null) {
-            // First bid: create history for first bid
-            dao.insertBidSnapshot(auctionId, bidId, bidderId, newCurrent, "USER_BID", now);
-        } else if (currentChanged) {
-            if (userIsLeader) {
-                // Bidder is/remains leader and public price changed
-                dao.insertBidSnapshot(auctionId, bidId, bidderId, newCurrent, "USER_BID", now);
+        // Only create history snapshots when the public price changes
+        if (currentChanged) {
+            if (runnerUserId == null) {
+                // First bid with price change
+                dao.insertBidSnapshot(auctionId, bidId, bidderId, newCurrent, "USER_BID", "ידני", now);
             } else {
-                // Challenger scenarios
-                if (leaderMax != null && maxBid.compareTo(leaderMax) < 0) {
-                    // Challenger below leader → USER_BID then AUTO_RAISE
-                    dao.insertBidSnapshot(auctionId, bidId, bidderId, maxBid, "USER_BID", now);
-                    dao.insertBidSnapshot(auctionId, bidId, leaderUserId, newCurrent, "AUTO_RAISE", now.plusNanos(1000000));
-                } else if (leaderMax != null && maxBid.compareTo(leaderMax) == 0 && 
-                          leaderUserId != null && !leaderUserId.equals(bidderId)) {
-                    // Tie on max → USER_BID + TIE_AUTO
-                    dao.insertBidSnapshot(auctionId, bidId, bidderId, leaderMax, "USER_BID", now);
-                    dao.insertBidSnapshot(auctionId, bidId, leaderUserId, leaderMax, "TIE_AUTO", now.plusNanos(1000000));
+                if (userIsLeader) {
+                    // Bidder is/remains leader and public price changed
+                    dao.insertBidSnapshot(auctionId, bidId, bidderId, newCurrent, "USER_BID", "ידני", now);
                 } else {
-                    // New highest leader
-                    dao.insertBidSnapshot(auctionId, bidId, bidderId, newCurrent, "USER_BID", now);
+                    // Challenger scenarios
+                    if (leaderMax != null && maxBid.compareTo(leaderMax) < 0) {
+                        // Challenger below leader → USER_BID then AUTO_RAISE
+                        dao.insertBidSnapshot(auctionId, bidId, bidderId, maxBid, "USER_BID", "ידני", now);
+                        dao.insertBidSnapshot(auctionId, bidId, leaderUserId, newCurrent, "AUTO_RAISE", "אוטומטי", now.plusNanos(1000000));
+                    } else if (leaderMax != null && maxBid.compareTo(leaderMax) == 0 && 
+                              leaderUserId != null && !leaderUserId.equals(bidderId)) {
+                        // Tie on max → USER_BID + TIE_AUTO
+                        dao.insertBidSnapshot(auctionId, bidId, bidderId, leaderMax, "USER_BID", "ידני", now);
+                        dao.insertBidSnapshot(auctionId, bidId, leaderUserId, leaderMax, "TIE_AUTO", "אוטומטי", now.plusNanos(1000000));
+                    } else {
+                        // New highest leader
+                        dao.insertBidSnapshot(auctionId, bidId, bidderId, newCurrent, "USER_BID", "ידני", now);
+                    }
                 }
             }
         }
@@ -136,9 +144,11 @@ public class BidPlacementService {
         boolean youAreLeading = leaderUserId != null ? leaderUserId.equals(bidderId) : true;
         BigDecimal minNextBid = biddingPolicy.calculateNextMinBid(newCurrent, auction.bidIncrement());
         
-        // Fetch updated auction state
+        // Get the accurate count from bid_history_snapshots table
+        int bidsCountPublic = dao.countBidHistorySnapshots(auctionId);
+        
+        // Fetch updated auction state for endDate
         var updatedAuction = dao.getAuction(auctionId);
-        int bidsCountPublic = updatedAuction != null ? updatedAuction.bidsCount() : auction.bidsCount() + 1;
         
         return new PlaceBidResponse(
                 auctionId,

@@ -79,6 +79,35 @@
   color: #1f2937;
 }
 
+.userBidInfo {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #f0f9ff;
+  border-radius: 6px;
+  border: 1px solid #0ea5e9;
+}
+
+.leadingStatus {
+  color: #dc2626;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  direction: rtl;
+  text-align: right;
+}
+
+.currentMaxBid {
+  color: #374151;
+  font-size: 0.95rem;
+  direction: rtl;
+  text-align: right;
+}
+
+.currentMaxBid strong {
+  color: #1f2937;
+  font-weight: 600;
+}
+
 .currentBid {
   color: #374151;
   font-size: 1rem;

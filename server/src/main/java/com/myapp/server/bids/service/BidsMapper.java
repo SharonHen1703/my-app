@@ -23,7 +23,8 @@ public class BidsMapper {
                         row.bidderId(),
                         row.displayedBid(),
                         row.snapshotTime(),
-                        row.kind()
+                        row.kind(),
+                        row.bidType()
                 ))
                 .toList();
     }

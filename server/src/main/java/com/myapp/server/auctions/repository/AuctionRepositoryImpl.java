@@ -1,10 +1,8 @@
 package com.myapp.server.auctions.repository;
 
-import com.myapp.server.auctions.dto.AuctionListItem;
 import com.myapp.server.auctions.entity.Auction;
 import com.myapp.server.auctions.entity.enums.AuctionCondition;
 import com.myapp.server.auctions.entity.enums.AuctionStatus;
-import com.myapp.server.auctions.mapper.AuctionListMapper;
 import com.myapp.server.auctions.repository.impl.ActiveAuctionsPaging;
 import com.myapp.server.auctions.repository.impl.ActiveAuctionsSearchQueries;
 import com.myapp.server.auctions.repository.impl.AuctionDetailQueries;
@@ -31,41 +29,24 @@ public class AuctionRepositoryImpl implements AuctionActiveQueries,
     private final ActiveAuctionsPaging pagingHelper;
     private final AuctionDetailQueries auctionDetailQueries;
     private final UserAuctionsQueries userAuctionsQueries;
-    private final AuctionListMapper auctionListMapper;
-
+    
+    // === Domain methods (return entities without DTO mapping) ===
+    
     @Override
-    public Page<AuctionListItem> findActiveAuctions(Pageable pageable) {
-        return executeSearchWithMapping(() -> searchQueries.findActiveAuctionsWithMinBid(AuctionStatus.ACTIVE, pagingHelper.getOffset(pageable), pagingHelper.getPageSize(pageable)), () -> searchQueries.countActiveAuctionsWithMinBid(AuctionStatus.ACTIVE), pageable);
+    public Page<Auction> findActiveAuctionsDomain(Pageable pageable, String category, BigDecimal minPrice, BigDecimal maxPrice, List<AuctionCondition> conditions, String searchText, Long excludeSellerId) {
+        return executeSearchWithoutMapping(() -> searchText != null && !searchText.trim().isEmpty() ? searchQueries.findActiveAuctionsFilteredWithSearchExcludeSeller(category, minPrice, maxPrice, conditions, excludeSellerId, searchText, pagingHelper.getOffset(pageable), pagingHelper.getPageSize(pageable)) : searchQueries.findActiveAuctionsFilteredNoSearchExcludeSeller(category, minPrice, maxPrice, conditions, excludeSellerId, pagingHelper.getOffset(pageable), pagingHelper.getPageSize(pageable)), () -> searchText != null && !searchText.trim().isEmpty() ? searchQueries.countActiveAuctionsFilteredWithSearchExcludeSeller(category, minPrice, maxPrice, conditions, excludeSellerId, searchText) : searchQueries.countActiveAuctionsFilteredNoSearchExcludeSeller(category, minPrice, maxPrice, conditions, excludeSellerId), pageable);
+    }
+    
+    // === Domain methods for user queries ===
+    
+    @Override
+    public List<Auction> findBySellerIdDomain(Long sellerId) {
+        return userAuctionsQueries.findBySellerIdDomain(sellerId);
     }
 
     @Override
-    public Page<AuctionListItem> findActiveAuctions(Pageable pageable, String category) {
-        return category == null || category.trim().isEmpty() ? findActiveAuctions(pageable) : executeSearchWithMapping(() -> searchQueries.findActiveAuctionsByCategory(AuctionStatus.ACTIVE, category, pagingHelper.getOffset(pageable), pagingHelper.getPageSize(pageable)), () -> searchQueries.countActiveAuctionsByCategory(AuctionStatus.ACTIVE, category), pageable);
-    }
-
-    @Override
-    public Page<AuctionListItem> findActiveAuctions(Pageable pageable, String category, BigDecimal minPrice, BigDecimal maxPrice, List<AuctionCondition> conditions, String searchText) {
-        return executeSearchWithMapping(() -> searchText != null && !searchText.trim().isEmpty() ? searchQueries.findActiveAuctionsFilteredWithSearch(category, minPrice, maxPrice, conditions, searchText, pagingHelper.getOffset(pageable), pagingHelper.getPageSize(pageable)) : searchQueries.findActiveAuctionsFilteredNoSearch(category, minPrice, maxPrice, conditions, pagingHelper.getOffset(pageable), pagingHelper.getPageSize(pageable)), () -> searchText != null && !searchText.trim().isEmpty() ? searchQueries.countActiveAuctionsFilteredWithSearch(category, minPrice, maxPrice, conditions, searchText) : searchQueries.countActiveAuctionsFilteredNoSearch(category, minPrice, maxPrice, conditions), pageable);
-    }
-
-    @Override
-    public Page<AuctionListItem> findActiveAuctions(Pageable pageable, String category, BigDecimal minPrice, BigDecimal maxPrice, List<AuctionCondition> conditions, String searchText, Long excludeSellerId) {
-        return executeSearchWithMapping(() -> searchText != null && !searchText.trim().isEmpty() ? searchQueries.findActiveAuctionsFilteredWithSearchExcludeSeller(category, minPrice, maxPrice, conditions, excludeSellerId, searchText, pagingHelper.getOffset(pageable), pagingHelper.getPageSize(pageable)) : searchQueries.findActiveAuctionsFilteredNoSearchExcludeSeller(category, minPrice, maxPrice, conditions, excludeSellerId, pagingHelper.getOffset(pageable), pagingHelper.getPageSize(pageable)), () -> searchText != null && !searchText.trim().isEmpty() ? searchQueries.countActiveAuctionsFilteredWithSearchExcludeSeller(category, minPrice, maxPrice, conditions, excludeSellerId, searchText) : searchQueries.countActiveAuctionsFilteredNoSearchExcludeSeller(category, minPrice, maxPrice, conditions, excludeSellerId), pageable);
-    }
-
-    @Override
-    public long countActiveAuctions() {
-        return searchQueries.countActiveAuctions();
-    }
-
-    @Override
-    public List<AuctionListItem> findBySellerId(Long sellerId) {
-        return userAuctionsQueries.findBySellerId(sellerId);
-    }
-
-    @Override
-    public List<AuctionListItem> findAuctionsWithBidsByUserId(Long userId) {
-        return userAuctionsQueries.findAuctionsWithBidsByUserId(userId);
+    public List<Auction> findAuctionsWithBidsByUserIdDomain(Long userId) {
+        return userAuctionsQueries.findAuctionsWithBidsByUserIdDomain(userId);
     }
 
     @Override
@@ -77,46 +58,6 @@ public class AuctionRepositoryImpl implements AuctionActiveQueries,
     public boolean isAuctionValidForBidding(Long auctionId) {
         return auctionDetailQueries.isAuctionValidForBidding(auctionId);
     }
-
-    @Override
-    public long countActiveAuctions(AuctionStatus status) {
-        return searchQueries.countActiveAuctions();
-    }
-    
-    @Override
-    public Page<AuctionRepository.AuctionProjection> findActiveAuctionsWithMinBid(AuctionStatus status, Pageable pageable) {
-        return executeSearchWithProjection(() -> searchQueries.findActiveAuctionsWithMinBid(status, pagingHelper.getOffset(pageable), pagingHelper.getPageSize(pageable)), () -> searchQueries.countActiveAuctionsWithMinBid(status), pageable);
-    }
-    
-    @Override
-    public Page<AuctionRepository.AuctionProjection> findActiveAuctionsByCategory(AuctionStatus status, String categoryPattern, Pageable pageable) {
-        return executeSearchWithProjection(() -> searchQueries.findActiveAuctionsByCategory(status, categoryPattern, pagingHelper.getOffset(pageable), pagingHelper.getPageSize(pageable)), () -> searchQueries.countActiveAuctionsByCategory(status, categoryPattern), pageable);
-    }
-    
-    @Override
-    public Page<AuctionRepository.AuctionProjection> findActiveAuctionsFilteredNoSearch(String categoryPattern, BigDecimal minPrice, BigDecimal maxPrice, List<AuctionCondition> conditions, Pageable pageable) {
-        return executeSearchWithProjection(() -> searchQueries.findActiveAuctionsFilteredNoSearch(categoryPattern, minPrice, maxPrice, conditions, pagingHelper.getOffset(pageable), pagingHelper.getPageSize(pageable)), () -> searchQueries.countActiveAuctionsFilteredNoSearch(categoryPattern, minPrice, maxPrice, conditions), pageable);
-    }
-    
-    @Override
-    public Page<AuctionRepository.AuctionProjection> findActiveAuctionsFilteredWithSearch(String categoryPattern, BigDecimal minPrice, BigDecimal maxPrice, List<AuctionCondition> conditions, String searchPattern, Pageable pageable) {
-        return executeSearchWithProjection(() -> searchQueries.findActiveAuctionsFilteredWithSearch(categoryPattern, minPrice, maxPrice, conditions, searchPattern, pagingHelper.getOffset(pageable), pagingHelper.getPageSize(pageable)), () -> searchQueries.countActiveAuctionsFilteredWithSearch(categoryPattern, minPrice, maxPrice, conditions, searchPattern), pageable);
-    }
-    
-    @Override
-    public Page<AuctionRepository.AuctionProjection> findActiveAuctionsFilteredNoSearchExcludeSeller(String categoryPattern, BigDecimal minPrice, BigDecimal maxPrice, List<AuctionCondition> conditions, Long excludeSellerId, Pageable pageable) {
-        return executeSearchWithProjection(() -> searchQueries.findActiveAuctionsFilteredNoSearchExcludeSeller(categoryPattern, minPrice, maxPrice, conditions, excludeSellerId, pagingHelper.getOffset(pageable), pagingHelper.getPageSize(pageable)), () -> searchQueries.countActiveAuctionsFilteredNoSearchExcludeSeller(categoryPattern, minPrice, maxPrice, conditions, excludeSellerId), pageable);
-    }
-    
-    @Override
-    public Page<AuctionRepository.AuctionProjection> findActiveAuctionsFilteredWithSearchExcludeSeller(String categoryPattern, BigDecimal minPrice, BigDecimal maxPrice, List<AuctionCondition> conditions, Long excludeSellerId, String searchPattern, Pageable pageable) {
-        return executeSearchWithProjection(() -> searchQueries.findActiveAuctionsFilteredWithSearchExcludeSeller(categoryPattern, minPrice, maxPrice, conditions, excludeSellerId, searchPattern, pagingHelper.getOffset(pageable), pagingHelper.getPageSize(pageable)), () -> searchQueries.countActiveAuctionsFilteredWithSearchExcludeSeller(categoryPattern, minPrice, maxPrice, conditions, excludeSellerId, searchPattern), pageable);
-    }
-    
-    @Override
-    public AuctionRepository.AuctionProjection findAuctionDetailById(Long id, AuctionStatus status) {
-        return auctionDetailQueries.findAuctionDetailById(id, status);
-    }
     
     @Override
     public AuctionRepository.AuctionProjection findAuctionDetailByIdAnyStatus(Long id) {
@@ -127,12 +68,16 @@ public class AuctionRepositoryImpl implements AuctionActiveQueries,
     public List<AuctionRepository.UserAuctionProjection> findBySellerIdOrderByCreatedAtDesc(Long sellerId) {
         return userAuctionsQueries.findBySellerIdOrderByCreatedAtDesc(sellerId);
     }
-
-    private Page<AuctionListItem> executeSearchWithMapping(Supplier<List<Auction>> searchFunction, Supplier<Long> countFunction, Pageable pageable) {
-        return pagingHelper.createProjectionPage(searchFunction.get(), pageable, countFunction.get()).map(auctionListMapper::toAuctionListItem);
-    }
     
     private Page<AuctionRepository.AuctionProjection> executeSearchWithProjection(Supplier<List<Auction>> searchFunction, Supplier<Long> countFunction, Pageable pageable) {
         return pagingHelper.createProjectionPage(searchFunction.get(), pageable, countFunction.get());
+    }
+    
+    /**
+     * Execute search returning domain entities without DTO mapping.
+     * Used by Domain methods to avoid coupling with Mapper layer.
+     */
+    private Page<Auction> executeSearchWithoutMapping(Supplier<List<Auction>> searchFunction, Supplier<Long> countFunction, Pageable pageable) {
+        return pagingHelper.createEntityPage(searchFunction.get(), pageable, countFunction.get());
     }
 }

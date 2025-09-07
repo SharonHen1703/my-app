@@ -29,35 +29,26 @@ public class BidsDao {
 
     // === LOCKING OPERATIONS ===
     
-    public AuctionRow getAuctionSnapshot(long auctionId) { return lockingOps.getAuctionSnapshot(auctionId); }
     public AuctionRow lockAuctionForUpdate(long auctionId) { return lockingOps.lockAuctionForUpdate(auctionId); }
     public AuctionRow getAuction(long auctionId) { return lockingOps.getAuction(auctionId); }
-    public boolean userExists(long userId) { return lockingOps.userExists(userId); }
 
     // === WRITE OPERATIONS ===
     
-    public void insertBid(long auctionId, long bidderId, BigDecimal maxBid) { writeOps.insertBid(auctionId, bidderId, maxBid); }
     public Long insertBidReturningId(long auctionId, long bidderId, BigDecimal maxBid) { return writeOps.insertBidReturningId(auctionId, bidderId, maxBid); }
     public BigDecimal getUserPrevMax(long auctionId, long bidderId) { return writeOps.getUserPrevMax(auctionId, bidderId); }
     public int updateUserMax(long auctionId, long bidderId, BigDecimal maxBid) { return writeOps.updateUserMax(auctionId, bidderId, maxBid); }
     public Long getExistingBidId(long auctionId, long bidderId) { return writeOps.getExistingBidId(auctionId, bidderId); }
 
-    public void updateBuyNow(long auctionId, long userId, BigDecimal maxBid, BigDecimal buyNow, OffsetDateTime now, int inc) { writeOps.updateBuyNow(auctionId, userId, maxBid, buyNow, now, inc); }
-    public void updateBuyNowFinal(long auctionId, long userId, BigDecimal maxBid, BigDecimal buyNow, OffsetDateTime now) { writeOps.updateBuyNowFinal(auctionId, userId, maxBid, buyNow, now); }
-    public void updateFirstBid(long auctionId, long userId, BigDecimal maxBid) { writeOps.updateFirstBid(auctionId, userId, maxBid); }
-    public void updateIncreaseOwnCeiling(long auctionId, BigDecimal maxBid) { writeOps.updateIncreaseOwnCeiling(auctionId, maxBid); }
-    public void updateStayHighest(long auctionId, BigDecimal newCurrent, int inc) { writeOps.updateStayHighest(auctionId, newCurrent, inc); }
-    public void updateNewHighest(long auctionId, long userId, BigDecimal maxBid, BigDecimal newCurrent, int inc) { writeOps.updateNewHighest(auctionId, userId, maxBid, newCurrent, inc); }
     public void updateAuctionAfterBid(long auctionId, long highestUserId, BigDecimal highestMaxBid, BigDecimal current) { writeOps.updateAuctionAfterBid(auctionId, highestUserId, highestMaxBid, current); }
 
     // === HISTORY OPERATIONS ===
     
-    public void insertBidSnapshot(long auctionId, long bidId, long actorUserId, BigDecimal displayedBid, String kind, OffsetDateTime when) { historyOps.insertBidSnapshot(auctionId, bidId, actorUserId, displayedBid, kind, when); }
+    public void insertBidSnapshot(long auctionId, long bidId, long actorUserId, BigDecimal displayedBid, String kind, String bidType, OffsetDateTime when) { historyOps.insertBidSnapshot(auctionId, bidId, actorUserId, displayedBid, kind, bidType, when); }
     public List<HistoryRow> getBidHistory(long auctionId) { return historyOps.getBidHistory(auctionId); }
+    public int countBidHistorySnapshots(long auctionId) { return historyOps.countBidHistorySnapshots(auctionId); }
 
     // === USER SUMMARIES ===
     
-    public boolean isLeader(long auctionId, long userId) { return userSummariesOps.isLeader(auctionId, userId); }
     public List<TopBidRow> getTopBids(long auctionId, int limit) { return userSummariesOps.getTopBids(auctionId, limit); }
     public List<UserBidSummaryRow> getUserBidsSummary(Long userId) { return userSummariesOps.getUserBidsSummary(userId); }
 
@@ -69,7 +60,8 @@ public class BidsDao {
             long bidderId,
             BigDecimal displayedBid,
             OffsetDateTime snapshotTime,
-            String kind
+            String kind,
+            String bidType
     ) {}
 
     public record TopBidRow(

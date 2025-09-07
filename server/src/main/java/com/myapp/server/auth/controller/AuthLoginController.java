@@ -6,6 +6,7 @@ import com.myapp.server.auth.mapper.AuthMapper;
 import com.myapp.server.auth.service.AuthService;
 import com.myapp.server.auth.service.JwtService;
 import com.myapp.server.auth.service.LoginRateLimiter;
+import com.myapp.server.common.auth.JwtTokenExtractor;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -25,6 +26,7 @@ public class AuthLoginController {
     private final JwtService jwtService;
     private final LoginRateLimiter rateLimiter;
     private final AuthMapper authMapper;
+    private final JwtTokenExtractor jwtTokenExtractor;
 
     @Value("${app.auth.cookie.name}")
     private String cookieName;
@@ -42,11 +44,13 @@ public class AuthLoginController {
     private String cookiePath;
 
     public AuthLoginController(AuthService authService, JwtService jwtService, 
-                             LoginRateLimiter rateLimiter, AuthMapper authMapper) {
+                             LoginRateLimiter rateLimiter, AuthMapper authMapper,
+                             JwtTokenExtractor jwtTokenExtractor) {
         this.authService = authService;
         this.jwtService = jwtService;
         this.rateLimiter = rateLimiter;
         this.authMapper = authMapper;
+        this.jwtTokenExtractor = jwtTokenExtractor;
     }
 
     @PostMapping("/login")
@@ -93,7 +97,7 @@ public class AuthLoginController {
 
     @GetMapping("/me")
     public ResponseEntity<?> me(HttpServletRequest req) {
-        String token = extractTokenFromCookie(req);
+        String token = jwtTokenExtractor.extractTokenFromCookie(req);
         if (token == null || token.isBlank()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(Map.of("message", "Not authenticated"));
@@ -131,13 +135,5 @@ public class AuthLoginController {
             "; HttpOnly; SameSite=" + sameSite + (cookieSecure ? "; Secure" : "") + 
             (cookieDomain != null && !cookieDomain.isBlank() ? "; Domain=" + cookieDomain : ""));
         resp.addCookie(cookie);
-    }
-
-    private String extractTokenFromCookie(HttpServletRequest req) {
-        if (req.getCookies() == null) return null;
-        for (Cookie c : req.getCookies()) {
-            if (cookieName.equals(c.getName())) return c.getValue();
-        }
-        return null;
     }
 }

@@ -23,52 +23,19 @@ public class AuctionService {
     
     private final AuctionQueryService auctionQueryService;
     private final AuctionCommandService auctionCommandService;
-    
-    /**
-     * מוצא מכרזים פעילים עם paging
-     */
-    public Page<AuctionListItem> findActiveAuctions(int page, int size) {
-        return auctionQueryService.findActiveAuctions(page, size);
-    }
-    
-    /**
-     * מוצא מכרזים פעילים עם paging וסינון לפי קטגוריה
-     */
-    public Page<AuctionListItem> findActiveAuctions(int page, int size, String category) {
-        return auctionQueryService.findActiveAuctions(page, size, category);
-    }
 
     /**
-     * מוצא מכרזים פעילים עם paging וסינון לפי: קטגוריה, טווח מחיר, ומצב (רשימה)
-     */
-    public Page<AuctionListItem> findActiveAuctions(
-            int page,
-            int size,
-            String category,
-            java.math.BigDecimal minPrice,
-            java.math.BigDecimal maxPrice,
-            List<String> conditions
-    ) {
-        return auctionQueryService.findActiveAuctions(page, size, category, minPrice, maxPrice, conditions, null);
-    }
-
-    /**
-     * מוצא מכרזים פעילים עם paging וסינון לפי: קטגוריה, טווח מחיר, מצב וחיפוש טקסט
-     */
-    public Page<AuctionListItem> findActiveAuctions(
-            int page,
-            int size,
-            String category,
-            java.math.BigDecimal minPrice,
-            java.math.BigDecimal maxPrice,
-            List<String> conditions,
-            String searchText
-    ) {
-        return auctionQueryService.findActiveAuctions(page, size, category, minPrice, maxPrice, conditions, searchText);
-    }
-
-    /**
-     * מוצא מכרזים פעילים עם paging וסינון לפי: קטגוריה, טווח מחיר, מצב, חיפוש טקסט ומוציא מכרזים של מוכר מסוים
+     * מוצא מכרזים פעילים עם paging וסינון מתקדם - כל הפרמטרים אופציונליים
+     * 
+     * @param page מספר עמוד (מתחיל מ-0)
+     * @param size כמות פריטים בעמוד
+     * @param category קטגוריה לסינון (null = כל הקטגוריות)
+     * @param minPrice מחיר מינימלי (null = ללא מגבלה)
+     * @param maxPrice מחיר מקסימלי (null = ללא מגבלה)
+     * @param conditions רשימת מצבי מוצר לסינון (null/empty = כל המצבים)
+     * @param searchText טקסט חופשי לחיפוש בכותרת ותיאור (null = ללא חיפוש)
+     * @param excludeSellerId ID של מוכר להרחקה (null = ללא הרחקה)
+     * @return דף מכרזים מסונן ומוין
      */
     public Page<AuctionListItem> findActiveAuctions(
             int page,
@@ -84,38 +51,10 @@ public class AuctionService {
     }
     
     /**
-     * סופר מכרזים פעילים שלא הסתיימו
-     */
-    public long countActiveAuctions() {
-        return auctionQueryService.countActiveAuctions();
-    }
-    
-    /**
-     * מוצא פרטי מכרז בודד (רק פעילים)
-     */
-    public AuctionDetail findAuctionDetail(Long id) {
-        return auctionQueryService.findAuctionDetail(id);
-    }
-    
-    /**
      * מוצא פרטי מכרז בודד ללא קשר לסטטוס
      */
     public AuctionDetail findAuctionDetailAnyStatus(Long id) {
         return auctionQueryService.findAuctionDetailAnyStatus(id);
-    }
-    
-    /**
-     * מחזיר רשימת כל הקטגוריות הקבועות
-     */
-    public List<String> getAllCategories() {
-        return auctionQueryService.getAllCategories();
-    }
-    
-    /**
-     * מחזיר רשימת קודי הקטגוריות הקבועות
-     */
-    public List<String> getAllCategoryCodes() {
-        return auctionQueryService.getAllCategoryCodes();
     }
     
     /**
@@ -128,7 +67,7 @@ public class AuctionService {
     /**
      * מוצא מכרזים של משתמש ספציפי (בהתבסס על sellerId)
      */
-    public List<com.myapp.server.users.dto.UserAuctionItem> getUserAuctions(Long userId) {
+    public List<com.myapp.server.auctions.dto.UserAuctionItem> getUserAuctions(Long userId) {
         return auctionQueryService.getUserAuctions(userId);
     }
 

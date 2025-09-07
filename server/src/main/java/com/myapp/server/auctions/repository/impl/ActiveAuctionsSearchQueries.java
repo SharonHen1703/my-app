@@ -21,54 +21,6 @@ public class ActiveAuctionsSearchQueries {
 
     private final EntityManager entityManager;
 
-    public List<Auction> findActiveAuctionsWithMinBid(AuctionStatus status, int offset, int limit) {
-        return executeQuery("SELECT a FROM Auction a WHERE a.status = :status ORDER BY a.endDate ASC",
-            offset, limit, q -> q.setParameter("status", status));
-    }
-
-    public long countActiveAuctionsWithMinBid(AuctionStatus status) {
-        return executeCountQuery("SELECT COUNT(a) FROM Auction a WHERE a.status = :status",
-            q -> q.setParameter("status", status));
-    }
-
-    public List<Auction> findActiveAuctionsByCategory(AuctionStatus status, String categoryPattern, int offset, int limit) {
-        String jpql = "SELECT a FROM Auction a WHERE a.status = :status" + 
-                     (categoryPattern != null ? " AND a.categories LIKE :categoryPattern" : "") + " ORDER BY a.endDate ASC";
-        return executeQuery(jpql, offset, limit, q -> {
-            q.setParameter("status", status);
-            if (categoryPattern != null) q.setParameter("categoryPattern", "%" + categoryPattern + "%");
-        });
-    }
-
-    public long countActiveAuctionsByCategory(AuctionStatus status, String categoryPattern) {
-        String jpql = "SELECT COUNT(a) FROM Auction a WHERE a.status = :status" + 
-                     (categoryPattern != null ? " AND a.categories LIKE :categoryPattern" : "");
-        return executeCountQuery(jpql, q -> {
-            q.setParameter("status", status);
-            if (categoryPattern != null) q.setParameter("categoryPattern", "%" + categoryPattern + "%");
-        });
-    }
-
-    public List<Auction> findActiveAuctionsFilteredNoSearch(String categoryPattern, BigDecimal minPrice, 
-        BigDecimal maxPrice, List<AuctionCondition> conditions, int offset, int limit) {
-        return executeFilteredQuery(categoryPattern, minPrice, maxPrice, conditions, null, null, offset, limit);
-    }
-
-    public long countActiveAuctionsFilteredNoSearch(String categoryPattern, BigDecimal minPrice, 
-        BigDecimal maxPrice, List<AuctionCondition> conditions) {
-        return executeFilteredCountQuery(categoryPattern, minPrice, maxPrice, conditions, null, null);
-    }
-
-    public List<Auction> findActiveAuctionsFilteredWithSearch(String categoryPattern, BigDecimal minPrice, 
-        BigDecimal maxPrice, List<AuctionCondition> conditions, String searchPattern, int offset, int limit) {
-        return executeFilteredQuery(categoryPattern, minPrice, maxPrice, conditions, searchPattern, null, offset, limit);
-    }
-
-    public long countActiveAuctionsFilteredWithSearch(String categoryPattern, BigDecimal minPrice, 
-        BigDecimal maxPrice, List<AuctionCondition> conditions, String searchPattern) {
-        return executeFilteredCountQuery(categoryPattern, minPrice, maxPrice, conditions, searchPattern, null);
-    }
-
     public List<Auction> findActiveAuctionsFilteredNoSearchExcludeSeller(String categoryPattern, BigDecimal minPrice, 
         BigDecimal maxPrice, List<AuctionCondition> conditions, Long excludeSellerId, int offset, int limit) {
         return executeFilteredQuery(categoryPattern, minPrice, maxPrice, conditions, null, excludeSellerId, offset, limit);
@@ -87,11 +39,6 @@ public class ActiveAuctionsSearchQueries {
     public long countActiveAuctionsFilteredWithSearchExcludeSeller(String categoryPattern, BigDecimal minPrice, 
         BigDecimal maxPrice, List<AuctionCondition> conditions, Long excludeSellerId, String searchPattern) {
         return executeFilteredCountQuery(categoryPattern, minPrice, maxPrice, conditions, searchPattern, excludeSellerId);
-    }
-
-    public long countActiveAuctions() {
-        return executeCountQuery("SELECT COUNT(a) FROM Auction a WHERE a.status = :status",
-            q -> q.setParameter("status", AuctionStatus.ACTIVE));
     }
 
     // Core filtered query execution
@@ -121,8 +68,9 @@ public class ActiveAuctionsSearchQueries {
         List<AuctionCondition> conditions, String searchPattern, Long excludeSellerId) {
         StringBuilder jpql = new StringBuilder(selectClause + " WHERE a.status = :status");
         if (categoryPattern != null) jpql.append(" AND a.categories LIKE :categoryPattern");
-        if (minPrice != null) jpql.append(" AND a.currentBidAmount >= :minPrice");
-        if (maxPrice != null) jpql.append(" AND a.currentBidAmount <= :maxPrice");
+        // Use COALESCE to handle null currentBidAmount (fallback to minPrice for auctions without bids)
+        if (minPrice != null) jpql.append(" AND COALESCE(a.currentBidAmount, a.minPrice) >= :minPrice");
+        if (maxPrice != null) jpql.append(" AND COALESCE(a.currentBidAmount, a.minPrice) <= :maxPrice");
         if (conditions != null && !conditions.isEmpty()) jpql.append(" AND a.condition IN :conditions");
         if (excludeSellerId != null) jpql.append(" AND a.sellerId != :excludeSellerId");
         if (searchPattern != null) jpql.append(" AND (a.title LIKE :searchPattern OR a.description LIKE :searchPattern)");

@@ -41,10 +41,4 @@ public class User {
 
     @Column(name = "updated_at", insertable = false, updatable = false)
     private java.time.LocalDateTime updatedAt;
-
-    @PrePersist
-    @PreUpdate
-    public void onCreate() {
-        // Nothing to do for now
-    }
 }

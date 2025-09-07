@@ -14,11 +14,6 @@ public interface AuctionDetailQueriesFragment {
      * Check if auction exists and is in valid status for bidding.
      */
     boolean isAuctionValidForBidding(Long auctionId);
-
-    /**
-     * Find auction detail by ID with status
-     */
-    AuctionRepository.AuctionProjection findAuctionDetailById(Long id, com.myapp.server.auctions.entity.enums.AuctionStatus status);
     
     /**
      * Find auction detail by ID any status

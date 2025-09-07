@@ -18,7 +18,10 @@ public class BiddingPolicy {
      * Calculates the minimum bid required for a challenger (non-leader).
      */
     public BigDecimal calculateMinBidForChallenger(BigDecimal currentBid, BigDecimal minPrice, BigDecimal bidIncrement, int bidsCount) {
-        return (bidsCount == 0) ? minPrice : currentBid.add(bidIncrement);
+        if (bidsCount == 0 || currentBid == null) {
+            return minPrice;
+        }
+        return currentBid.add(bidIncrement);
     }
     
     /**

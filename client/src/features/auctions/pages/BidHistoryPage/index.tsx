@@ -124,6 +124,7 @@ export default function BidHistoryPage() {
                 <tr>
                   <th>מציע</th>
                   <th>סכום מוצג</th>
+                  <th>סוג</th>
                   <th>זמן</th>
                 </tr>
               </thead>
@@ -155,6 +156,7 @@ export default function BidHistoryPage() {
                     <tr key={h.snapshotId}>
                       <td>#{h.bidderId}</td>
                       <td>₪{h.displayedBid.toLocaleString()}</td>
+                      <td>{h.bidType}</td>
                       <td>{new Date(h.snapshotTime).toLocaleString()}</td>
                     </tr>
                   ))}

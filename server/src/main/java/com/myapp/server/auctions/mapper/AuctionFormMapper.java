@@ -53,7 +53,7 @@ public class AuctionFormMapper {
         auction.setMinPrice(request.minPrice());
         auction.setBuyNowPrice(null); // Business rule: not supported yet
         auction.setBidIncrement(request.bidIncrement());
-        auction.setCurrentBidAmount(request.minPrice()); // Business rule: initialize with min_price
+        auction.setCurrentBidAmount(null); // Business rule: no current bid until first bid is placed
         auction.setHighestMaxBid(null); // Business rule: no bids yet
         auction.setHighestUserId(null); // Business rule: no bids yet
         auction.setBidsCount(request.bidsCount());

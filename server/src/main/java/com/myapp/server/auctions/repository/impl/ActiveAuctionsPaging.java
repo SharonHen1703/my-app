@@ -34,6 +34,18 @@ public class ActiveAuctionsPaging {
         }
         return new PageImpl<>(projections, pageable, totalElements);
     }
+    
+    /**
+     * Create a Page<Auction> from auction entities and pagination metadata.
+     * Used by Domain methods to avoid Projection wrapper overhead.
+     */
+    public Page<Auction> createEntityPage(
+        List<Auction> auctions, 
+        Pageable pageable, 
+        long totalElements
+    ) {
+        return new PageImpl<>(auctions, pageable, totalElements);
+    }
 
     /**
      * Calculate offset from Pageable for query execution.

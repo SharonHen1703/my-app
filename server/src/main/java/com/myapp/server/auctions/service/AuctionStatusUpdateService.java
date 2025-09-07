@@ -3,7 +3,7 @@ package com.myapp.server.auctions.service;
 import com.myapp.server.auctions.entity.Auction;
 import com.myapp.server.auctions.entity.enums.AuctionStatus;
 import com.myapp.server.auctions.repository.AuctionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,10 +12,10 @@ import java.time.OffsetDateTime;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AuctionStatusUpdateService {
 
-    @Autowired
-    private AuctionRepository auctionRepository;
+    private final AuctionRepository auctionRepository;
 
     /**
      * עדכון סטטוס מכרזים - רץ כל דקה

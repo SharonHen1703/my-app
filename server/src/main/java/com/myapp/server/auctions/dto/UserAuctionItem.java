@@ -1,4 +1,4 @@
-package com.myapp.server.users.dto;
+package com.myapp.server.auctions.dto;
 
 import java.math.BigDecimal;
 

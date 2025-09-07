@@ -16,18 +16,6 @@ class AuctionLockingJdbcOps {
     }
 
     /**
-     * Snapshot without locking – used to decide 409 vs 422 before we acquire row lock.
-     */
-    BidsDao.AuctionRow getAuctionSnapshot(long auctionId) {
-        return jdbc.query("""
-                SELECT id, seller_id, status, start_date, end_date, min_price, bid_increment,
-                       current_bid_amount, bids_count, highest_user_id, highest_max_bid, buy_now_price
-                FROM public.auctions
-                WHERE id = ?
-            """, (rs, rn) -> mappers.mapAuctionRow(rs), auctionId).stream().findFirst().orElse(null);
-    }
-
-    /**
      * Lock the auction row for update (FOR UPDATE).
      */
     BidsDao.AuctionRow lockAuctionForUpdate(long auctionId) {
@@ -48,17 +36,5 @@ class AuctionLockingJdbcOps {
             FROM public.auctions
             WHERE id = ?
         """, (rs, rn) -> mappers.mapAuctionRow(rs), auctionId).stream().findFirst().orElse(null);
-    }
-
-    /**
-     * Check if a user exists by id.
-     */
-    boolean userExists(long userId) {
-        Boolean exists = jdbc.queryForObject(
-            "SELECT EXISTS (SELECT 1 FROM public.users WHERE id = ?)",
-            Boolean.class,
-            userId
-        );
-        return exists != null && exists;
     }
 }

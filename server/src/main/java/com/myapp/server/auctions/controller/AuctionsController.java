@@ -4,15 +4,14 @@ import com.myapp.server.auctions.dto.AuctionDetail;
 import com.myapp.server.auctions.dto.AuctionListItem;
 import com.myapp.server.auctions.dto.CreateAuctionRequest;
 import com.myapp.server.auctions.dto.CreateAuctionResponse;
+import com.myapp.server.auctions.dto.UserAuctionItem;
 import com.myapp.server.auctions.service.AuctionService;
-import com.myapp.server.auth.service.JwtService;
+import com.myapp.server.common.auth.JwtTokenExtractor;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.Cookie;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.Value;
 import jakarta.validation.Valid;
 
 import java.util.HashMap;
@@ -25,14 +24,11 @@ import java.math.BigDecimal;
 public class AuctionsController {
 
     private final AuctionService auctionService;
-    private final JwtService jwtService;
+    private final JwtTokenExtractor jwtTokenExtractor;
 
-    @Value("${app.auth.cookie.name}")
-    private String cookieName;
-
-    public AuctionsController(AuctionService auctionService, JwtService jwtService) { 
+    public AuctionsController(AuctionService auctionService, JwtTokenExtractor jwtTokenExtractor) { 
         this.auctionService = auctionService;
-        this.jwtService = jwtService;
+        this.jwtTokenExtractor = jwtTokenExtractor;
     }
 
     @GetMapping("/api/auctions")
@@ -60,7 +56,7 @@ public class AuctionsController {
         : conditions.stream().filter(s -> s != null && !s.isBlank()).collect(Collectors.toList());
 
     // Get current user ID to exclude their auctions
-    Long excludeSellerId = getCurrentUserId(request);
+    Long excludeSellerId = jwtTokenExtractor.getCurrentUserId(request);
 
     Page<AuctionListItem> auctionsPage =
         auctionService.findActiveAuctions(pageNumber, limit, category, minPrice, maxPrice, normalizedConditions, search, excludeSellerId);
@@ -73,11 +69,6 @@ public class AuctionsController {
         body.put("items", auctionsPage.getContent());
         
         return body;
-    }
-
-    @GetMapping("/api/auctions/categories")
-    public List<String> getCategories() {
-        return auctionService.getAllCategories();
     }
 
     @GetMapping("/api/auctions/categories/map")
@@ -98,34 +89,20 @@ public class AuctionsController {
     @PostMapping("/api/auctions")
     @ResponseStatus(HttpStatus.CREATED)
     public CreateAuctionResponse createAuction(@Valid @RequestBody CreateAuctionRequest request, HttpServletRequest httpRequest) {
-        Long currentUserId = getCurrentUserId(httpRequest);
+        Long currentUserId = jwtTokenExtractor.getCurrentUserId(httpRequest);
         if (currentUserId == null) {
             throw new org.springframework.web.server.ResponseStatusException(HttpStatus.UNAUTHORIZED, "Authentication required");
         }
         return auctionService.createAuction(request, currentUserId);
     }
 
-    private Long getCurrentUserId(HttpServletRequest request) {
-        String token = extractTokenFromCookie(request);
-        if (token == null || token.isBlank()) {
-            return null; // For public endpoints, return null instead of throwing
+    @GetMapping("/api/auctions/my")
+    public ResponseEntity<List<UserAuctionItem>> getCurrentUserAuctions(HttpServletRequest request) {
+        Long currentUserId = jwtTokenExtractor.getCurrentUserId(request);
+        if (currentUserId == null) {
+            throw new org.springframework.web.server.ResponseStatusException(HttpStatus.UNAUTHORIZED, "Authentication required");
         }
-        try {
-            String sub = jwtService.getSubject(token);
-            return Long.valueOf(sub);
-        } catch (Exception e) {
-            return null; // Invalid token, return null for public endpoints
-        }
-    }
-
-    private String extractTokenFromCookie(HttpServletRequest req) {
-        if (req.getCookies() != null) {
-            for (Cookie cookie : req.getCookies()) {
-                if (cookieName.equals(cookie.getName())) {
-                    return cookie.getValue();
-                }
-            }
-        }
-        return null;
+        List<UserAuctionItem> auctions = auctionService.getUserAuctions(currentUserId);
+        return ResponseEntity.ok(auctions);
     }
 }

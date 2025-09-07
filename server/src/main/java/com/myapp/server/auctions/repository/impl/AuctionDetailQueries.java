@@ -71,14 +71,6 @@ public class AuctionDetailQueries {
 
     // === EXACT SIGNATURE DELEGATION METHODS (352→Custom migration) ===
     
-    public AuctionRepository.AuctionProjection findAuctionDetailById(Long id, com.myapp.server.auctions.entity.enums.AuctionStatus status) {
-        var auction = entityManager.find(Auction.class, id);
-        if (auction != null && auction.getStatus() == status) {
-            return new AuctionProjectionImpl(auction);
-        }
-        return null;
-    }
-    
     public AuctionRepository.AuctionProjection findAuctionDetailByIdAnyStatus(Long id) {
         var auction = entityManager.find(Auction.class, id);
         if (auction != null) {
