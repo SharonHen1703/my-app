@@ -1,21 +1,64 @@
 /* AuctionsList Styles */
+/* מכולת הרשימה הראשית – צמצום שוליים */
 .container {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1400px; /* רוחב מקסימלי למניעת מתיחה יתר */
+  max-width: 1320px; /* הגדלה מ-1280 */
   gap: 1.5rem;
   direction: rtl;
-  margin: 0 auto; /* מרכז את הרשימה */
-  padding: 0 20px;
+  margin: 0 auto;
+  padding-left: clamp(1.5rem, 6vw, 5rem); /* צמצום מ-2rem/8vw/7rem */
+  padding-right: clamp(1.5rem, 6vw, 5rem);
+  box-sizing: border-box;
+  transition: padding 0.25s ease, max-width 0.25s ease;
+}
+
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1450px; /* הגדלה מ-1400 */
+    padding-left: clamp(2.5rem, 8vw, 7rem); /* צמצום מ-3rem/10vw/9rem */
+    padding-right: clamp(2.5rem, 8vw, 7rem);
+  }
+}
+
+@media (min-width: 2000px) {
+  .container {
+    max-width: 1600px; /* הגדלה מ-1500 */
+    padding-left: clamp(3rem, 10vw, 8rem); /* צמצום מ-4rem/12vw/11rem */
+    padding-right: clamp(3rem, 10vw, 8rem);
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 /* תוכן ראשי עם sidebar */
 .mainContent {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem; /* צמצום מ-2.25rem כדי שהכרטיסיות יתרחבו ימינה */
   align-items: flex-start;
   min-height: 100vh; /* מבטיח שיהיה מספיק מקום לגלילה */
+  overflow-x: hidden; /* ביטול גלילה אופקית אם נוצרת */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1200px) {
+  .mainContent {
+    gap: 1.25rem; /* צמצום מ-1.75rem */
+  }
+}
+
+@media (max-width: 1024px) {
+  .mainContent {
+    flex-direction: column; /* סידור אנכי במובייל / טאבלט */
+    gap: 1.5rem;
+  }
 }
 
 /* אזור התוכן (בלי הסיידבר) */
@@ -24,6 +67,29 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+
+/* רשימת כרטיסיות המכרזים */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 720px; /* צמצום קטן מ-750px ל-720px */
+  margin: 0 auto; /* מרכוז העמודה */
+}
+
+@media (max-width: 1200px) {
+  .list {
+    max-width: 650px; /* צמצום קטן מ-680px ל-650px */
+  }
+}
+
+@media (max-width: 768px) {
+  .list {
+    max-width: 100%; /* רוחב מלא במובייל */
+    gap: 1rem;
+  }
 }
 
 /* כותרת מכרזים פעילים */

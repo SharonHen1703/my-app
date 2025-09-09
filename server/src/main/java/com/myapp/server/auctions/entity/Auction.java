@@ -36,9 +36,6 @@ public class Auction {
     @Column(name = "min_price", nullable = false, precision = 12, scale = 2)
     private BigDecimal minPrice;
     
-    @Column(name = "buy_now_price", precision = 12, scale = 2)
-    private BigDecimal buyNowPrice;
-    
     @Column(name = "bid_increment", nullable = false, precision = 12, scale = 2)
     private BigDecimal bidIncrement;
     
@@ -97,9 +94,6 @@ public class Auction {
     
     public BigDecimal getMinPrice() { return minPrice; }
     public void setMinPrice(BigDecimal minPrice) { this.minPrice = minPrice; }
-    
-    public BigDecimal getBuyNowPrice() { return buyNowPrice; }
-    public void setBuyNowPrice(BigDecimal buyNowPrice) { this.buyNowPrice = buyNowPrice; }
     
     public BigDecimal getBidIncrement() { return bidIncrement; }
     public void setBidIncrement(BigDecimal bidIncrement) { this.bidIncrement = bidIncrement; }

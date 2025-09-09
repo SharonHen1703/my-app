@@ -1,17 +1,83 @@
 .sidebar {
-  width: 280px;
+  /* אין גלילה פנימית – כל הקריטריונים פתוחים מציגים הכל */
+  width: 340px;
+  flex: 0 0 340px;
   background: #ffffff;
   border: 1px solid #e5e7eb;
-  border-radius: 8px;
+  border-radius: 14px;
   padding: 0;
-  height: fit-content;
-  max-height: calc(100vh - 40px); /* מגבלת גובה למניעת חריגה מהמסך */
-  overflow-y: auto; /* גלילה אנכית במידת הצורך */
-  position: sticky;
+  height: auto; /* גובה לפי התוכן */
+  position: sticky; /* נשאר גלוי בזמן גלילה */
   top: 20px;
-  align-self: flex-start; /* נדבק לחלק העליון של הקונטיינר */
-  scrollbar-width: thin; /* Firefox */
-  scrollbar-color: #d1d5db #f9fafb; /* Firefox */
+  align-self: flex-start;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  transition: width 0.25s ease;
+  overflow: visible; /* ביטול כל גלילה פנימית */
+}
+
+/* הבטחת התאמת כל הצאצאים לרוחב הסיידבר ללא גלילה אופקית */
+.sidebar *,
+.sidebar *::before,
+.sidebar *::after {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+/* כותרות ותוכן ברוחב מלא */
+.filterHeader,
+.filterContent,
+.filterOptions,
+.priceRow,
+.searchInputContainer {
+  width: 100%;
+}
+
+/* מניעת פריסה משתרעת מדי של אופציות */
+.filterOption {
+  width: 100%;
+}
+
+/* התאמה לטקסטים ארוכים בקטגוריות */
+.optionText,
+.filterTitle {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* שורת מחיר – מאפשר שבירה לשתי שורות במסכים צרים/צמצום */
+.priceRow {
+  flex-wrap: wrap;
+  row-gap: 12px;
+}
+
+/* שדות מחיר יתפרסו באופן גמיש במקום להכריח גלילה */
+.priceField {
+  flex: 1 1 130px;
+  min-width: 120px; /* היה 110px */
+}
+
+/* במצבים קיצוניים מאוד נמנע גלילה אופקית */
+.sidebar {
+  overflow-x: hidden;
+}
+
+/* קלט חיפוש לא יחרוג */
+.searchInput {
+  max-width: 100%;
+}
+
+@media (min-width: 1700px) {
+  .sidebar {
+    width: 360px;
+    flex: 0 0 360px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .sidebar {
+    width: 300px;
+    flex: 0 0 300px;
+  }
 }
 
 /* Custom scrollbar for Webkit browsers */
@@ -60,10 +126,20 @@
   font-weight: 500;
   color: #111827;
   transition: background-color 0.2s;
+  border-radius: 0; /* ביטול עיגול פינות */
 }
 
 .filterHeader:hover {
   background-color: #f9fafb;
+}
+
+/* מוודא שגם בפוקוס אין עיגול פינות */
+.filterHeader:focus,
+.filterHeader:focus-visible,
+.filterHeader:active {
+  border-radius: 0 !important;
+  outline: none; /* ביטול ההדגשה השחורה */
+  box-shadow: none; /* לוודא שלא נשארת הצללה מהדפדפן */
 }
 
 .filterTitle {
@@ -161,52 +237,99 @@
   font-size: 14px;
 }
 
-/* Price range */
+/* Price range - enhanced height control */
 .priceRow {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: flex-end; /* יישור לתחתית כדי שהכפתור יהיה ממורכז עם השדות */
+  gap: 10px; /* הגדלה מ-8 ל-10 */
+  flex-wrap: nowrap; /* לא לאפשר ירידה שורה */
+  padding: 6px 0; /* הגדלה מ-4 ל-6 */
+  min-height: 34px; /* הגדלה מ-28 ל-34 */
 }
 .priceInput {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px; /* הגדלה מ-2 ל-3 */
+  flex: 0 0 auto;
+  max-width: 100px; /* הגדלה מ-90 ל-100 */
+  height: auto; /* לא לכפות גובה על הקונטיינר הראשי */
 }
 .priceLabel {
   color: #6b7280;
-  font-size: 12px;
+  font-size: 12px; /* הגדלה מ-10 ל-12 לקריאות טובה יותר */
   text-align: center;
+  line-height: 1.2; /* הגדלה מ-1.1 */
+  margin: 0;
+  padding: 1px 0; /* רווח קטן */
 }
 .priceField {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 6px; /* הגדלה מ-4 ל-6 */
   border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 8px 10px;
-  min-width: 110px;
+  border-radius: 8px; /* היה 12 */
+  padding: 3px 6px !important; /* הגדלה מ-1px 4px */
+  min-width: 90px; /* הגדלה מ-80 ל-90 */
+  height: 28px !important; /* הגדלה מ-22 ל-28 */
+  max-height: 28px !important;
+  box-sizing: border-box;
+  overflow: hidden; /* מונע הרחבה */
 }
 .priceField input {
-  border: none;
-  outline: none;
-  width: 100%;
-  font-size: 14px;
+  border: none !important;
+  outline: none !important;
+  width: 100% !important;
+  font-size: 13px !important; /* הגדלה מ-11 ל-13 תואם יותר לשאר הסיידבר */
+  line-height: 1.2 !important; /* הגדלה קלה */
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 24px !important; /* הגדלה מ-20 ל-24 */
+  min-height: 24px !important;
+  max-height: 24px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: textfield !important;
+}
+/* Remove number input spinners */
+.priceField input::-webkit-outer-spin-button,
+.priceField input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
 }
 .currency {
   font-weight: 600;
   color: #374151;
+  font-size: 12px; /* הגדלה מ-10 ל-12 */
+  line-height: 1.2 !important; /* הגדלה */
+  margin: 0;
+  padding: 0;
 }
 .toText {
   color: #6b7280;
+  font-size: 13px; /* הגדלה מ-12 ל-13 */
+  padding: 0 3px; /* הגדלה מ-2 ל-3 */
+  line-height: 1.2;
+  align-self: flex-end; /* יישור לתחתית כמו הכפתור והשדות */
+  height: 28px; /* גובה זהה לשדות והכפתור */
+  display: flex;
+  align-items: center; /* ממורכז אנכית בתוך הגובה */
 }
 .priceApply {
   border: none;
   background: #e5e7eb;
-  width: 34px;
-  height: 34px;
-  border-radius: 17px;
+  width: 28px; /* הגדלה מ-22 ל-28 */
+  height: 28px; /* הגדלה מ-22 ל-28 */
+  border-radius: 14px; /* חצי מהגובה */
   cursor: pointer;
   color: #111827;
+  flex: 0 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px; /* הגדלה מ-11 ל-13 */
+  align-self: flex-end; /* יישור לתחתית כמו השדות */
 }
 .priceApply:disabled {
   opacity: 0.6;
@@ -264,6 +387,100 @@
 .searchInputContainer {
   position: relative;
   margin-bottom: 8px;
+}
+
+/* עיצוב חדש לשורת החיפוש */
+.searchRow {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* ממרכז אופקית */
+  gap: 12px;
+  padding: 8px 4px 14px 4px;
+  direction: rtl;
+}
+
+.searchActionButton {
+  background: #0563ff;
+  color: #ffffff;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.18s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+.searchActionButton:hover:not(:disabled) {
+  background: #0455d8;
+}
+.searchActionButton:active:not(:disabled) {
+  background: #044cbc;
+}
+.searchActionButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.searchInputWrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.searchField {
+  width: 100%;
+  font-size: 14px;
+  padding: 10px 38px 10px 14px; /* אייקון/ניקוי מצד שמאל RTL */
+  border: 2px solid #111; /* שחור דק כמו בדוגמה */
+  background: #fff;
+  color: #374151;
+  border-radius: 999px;
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  direction: rtl;
+  font-family: inherit;
+}
+.searchField:focus {
+  border-color: #111; /* נשאר שחור, ללא הדגשת כחול */
+  box-shadow: none; /* ביטול זוהר כחול */
+  outline: none;
+}
+
+.clearInlineButton {
+  position: absolute;
+  left: 14px; /* RTL - כפתור ניקוי בצד שמאל */
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #6b7280;
+  font-size: 18px;
+  line-height: 1;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.clearInlineButton:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+.clearInlineButton:active {
+  background: #e5e7eb;
+}
+.clearInlineButton:focus-visible {
+  outline: 2px solid #0563ff;
+  outline-offset: 2px;
 }
 
 .searchInput {
@@ -324,9 +541,9 @@
 @media (max-width: 1024px) {
   .sidebar {
     width: 100%;
+    flex: 1 1 auto;
     margin-bottom: 20px;
     position: static; /* במובייל לא צריך sticky */
-    max-height: none; /* מסיר את מגבלת הגובה במובייל */
-    overflow-y: visible;
+    height: auto;
   }
 }

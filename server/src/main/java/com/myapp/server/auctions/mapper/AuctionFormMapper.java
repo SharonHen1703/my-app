@@ -51,7 +51,6 @@ public class AuctionFormMapper {
         auction.setCategories(categoriesJson);
         auction.setImageUrls(imageUrlsJson);
         auction.setMinPrice(request.minPrice());
-        auction.setBuyNowPrice(null); // Business rule: not supported yet
         auction.setBidIncrement(request.bidIncrement());
         auction.setCurrentBidAmount(null); // Business rule: no current bid until first bid is placed
         auction.setHighestMaxBid(null); // Business rule: no bids yet

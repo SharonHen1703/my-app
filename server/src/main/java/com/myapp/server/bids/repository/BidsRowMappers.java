@@ -24,8 +24,7 @@ class BidsRowMappers {
                 rs.getBigDecimal("current_bid_amount"),
                 rs.getInt("bids_count"),
                 highestUser,
-                rs.getBigDecimal("highest_max_bid"),
-                rs.getBigDecimal("buy_now_price")
+                rs.getBigDecimal("highest_max_bid")
         );
     }
 

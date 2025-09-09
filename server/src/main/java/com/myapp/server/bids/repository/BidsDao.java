@@ -82,8 +82,7 @@ public class BidsDao {
             BigDecimal currentBid,
             int bidsCount,
             Long highestUserId,
-            BigDecimal highestMaxBid,
-            BigDecimal buyNowPrice
+            BigDecimal highestMaxBid
     ) {}
 
     public record UserBidSummaryRow(

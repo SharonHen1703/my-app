@@ -21,7 +21,7 @@ class AuctionLockingJdbcOps {
     BidsDao.AuctionRow lockAuctionForUpdate(long auctionId) {
         return jdbc.queryForObject("""
             SELECT id, seller_id, status, start_date, end_date, min_price, bid_increment,
-                   current_bid_amount, bids_count, highest_user_id, highest_max_bid, buy_now_price
+                   current_bid_amount, bids_count, highest_user_id, highest_max_bid
             FROM public.auctions
             WHERE id = ?
             FOR UPDATE
@@ -32,7 +32,7 @@ class AuctionLockingJdbcOps {
     BidsDao.AuctionRow getAuction(long auctionId) {
         return jdbc.query("""
             SELECT id, seller_id, status, start_date, end_date, min_price, bid_increment,
-                   current_bid_amount, bids_count, highest_user_id, highest_max_bid, buy_now_price
+                   current_bid_amount, bids_count, highest_user_id, highest_max_bid
             FROM public.auctions
             WHERE id = ?
         """, (rs, rn) -> mappers.mapAuctionRow(rs), auctionId).stream().findFirst().orElse(null);

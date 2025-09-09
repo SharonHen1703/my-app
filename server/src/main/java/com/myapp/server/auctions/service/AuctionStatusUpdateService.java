@@ -44,26 +44,4 @@ public class AuctionStatusUpdateService {
             System.out.println("Updated " + expiredAuctions.size() + " expired auctions");
         }
     }
-
-    /**
-     * עדכון ידני של סטטוס מכרז ספציפי
-     */
-    @Transactional
-    public void updateAuctionStatus(Long auctionId) {
-        Auction auction = auctionRepository.findById(auctionId).orElse(null);
-        if (auction == null || auction.getStatus() != AuctionStatus.ACTIVE) {
-            return;
-        }
-
-        OffsetDateTime now = OffsetDateTime.now();
-        if (auction.getEndDate().isBefore(now)) {
-            if (auction.getBidsCount() > 0) {
-                auction.setStatus(AuctionStatus.SOLD);
-            } else {
-                auction.setStatus(AuctionStatus.UNSOLD);
-            }
-            auction.setUpdatedAt(now);
-            auctionRepository.save(auction);
-        }
-    }
 }

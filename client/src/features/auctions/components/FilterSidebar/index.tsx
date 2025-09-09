@@ -40,6 +40,7 @@ export default function FilterSidebar({
     maxPrice != null ? String(maxPrice) : ""
   );
   const [priceError, setPriceError] = useState<string>("");
+  const [pendingSearch, setPendingSearch] = useState<string>(searchText);
 
   // מספר הקטגוריות שיוצגו בהתחלה
   const INITIAL_CATEGORIES_COUNT = 6;
@@ -54,26 +55,40 @@ export default function FilterSidebar({
 
   return (
     <div className={styles.sidebar}>
-      {/* Search Filter */}
+      {/* Search Filter (button triggers search) */}
       <div className={styles.filterSection}>
-        <div className={styles.filterHeader}>
-          <span className={styles.filterTitle}>חיפוש</span>
-        </div>
-        <div className={styles.filterContent}>
-          <div className={styles.searchInputContainer}>
+        <div className={styles.searchRow}>
+          <button
+            type="button"
+            className={styles.searchActionButton}
+            onClick={() => onSearchChange?.(pendingSearch.trim())}
+            title="בצע חיפוש"
+          >
+            חיפוש
+          </button>
+          <div className={styles.searchInputWrapper}>
             <input
               type="text"
-              placeholder="חפש במכרזים..."
-              value={searchText}
-              onChange={(e) => onSearchChange?.(e.target.value)}
-              className={styles.searchInput}
+              className={styles.searchField}
+              placeholder="חפש פריט..."
+              value={pendingSearch}
+              onChange={(e) => setPendingSearch(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  onSearchChange?.(pendingSearch.trim());
+                }
+                if (e.key === "Escape") {
+                  setPendingSearch("");
+                }
+              }}
             />
-            {searchText && (
+            {pendingSearch && (
               <button
                 type="button"
-                onClick={() => onSearchChange?.("")}
-                className={styles.clearSearchButton}
-                title="נקה חיפוש"
+                className={styles.clearInlineButton}
+                onClick={() => setPendingSearch("")}
+                aria-label="נקה חיפוש"
+                title="נקה"
               >
                 ×
               </button>
@@ -180,7 +195,7 @@ export default function FilterSidebar({
                   />
                 </div>
               </div>
-              <span className={styles.toText}>to</span>
+              <span className={styles.toText}>עד</span>
               <div className={styles.priceInput}>
                 <label className={styles.priceLabel}>Max</label>
                 <div className={styles.priceField}>
@@ -230,7 +245,7 @@ export default function FilterSidebar({
                 })()}
                 title="החל סינון מחיר"
               >
-                →
+                ←
               </button>
             </div>
             {priceError && (
