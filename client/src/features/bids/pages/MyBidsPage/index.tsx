@@ -70,7 +70,10 @@ export default function MyBidsPage() {
     }
   }, [user]);
 
-  const getTimeRemainingClass = (endDate: string): string => {
+  const getTimeRemainingClass = (endDate: string, status?: string): string => {
+    if (status === "ended") {
+      return styles.timeRemaining;
+    }
     return isAuctionUrgent(endDate)
       ? `${styles.timeRemaining} ${styles.urgent}`
       : styles.timeRemaining;
@@ -250,8 +253,10 @@ export default function MyBidsPage() {
       key: "timeRemaining",
       header: "זמן שנותר",
       accessor: (bid: UserBidSummaryItem) => (
-        <span className={getTimeRemainingClass(bid.endDate)}>
-          {calculateTimeRemaining(bid.endDate)}
+        <span className={getTimeRemainingClass(bid.endDate, bid.status)}>
+          {bid.status === "ended"
+            ? "הסתיים"
+            : calculateTimeRemaining(bid.endDate)}
         </span>
       ),
       comparator: (a: UserBidSummaryItem, b: UserBidSummaryItem) =>

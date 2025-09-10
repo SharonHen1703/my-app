@@ -281,7 +281,7 @@ export default function AuctionsList() {
           minPrice: effectiveMinPrice,
           maxPrice: effectiveMaxPrice,
           conditions: effectiveConditions,
-          searchText: effectiveSearchText
+          searchText: effectiveSearchText,
         });
 
         const data = await fetchAuctions(
@@ -438,7 +438,7 @@ export default function AuctionsList() {
       maxFromUrl,
       condsFromUrl,
       searchFromUrl,
-      fullUrl: window.location.href
+      fullUrl: window.location.href,
     });
 
     // קבע את הקטגוריה מה-URL
@@ -634,7 +634,7 @@ export default function AuctionsList() {
         <h1 className={styles.title}>מכרזים פעילים</h1>
         <div className={styles.headerActions}>
           <a
-            href="/my-auctions"
+            href="/my-auctions-smart"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.myAuctionsLink}
