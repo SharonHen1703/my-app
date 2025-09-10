@@ -79,16 +79,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
-			<version>11.8.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-database-postgresql</artifactId>
-			<version>11.8.0</version>
-		</dependency>
-		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-api</artifactId>
 			<version>0.12.6</version>
@@ -111,26 +101,9 @@
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
-				<excludes>
-					<!-- Exclude duplicate Flyway migration to avoid version conflict -->
-					<exclude>db/migration/V5__add_more_auctions_for_pagination.sql</exclude>
-					<exclude>db/migration/V4__sample_auctions.sql</exclude>
-					<exclude>db/migration/V10__users_unique_email_drop_address.sql</exclude>
-				</excludes>
 			</resource>
 		</resources>
 		<plugins>
-			<plugin>
-				<groupId>org.flywaydb</groupId>
-				<artifactId>flyway-maven-plugin</artifactId>
-				<version>11.8.0</version>
-				<configuration>
-					<!-- Default locations points to src/main/resources/db/migration -->
-					<schemas>
-						<schema>public</schema>
-					</schemas>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

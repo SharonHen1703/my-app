@@ -1,4 +1,4 @@
-﻿# My App - Auction System
+# My App - Auction System
 
 A full-stack auction system built with Spring Boot backend and React frontend. The system manages user authentication, auction creation, and bidding functionality through REST APIs with JWT-based authentication via cookies.
 
@@ -15,23 +15,18 @@ A full-stack auction system built with Spring Boot backend and React frontend. T
 
 The Spring Boot server runs on port `8081` by default.
 
-**Unix/macOS:**
-
-```bash
-cd server
-./mvnw spring-boot:run
-```
-
 **Windows:**
 
 ```cmd
 cd server
 mvnw.cmd spring-boot:run
+# Or if Maven is installed globally:
+mvn spring-boot:run
 ```
 
 - **Default port:** `8081`
 - **Configuration:** `server/src/main/resources/application.properties` and `application-dev.properties`
-- **Database:** PostgreSQL (configured for dev), Flyway migrations run automatically
+- **Database:** PostgreSQL (configured for dev)
 - **Modules:** Authentication (`auth`), Auctions (`auctions`), Bidding (`bids`)
 
 ### Frontend
@@ -88,8 +83,9 @@ To switch database configuration, update the `spring.datasource.*` properties in
 
 ```bash
 cd server
-./mvnw test          # Unix/macOS
-mvnw.cmd test        # Windows
+./mvnw test          # Unix/macOS (wrapper)
+mvnw.cmd test        # Windows (wrapper)
+mvn test             # If Maven installed globally
 ```
 
 **Frontend tests:**
