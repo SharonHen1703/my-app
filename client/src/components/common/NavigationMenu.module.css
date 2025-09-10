@@ -1,0 +1,162 @@
+/* Navigation Menu Component Styles */
+
+.navigationMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.navigationMenu.fixed {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+}
+
+.navigationMenu.relative {
+  position: relative;
+}
+
+.navigationButtons {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.navigationLink {
+  background: #f3f4f6;
+  color: #374151;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid #d1d5db;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.navigationLink:hover {
+  background: #e5e7eb;
+  border-color: #9ca3af;
+  text-decoration: none;
+}
+
+.userMenuButton {
+  background: #374151;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.userMenuButton:hover {
+  background: #4b5563;
+}
+
+.userMenuButton[aria-expanded="true"] {
+  background: #4b5563;
+}
+
+.userMenuArrow {
+  font-size: 0.75rem;
+  transition: transform 0.2s ease;
+}
+
+.userMenuButton[aria-expanded="true"] .userMenuArrow {
+  transform: rotate(180deg);
+}
+
+.userMenuDropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  min-width: 200px;
+  z-index: 50;
+}
+
+.userInfo {
+  padding: 0.75rem 1rem;
+}
+
+.userName {
+  font-weight: 600;
+  color: #111827;
+  font-size: 0.875rem;
+}
+
+.userEmail {
+  color: #6b7280;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.dropdownSeparator {
+  margin: 0;
+  border: none;
+  border-top: 1px solid #e5e7eb;
+}
+
+.logoutButton {
+  width: 100%;
+  text-align: right;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  color: #dc2626;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.logoutButton:hover {
+  background: #fee2e2;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .navigationMenu.fixed {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-bottom: 1rem;
+  }
+
+  .navigationButtons {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .navigationLink,
+  .userMenuButton {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navigationButtons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .navigationLink,
+  .userMenuButton {
+    text-align: center;
+    width: 100%;
+  }
+}

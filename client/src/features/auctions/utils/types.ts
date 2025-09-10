@@ -72,6 +72,7 @@ export interface CreateAuctionRequest {
   endDate: string; // ISO string
   status: string;
   bidsCount: number;
+  images?: string[]; // Array of image URLs or base64 strings
 }
 
 export interface CreateAuctionResponse {

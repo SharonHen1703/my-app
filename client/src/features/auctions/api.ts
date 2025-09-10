@@ -53,18 +53,6 @@ export async function fetchAuctions(
   return data;
 }
 
-export async function fetchCategories(): Promise<string[]> {
-  const res = await fetch(`${BASE}/auctions/categories`);
-  if (!res.ok) throw new Error(`Failed to load categories (${res.status})`);
-  return res.json();
-}
-
-export async function fetchCategoriesMap(): Promise<Record<string, string>> {
-  const res = await fetch(`${BASE}/auctions/categories/map`);
-  if (!res.ok) throw new Error(`Failed to load categories map (${res.status})`);
-  return res.json();
-}
-
 export async function getAuctionDetail(id: number): Promise<AuctionListItem> {
   const res = await fetch(`${BASE}/auctions/${id}`);
   if (!res.ok) throw new Error(`Failed to load auction detail (${res.status})`);
@@ -95,8 +83,6 @@ export async function placeBid(
   return res.json();
 }
 
-// (removed) getNextBidInfo: UI now uses auction.minBidToPlace directly
-
 export interface BidHistoryItem {
   snapshotId: number;
   bidId: number;
@@ -104,6 +90,7 @@ export interface BidHistoryItem {
   displayedBid: number;
   snapshotTime: string; // ISO
   kind: string; // USER_BID, AUTO_RAISE, TIE_AUTO
+  bidType: string; // ידני, אוטומטי
 }
 
 export async function getBidHistory(
@@ -116,7 +103,7 @@ export async function getBidHistory(
 
 export async function getUserBidsSummary(): Promise<UserBidSummaryItem[]> {
   console.log("🔍 getUserBidsSummary - making request with credentials...");
-  const res = await fetch(`${BASE}/users/me/bids/summary`, {
+  const res = await fetch(`${BASE}/bids/my/summary`, {
     credentials: "include", // Use authenticated user
   });
   console.log("📡 getUserBidsSummary - response status:", res.status, res.ok);
@@ -130,7 +117,7 @@ export async function getUserBidsSummary(): Promise<UserBidSummaryItem[]> {
 }
 
 export async function getUserAuctions(): Promise<UserAuctionItem[]> {
-  const res = await fetch(`${BASE}/users/me/auctions`, {
+  const res = await fetch(`${BASE}/auctions/my`, {
     credentials: "include", // Use authenticated user
   });
   if (!res.ok) throw new Error(`Failed to load user auctions (${res.status})`);
@@ -138,19 +125,47 @@ export async function getUserAuctions(): Promise<UserAuctionItem[]> {
 }
 
 export async function createAuction(
-  auctionData: CreateAuctionRequest
+  auctionData: CreateAuctionRequest,
+  images?: File[]
 ): Promise<CreateAuctionResponse> {
-  const res = await fetch(`${BASE}/auctions`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    credentials: "include", // Include authentication
-    body: JSON.stringify(auctionData),
-  });
+  // If we have images, use FormData to handle file uploads
+  if (images && images.length > 0) {
+    const formData = new FormData();
 
-  if (!res.ok) {
-    const text = await res.text().catch(() => "");
-    throw new Error(text || `Failed to create auction (${res.status})`);
+    // Add auction data as JSON string
+    formData.append("auctionData", JSON.stringify(auctionData));
+
+    // Add each image file
+    images.forEach((image, index) => {
+      formData.append(`image_${index}`, image);
+    });
+
+    const res = await fetch(`${BASE}/auctions`, {
+      method: "POST",
+      credentials: "include", // Include authentication
+      body: formData, // Don't set Content-Type header - browser will set it with boundary
+    });
+
+    if (!res.ok) {
+      const text = await res.text().catch(() => "");
+      throw new Error(text || `Failed to create auction (${res.status})`);
+    }
+
+    return res.json();
+  } else {
+    // No images - use regular JSON
+    const res = await fetch(`${BASE}/auctions`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include", // Include authentication
+      body: JSON.stringify(auctionData),
+    });
+
+    if (!res.ok) {
+      const text = await res.text().catch(() => "");
+      throw new Error(text || `Failed to create auction (${res.status})`);
+    }
+
+    return res.json();
   }
-
-  return res.json();
 }

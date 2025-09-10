@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 50;
+  z-index: 1100;
   backdrop-filter: blur(3px);
 }
 
@@ -65,7 +65,7 @@
 }
 
 .auctionInfo {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
   padding: 1rem;
   background: #f8fafc;
   border-radius: 8px;
@@ -79,6 +79,59 @@
   color: #1f2937;
 }
 
+.currentBidInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: #f0f9ff;
+  border-radius: 6px;
+  direction: rtl;
+  text-align: right;
+}
+
+.currentBidLabel {
+  font-size: 0.9rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+.currentBidAmount {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000000;
+}
+
+.userBidInfo {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #f0f9ff;
+  border-radius: 6px;
+  border: 1px solid #0ea5e9;
+}
+
+.leadingStatus {
+  color: #16a34a;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  direction: rtl;
+  text-align: center;
+}
+
+.currentMaxBid {
+  color: #374151;
+  font-size: 0.95rem;
+  direction: rtl;
+  text-align: right;
+}
+
+.currentMaxBid strong {
+  color: #1f2937;
+  font-weight: 600;
+}
+
 .currentBid {
   color: #374151;
   font-size: 1rem;
@@ -87,7 +140,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .field {

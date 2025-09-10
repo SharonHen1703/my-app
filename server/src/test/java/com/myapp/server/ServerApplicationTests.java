@@ -19,13 +19,13 @@ class ServerApplicationTests {
 
 	@Autowired BidsService bidsService;
 
-	Long auctionId = 1L; // assumes sample data migrations
+	Long auctionId = 1L; // assumes sample data exists in database
 	Long userA = 16L;    // not the seller per sample data
 	Long userB = 17L;
 
 	@BeforeEach
 	void setup() {
-		// assumes Flyway migrations populated sample auctions/users
+		// assumes database has been populated with sample auctions/users
 	}
 
 	@Test

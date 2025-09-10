@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import type { AuctionListItem } from "../../utils/types";
 import { placeBid, getUserBidsSummary } from "../../api";
 import { isAuctionEnded } from "../../utils/timeUtils";
+import { useAuth } from "../../../auth/useAuth";
 import styles from "./BidSubmissionDialog.module.css";
 
 const formatNumber = (num: number) => {
@@ -21,10 +22,15 @@ export default function BidSubmissionDialog({
   onClose,
   onBidPlaced,
 }: Props) {
+  const { user } = useAuth();
   const [maxBid, setMaxBid] = useState(auction?.minBidToPlace || 0);
   const [requiredMin, setRequiredMin] = useState<number | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [userBidInfo, setUserBidInfo] = useState<{
+    yourMax: number | null;
+    isLeading: boolean;
+  } | null>(null);
 
   // עדכון הערך כאשר האוקציה משתנה + חישוב מינימום נדרש לפי כללים (Leader/Non-leader)
   useEffect(() => {
@@ -45,6 +51,7 @@ export default function BidSubmissionDialog({
       console.log("� Server-calculated minBidToPlace:", baseMin);
 
       let computedMin = baseMin;
+      let userBidItem = null;
 
       // Try refine using user bid summary to handle leader rule: incomingMax > previousMax
       try {
@@ -82,6 +89,7 @@ export default function BidSubmissionDialog({
         });
         console.log("🎯 Found user bid for this auction:", item);
         if (item) {
+          userBidItem = item; // Save for later use
           console.log("📊 Found bid item:", {
             leading: item.leading,
             yourMax: item.yourMax,
@@ -90,19 +98,19 @@ export default function BidSubmissionDialog({
           });
 
           if (item.leading) {
-            // Leader can bid the same as their current maxBid or higher
-            // For leader: incomingMax >= previousMax, so minimum is previousMax
-            const leaderMin = item.yourMax ?? 0;
+            // Leader case: Must bid more than their current maxBid
+            // For leader: minimum is yourMax + 1 (or some small increment)
+            const leaderMinimum = (item.yourMax || 0) + 1;
             console.log(
               "👑 LEADER case - yourMax:",
               item.yourMax,
-              "leaderMin:",
-              leaderMin,
-              "baseMin:",
+              "leaderMinimum (yourMax + 1):",
+              leaderMinimum,
+              "baseMin (general minimum):",
               baseMin
             );
-            // Leader should show their current max, not the server's min
-            computedMin = leaderMin;
+            // Leader should use the higher of their minimum or the general minimum
+            computedMin = Math.max(leaderMinimum, baseMin);
             console.log("👑 LEADER final computedMin:", computedMin);
           } else {
             console.log(
@@ -131,6 +139,15 @@ export default function BidSubmissionDialog({
       if (!cancelled) {
         setRequiredMin(computedMin);
         setMaxBid(computedMin);
+        // Save user bid info for display
+        if (userBidItem) {
+          setUserBidInfo({
+            yourMax: userBidItem.yourMax,
+            isLeading: userBidItem.leading,
+          });
+        } else {
+          setUserBidInfo(null);
+        }
       }
     };
 
@@ -210,6 +227,29 @@ export default function BidSubmissionDialog({
         </div>
 
         <div className={styles.content}>
+          <div className={styles.auctionInfo}>
+            <h3 className={styles.auctionTitle}>{auction.title}</h3>
+            {userBidInfo && userBidInfo.yourMax !== null && (
+              <div className={styles.currentBidInfo}>
+                <span className={styles.currentBidLabel}>
+                  ההצעה הנוכחית שלך{user ? `(#${user.id})` : ""}:
+                </span>
+                <span className={styles.currentBidAmount}>
+                  ₪{formatNumber(userBidInfo.yourMax)}
+                </span>
+              </div>
+            )}
+            {userBidInfo && (
+              <>
+                {userBidInfo.isLeading && (
+                  <div className={styles.leadingStatus}>
+                    אתה מוביל כעת במכרז! 🏆
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.field}>
               <label htmlFor="max-bid" className={styles.label}>
@@ -228,9 +268,13 @@ export default function BidSubmissionDialog({
                     setMaxBid(value || minVal);
                   }}
                   className={styles.bidInput}
-                  placeholder={`${formatNumber(
-                    requiredMin ?? auction.minBidToPlace
-                  )}`}
+                  placeholder={
+                    userBidInfo?.isLeading && userBidInfo.yourMax
+                      ? `כמוביל, עליך להציע יותר מההצעה הנוכחית שלך שהיא ₪${formatNumber(
+                          userBidInfo.yourMax
+                        )}`
+                      : `${formatNumber(requiredMin ?? auction.minBidToPlace)}`
+                  }
                   required
                 />
                 <span className={styles.currency}>₪</span>

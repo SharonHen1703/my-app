@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { fetchCategoriesMap } from "../../api";
+import { AUCTION_CATEGORIES } from "../../utils/categories";
 import styles from "./index.module.css";
 
 interface CategoryFilterProps {
@@ -11,44 +10,8 @@ export default function CategoryFilter({
   selectedCategory,
   onCategoryChange,
 }: CategoryFilterProps) {
-  const [categoriesMap, setCategoriesMap] = useState<Record<string, string>>(
-    {}
-  );
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const loadCategories = async () => {
-      try {
-        setLoading(true);
-        const categoriesMapData = await fetchCategoriesMap();
-        setCategoriesMap(categoriesMapData);
-      } catch (err) {
-        console.error("Failed to load categories:", err);
-        setError("שגיאה בטעינת קטגוריות");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadCategories();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className={styles.container}>
-        <div className={styles.loading}>טוען קטגוריות...</div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className={styles.container}>
-        <div className={styles.error}>{error}</div>
-      </div>
-    );
-  }
+  // השתמש בקטגוריות הקבועות ישירות
+  const categoriesMap = AUCTION_CATEGORIES;
 
   return (
     <div className={styles.container}>

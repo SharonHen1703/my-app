@@ -59,10 +59,13 @@
 }
 
 :global(#root) {
-  max-width: 1280px;
+  /* הרחבת פריסת האפליקציה – עדיין לא מלא מסך כדי לשמור על קריאות */
+  width: 100%;
+  max-width: 1500px; /* היה 1280 */
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 2rem 3rem; /* קצת יותר אוויר לצדדים במסכים רחבים */
+  text-align: initial; /* לא נכפה יישור מרכזי על כל התוכן */
+  box-sizing: border-box;
 }
 
 :global(.read-the-docs) {
@@ -87,10 +90,26 @@
 
 /* App Component Styles */
 .container {
-  max-width: 100rem; /* רוחב רחב יותר להכיל 4 מכרזים */
+  /* שימוש ב-clamp כדי לאפשר רוחב דינמי נעים לעין */
+  width: clamp(70rem, 92vw, 103rem); /* ~1120px עד כ-1648px */
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center; /* מרכז את הכותרת */
+  padding: 2rem 0 3rem;
+  text-align: center; /* יישור כותרות (רכיבים פנימיים יכולים לדרוס) */
+  box-sizing: border-box;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    width: clamp(60rem, 94vw, 70rem);
+    padding: 1.5rem 0 2.5rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    width: 100%;
+    padding: 1.25rem 0 2rem;
+  }
 }
 
 .title {

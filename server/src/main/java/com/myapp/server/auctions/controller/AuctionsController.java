@@ -4,20 +4,24 @@ import com.myapp.server.auctions.dto.AuctionDetail;
 import com.myapp.server.auctions.dto.AuctionListItem;
 import com.myapp.server.auctions.dto.CreateAuctionRequest;
 import com.myapp.server.auctions.dto.CreateAuctionResponse;
+import com.myapp.server.auctions.dto.UserAuctionItem;
 import com.myapp.server.auctions.service.AuctionService;
-import com.myapp.server.auth.JwtService;
+import com.myapp.server.common.auth.JwtTokenExtractor;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.Cookie;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.multipart.MultipartFile;
 import jakarta.validation.Valid;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.math.BigDecimal;
 
@@ -25,14 +29,11 @@ import java.math.BigDecimal;
 public class AuctionsController {
 
     private final AuctionService auctionService;
-    private final JwtService jwtService;
+    private final JwtTokenExtractor jwtTokenExtractor;
 
-    @Value("${app.auth.cookie.name}")
-    private String cookieName;
-
-    public AuctionsController(AuctionService auctionService, JwtService jwtService) { 
+    public AuctionsController(AuctionService auctionService, JwtTokenExtractor jwtTokenExtractor) { 
         this.auctionService = auctionService;
-        this.jwtService = jwtService;
+        this.jwtTokenExtractor = jwtTokenExtractor;
     }
 
     @GetMapping("/api/auctions")
@@ -60,7 +61,7 @@ public class AuctionsController {
         : conditions.stream().filter(s -> s != null && !s.isBlank()).collect(Collectors.toList());
 
     // Get current user ID to exclude their auctions
-    Long excludeSellerId = getCurrentUserId(request);
+    Long excludeSellerId = jwtTokenExtractor.getCurrentUserId(request);
 
     Page<AuctionListItem> auctionsPage =
         auctionService.findActiveAuctions(pageNumber, limit, category, minPrice, maxPrice, normalizedConditions, search, excludeSellerId);
@@ -75,16 +76,6 @@ public class AuctionsController {
         return body;
     }
 
-    @GetMapping("/api/auctions/categories")
-    public List<String> getCategories() {
-        return auctionService.getAllCategories();
-    }
-
-    @GetMapping("/api/auctions/categories/map")
-    public java.util.Map<String, String> getCategoriesMap() {
-        return auctionService.getCategoriesMap();
-    }
-
     @GetMapping("/api/auctions/{id}")
     public ResponseEntity<AuctionDetail> getOne(@PathVariable Long id) {
         try {
@@ -97,35 +88,46 @@ public class AuctionsController {
 
     @PostMapping("/api/auctions")
     @ResponseStatus(HttpStatus.CREATED)
-    public CreateAuctionResponse createAuction(@Valid @RequestBody CreateAuctionRequest request, HttpServletRequest httpRequest) {
-        Long currentUserId = getCurrentUserId(httpRequest);
+    public CreateAuctionResponse createAuction(
+            @RequestPart("auctionData") String auctionDataJson,
+            @RequestPart(value = "image_0", required = false) MultipartFile image0,
+            @RequestPart(value = "image_1", required = false) MultipartFile image1,
+            @RequestPart(value = "image_2", required = false) MultipartFile image2,
+            @RequestPart(value = "image_3", required = false) MultipartFile image3,
+            @RequestPart(value = "image_4", required = false) MultipartFile image4,
+            @RequestPart(value = "image_5", required = false) MultipartFile image5,
+            @RequestPart(value = "image_6", required = false) MultipartFile image6,
+            @RequestPart(value = "image_7", required = false) MultipartFile image7,
+            @RequestPart(value = "image_8", required = false) MultipartFile image8,
+            @RequestPart(value = "image_9", required = false) MultipartFile image9,
+            HttpServletRequest httpRequest) throws Exception {
+                
+        Long currentUserId = jwtTokenExtractor.getCurrentUserId(httpRequest);
         if (currentUserId == null) {
             throw new org.springframework.web.server.ResponseStatusException(HttpStatus.UNAUTHORIZED, "Authentication required");
         }
-        return auctionService.createAuction(request, currentUserId);
+        
+        // Parse JSON data
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        CreateAuctionRequest request = mapper.readValue(auctionDataJson, CreateAuctionRequest.class);
+        
+        // Collect images
+        List<MultipartFile> images = Arrays.asList(image0, image1, image2, image3, image4, image5, image6, image7, image8, image9)
+                .stream()
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+        
+        return auctionService.createAuction(request, currentUserId, images);
     }
 
-    private Long getCurrentUserId(HttpServletRequest request) {
-        String token = extractTokenFromCookie(request);
-        if (token == null || token.isBlank()) {
-            return null; // For public endpoints, return null instead of throwing
+    @GetMapping("/api/auctions/my")
+    public ResponseEntity<List<UserAuctionItem>> getCurrentUserAuctions(HttpServletRequest request) {
+        Long currentUserId = jwtTokenExtractor.getCurrentUserId(request);
+        if (currentUserId == null) {
+            throw new org.springframework.web.server.ResponseStatusException(HttpStatus.UNAUTHORIZED, "Authentication required");
         }
-        try {
-            String sub = jwtService.getSubject(token);
-            return Long.valueOf(sub);
-        } catch (Exception e) {
-            return null; // Invalid token, return null for public endpoints
-        }
-    }
-
-    private String extractTokenFromCookie(HttpServletRequest req) {
-        if (req.getCookies() != null) {
-            for (Cookie cookie : req.getCookies()) {
-                if (cookieName.equals(cookie.getName())) {
-                    return cookie.getValue();
-                }
-            }
-        }
-        return null;
+        List<UserAuctionItem> auctions = auctionService.getUserAuctions(currentUserId);
+        return ResponseEntity.ok(auctions);
     }
 }

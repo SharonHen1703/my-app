@@ -14,8 +14,14 @@ const AuctionCard = memo(function AuctionCard({
 }: AuctionCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
-  const firstImage =
-    item.imageUrls && item.imageUrls.length > 0 ? item.imageUrls[0] : null;
+
+  // Filter out invalid image URLs (old file paths that no longer work)
+  const validImageUrls =
+    item.imageUrls?.filter(
+      (url) => url && (url.startsWith("data:") || url.startsWith("http"))
+    ) || [];
+
+  const firstImage = validImageUrls.length > 0 ? validImageUrls[0] : null;
 
   const price = item.currentBidAmount ?? item.minPrice;
 
@@ -53,6 +59,7 @@ const AuctionCard = memo(function AuctionCard({
                   clipRule="evenodd"
                 />
               </svg>
+              <span className={styles.placeholderText}>אין תמונה</span>
             </div>
           )}
           {!imageLoaded && !imageError && firstImage && (

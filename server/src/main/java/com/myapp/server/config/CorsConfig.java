@@ -19,6 +19,7 @@ public class CorsConfig {
         corsConfiguration.setAllowedOriginPatterns(Arrays.asList("http://localhost:*"));
         corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
         corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        corsConfiguration.setMaxAge(3600L); // Add maxAge like WebConfig had
         
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfiguration);

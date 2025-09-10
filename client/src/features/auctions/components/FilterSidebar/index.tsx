@@ -40,6 +40,30 @@ export default function FilterSidebar({
     maxPrice != null ? String(maxPrice) : ""
   );
   const [priceError, setPriceError] = useState<string>("");
+  const [pendingSearch, setPendingSearch] = useState<string>(searchText);
+
+  // פונקציה לטיפול בהקלדה של מחיר - מאפשרת רק מספרים חיוביים
+  const handlePriceInput = (value: string, setter: (value: string) => void) => {
+    // מסיר תווים שאינם מספרים, נקודה או פסיק
+    const cleanedValue = value.replace(/[^0-9.,]/g, "");
+
+    // מחליף פסיק בנקודה לאחידות
+    const normalizedValue = cleanedValue.replace(",", ".");
+
+    // מוודא שיש רק נקודה אחת
+    const parts = normalizedValue.split(".");
+    let finalValue;
+    if (parts.length > 2) {
+      finalValue = parts[0] + "." + parts.slice(1).join("");
+    } else {
+      finalValue = normalizedValue;
+    }
+
+    // מוודא שהמספר לא שלילי (אם יש מינוס, מסיר אותו)
+    finalValue = finalValue.replace("-", "");
+
+    setter(finalValue);
+  };
 
   // מספר הקטגוריות שיוצגו בהתחלה
   const INITIAL_CATEGORIES_COUNT = 6;
@@ -54,26 +78,40 @@ export default function FilterSidebar({
 
   return (
     <div className={styles.sidebar}>
-      {/* Search Filter */}
+      {/* Search Filter (button triggers search) */}
       <div className={styles.filterSection}>
-        <div className={styles.filterHeader}>
-          <span className={styles.filterTitle}>חיפוש</span>
-        </div>
-        <div className={styles.filterContent}>
-          <div className={styles.searchInputContainer}>
+        <div className={styles.searchRow}>
+          <button
+            type="button"
+            className={styles.searchActionButton}
+            onClick={() => onSearchChange?.(pendingSearch.trim())}
+            title="בצע חיפוש"
+          >
+            חיפוש
+          </button>
+          <div className={styles.searchInputWrapper}>
             <input
               type="text"
-              placeholder="חפש במכרזים..."
-              value={searchText}
-              onChange={(e) => onSearchChange?.(e.target.value)}
-              className={styles.searchInput}
+              className={styles.searchField}
+              placeholder="חפש פריט..."
+              value={pendingSearch}
+              onChange={(e) => setPendingSearch(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  onSearchChange?.(pendingSearch.trim());
+                }
+                if (e.key === "Escape") {
+                  setPendingSearch("");
+                }
+              }}
             />
-            {searchText && (
+            {pendingSearch && (
               <button
                 type="button"
-                onClick={() => onSearchChange?.("")}
-                className={styles.clearSearchButton}
-                title="נקה חיפוש"
+                className={styles.clearInlineButton}
+                onClick={() => setPendingSearch("")}
+                aria-label="נקה חיפוש"
+                title="נקה"
               >
                 ×
               </button>
@@ -173,14 +211,20 @@ export default function FilterSidebar({
                     pattern="[0-9]*[.,]?[0-9]*"
                     value={minInput}
                     onChange={(e) => {
-                      setMinInput(e.target.value);
+                      handlePriceInput(e.target.value, setMinInput);
                       setPriceError("");
+                    }}
+                    onKeyDown={(e) => {
+                      // מנע הקלדת תווים שליליים
+                      if (e.key === "-" || e.key === "e" || e.key === "E") {
+                        e.preventDefault();
+                      }
                     }}
                     placeholder="0"
                   />
                 </div>
               </div>
-              <span className={styles.toText}>to</span>
+              <span className={styles.toText}>עד</span>
               <div className={styles.priceInput}>
                 <label className={styles.priceLabel}>Max</label>
                 <div className={styles.priceField}>
@@ -190,8 +234,14 @@ export default function FilterSidebar({
                     pattern="[0-9]*[.,]?[0-9]*"
                     value={maxInput}
                     onChange={(e) => {
-                      setMaxInput(e.target.value);
+                      handlePriceInput(e.target.value, setMaxInput);
                       setPriceError("");
+                    }}
+                    onKeyDown={(e) => {
+                      // מנע הקלדת תווים שליליים
+                      if (e.key === "-" || e.key === "e" || e.key === "E") {
+                        e.preventDefault();
+                      }
                     }}
                     placeholder=""
                   />
@@ -230,7 +280,7 @@ export default function FilterSidebar({
                 })()}
                 title="החל סינון מחיר"
               >
-                →
+                ←
               </button>
             </div>
             {priceError && (

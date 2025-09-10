@@ -5,6 +5,8 @@ import { getAuctionDetail } from "../../api";
 import { translateCondition } from "../../utils/conditionTranslations";
 import { calculateTimeRemaining, isAuctionEnded } from "../../utils/timeUtils";
 import BidSubmissionDialog from "../../components/PlaceBidDialog/BidSubmissionDialog";
+import { UserMenu } from "../../../../components/common";
+import { useAuth } from "../../../auth/useAuth";
 import styles from "./index.module.css";
 
 export default function AuctionDetailPage() {
@@ -14,6 +16,10 @@ export default function AuctionDetailPage() {
   const [error, setError] = useState<string | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [bidDialogOpen, setBidDialogOpen] = useState(false);
+  const { user } = useAuth();
+
+  // Check if the current user is the seller of this auction
+  const isOwner = user && auction && user.id === auction.sellerId;
 
   useEffect(() => {
     // גלול לראש הדף כשהקומפוננטה נטענת
@@ -88,6 +94,9 @@ export default function AuctionDetailPage() {
 
   return (
     <div className={styles.container}>
+      {/* User menu */}
+      <UserMenu />
+
       {/* Main content */}
       <div className={styles.content}>
         <h1 className={styles.title}>{auction.title}</h1>
@@ -189,28 +198,34 @@ export default function AuctionDetailPage() {
               </div>
             </div>
 
-            {/* Bid action */}
-            <div className={styles.bidSection}>
-              <button
-                type="button"
-                onClick={() => setBidDialogOpen(true)}
-                className={styles.placeBidButton}
-                disabled={isAuctionEnded(auction.endDate)}
-              >
-                {isAuctionEnded(auction.endDate) ? "המכרז הסתיים" : "הגש הצעה"}
-              </button>
-            </div>
+            {/* Bid action - only show if user is not the owner */}
+            {!isOwner && (
+              <div className={styles.bidSection}>
+                <button
+                  type="button"
+                  onClick={() => setBidDialogOpen(true)}
+                  className={styles.placeBidButton}
+                  disabled={isAuctionEnded(auction.endDate)}
+                >
+                  {isAuctionEnded(auction.endDate)
+                    ? "המכרז הסתיים"
+                    : "הגש הצעה"}
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
 
-      {/* Bid submission dialog */}
-      <BidSubmissionDialog
-        open={bidDialogOpen}
-        auction={auction}
-        onClose={() => setBidDialogOpen(false)}
-        onBidPlaced={handleBidPlaced}
-      />
+      {/* Bid submission dialog - only show if user is not the owner */}
+      {!isOwner && (
+        <BidSubmissionDialog
+          open={bidDialogOpen}
+          auction={auction}
+          onClose={() => setBidDialogOpen(false)}
+          onBidPlaced={handleBidPlaced}
+        />
+      )}
     </div>
   );
 }

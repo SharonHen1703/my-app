@@ -1,2 +1,0 @@
--- baseline (no-op)
--- H2 compatible baseline migration
