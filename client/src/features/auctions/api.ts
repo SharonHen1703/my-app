@@ -53,12 +53,6 @@ export async function fetchAuctions(
   return data;
 }
 
-export async function fetchCategoriesMap(): Promise<Record<string, string>> {
-  const res = await fetch(`${BASE}/auctions/categories/map`);
-  if (!res.ok) throw new Error(`Failed to load categories map (${res.status})`);
-  return res.json();
-}
-
 export async function getAuctionDetail(id: number): Promise<AuctionListItem> {
   const res = await fetch(`${BASE}/auctions/${id}`);
   if (!res.ok) throw new Error(`Failed to load auction detail (${res.status})`);
@@ -131,19 +125,47 @@ export async function getUserAuctions(): Promise<UserAuctionItem[]> {
 }
 
 export async function createAuction(
-  auctionData: CreateAuctionRequest
+  auctionData: CreateAuctionRequest,
+  images?: File[]
 ): Promise<CreateAuctionResponse> {
-  const res = await fetch(`${BASE}/auctions`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    credentials: "include", // Include authentication
-    body: JSON.stringify(auctionData),
-  });
+  // If we have images, use FormData to handle file uploads
+  if (images && images.length > 0) {
+    const formData = new FormData();
 
-  if (!res.ok) {
-    const text = await res.text().catch(() => "");
-    throw new Error(text || `Failed to create auction (${res.status})`);
+    // Add auction data as JSON string
+    formData.append("auctionData", JSON.stringify(auctionData));
+
+    // Add each image file
+    images.forEach((image, index) => {
+      formData.append(`image_${index}`, image);
+    });
+
+    const res = await fetch(`${BASE}/auctions`, {
+      method: "POST",
+      credentials: "include", // Include authentication
+      body: formData, // Don't set Content-Type header - browser will set it with boundary
+    });
+
+    if (!res.ok) {
+      const text = await res.text().catch(() => "");
+      throw new Error(text || `Failed to create auction (${res.status})`);
+    }
+
+    return res.json();
+  } else {
+    // No images - use regular JSON
+    const res = await fetch(`${BASE}/auctions`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include", // Include authentication
+      body: JSON.stringify(auctionData),
+    });
+
+    if (!res.ok) {
+      const text = await res.text().catch(() => "");
+      throw new Error(text || `Failed to create auction (${res.status})`);
+    }
+
+    return res.json();
   }
-
-  return res.json();
 }

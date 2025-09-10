@@ -9,6 +9,7 @@ import {
 import AddItemModal from "../../components/AddItemModal";
 import styles from "./index.module.css";
 import { useAuth } from "../../../auth/useAuth";
+import { UserMenu } from "../../../../components/common";
 
 type SortColumn =
   | "title"
@@ -357,11 +358,13 @@ export default function MyAuctionsPage() {
 
   return (
     <div className={styles.container}>
+      <UserMenu />
+
       <div className={styles.headerSection}>
         <h1 className={styles.title}>המכרזים שלי</h1>
         <div className={styles.headerActions}>
           <button onClick={handleAddItem} className={styles.addItemButton}>
-            הוסף פריט
+            הוסף מכרז
           </button>
         </div>
       </div>

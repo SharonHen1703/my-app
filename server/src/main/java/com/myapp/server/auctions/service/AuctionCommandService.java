@@ -16,6 +16,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * Handles all write operations for auctions.
@@ -34,7 +37,7 @@ public class AuctionCommandService {
     /**
      * יוצר מכרז חדש
      */
-    public CreateAuctionResponse createAuction(CreateAuctionRequest request, Long sellerId) {
+    public CreateAuctionResponse createAuction(CreateAuctionRequest request, Long sellerId, List<MultipartFile> images) {
         // Validate user exists
         User seller = userRepository.findById(sellerId)
             .orElseThrow(() -> new BusinessRuleViolationException(HttpStatus.NOT_FOUND, "User not found"));
@@ -43,7 +46,7 @@ public class AuctionCommandService {
         validationPolicy.validateCreateAuctionRequest(request);
         
         // Build auction entity
-        Auction auction = buildAuctionFromRequest(request, seller);
+        Auction auction = buildAuctionFromRequest(request, seller, images);
         
         // Save auction
         Auction savedAuction = auctionRepository.save(auction);
@@ -55,7 +58,7 @@ public class AuctionCommandService {
     /**
      * בונה entity של מכרז מה-DTO
      */
-    private Auction buildAuctionFromRequest(CreateAuctionRequest request, User seller) {
+    private Auction buildAuctionFromRequest(CreateAuctionRequest request, User seller, List<MultipartFile> images) {
         // Validate and convert business data using policy
         AuctionCondition validatedCondition = validationPolicy.validateAndParseCondition(request.condition());
         AuctionStatus validatedStatus = validationPolicy.validateAndParseStatus(request.status());
@@ -63,7 +66,15 @@ public class AuctionCommandService {
         
         // Serialize categories to JSON
         String categoriesJson = auctionFormMapper.serializeCategories(request.categories());
-        String imageUrlsJson = auctionDefaults.getDefaultImageUrls();
+        
+        // Handle images
+        String imageUrlsJson;
+        if (images != null && !images.isEmpty()) {
+            // TODO: Process images to base64 - for now use default
+            imageUrlsJson = auctionDefaults.getDefaultImageUrls();
+        } else {
+            imageUrlsJson = auctionDefaults.getDefaultImageUrls();
+        }
         
         // Use pure mapper with validated data
         return auctionFormMapper.fromCreateAuctionRequest(

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import type { AuctionListItem } from "../../utils/types";
 import { placeBid, getUserBidsSummary } from "../../api";
 import { isAuctionEnded } from "../../utils/timeUtils";
+import { useAuth } from "../../../auth/useAuth";
 import styles from "./BidSubmissionDialog.module.css";
 
 const formatNumber = (num: number) => {
@@ -21,6 +22,7 @@ export default function BidSubmissionDialog({
   onClose,
   onBidPlaced,
 }: Props) {
+  const { user } = useAuth();
   const [maxBid, setMaxBid] = useState(auction?.minBidToPlace || 0);
   const [requiredMin, setRequiredMin] = useState<number | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -227,11 +229,21 @@ export default function BidSubmissionDialog({
         <div className={styles.content}>
           <div className={styles.auctionInfo}>
             <h3 className={styles.auctionTitle}>{auction.title}</h3>
+            {userBidInfo && userBidInfo.yourMax !== null && (
+              <div className={styles.currentBidInfo}>
+                <span className={styles.currentBidLabel}>
+                  ההצעה הנוכחית שלך{user ? `(#${user.id})` : ""}:
+                </span>
+                <span className={styles.currentBidAmount}>
+                  ₪{formatNumber(userBidInfo.yourMax)}
+                </span>
+              </div>
+            )}
             {userBidInfo && (
               <>
                 {userBidInfo.isLeading && (
                   <div className={styles.leadingStatus}>
-                    🏆 אתה מוביל כעת במכרז!
+                    אתה מוביל כעת במכרז! 🏆
                   </div>
                 )}
               </>
@@ -268,19 +280,8 @@ export default function BidSubmissionDialog({
                 <span className={styles.currency}>₪</span>
               </div>
               <div className={styles.helpText}>
-                {userBidInfo?.isLeading && userBidInfo.yourMax ? (
-                  <>
-                    מינימום לצורך הגשת הצעה: ₪
-                    {formatNumber(requiredMin ?? auction.minBidToPlace)}
-                    (יותר מההצעה הנוכחית שלך ₪
-                    {formatNumber(userBidInfo.yourMax)})
-                  </>
-                ) : (
-                  <>
-                    הכנס ₪{formatNumber(requiredMin ?? auction.minBidToPlace)}{" "}
-                    או יותר
-                  </>
-                )}
+                הכנס ₪{formatNumber(requiredMin ?? auction.minBidToPlace)} או
+                יותר
               </div>
             </div>
 

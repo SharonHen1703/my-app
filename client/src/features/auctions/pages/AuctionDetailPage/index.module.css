@@ -419,3 +419,98 @@
     font-size: 1rem;
   }
 }
+
+/* User Menu Styles */
+.userMenuContainer {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+}
+
+.userMenuButton {
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #374151;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.userMenuButton:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.userMenuButton[aria-expanded="true"] {
+  background: #f3f4f6;
+  border-color: #6b7280;
+}
+
+.chevron {
+  font-size: 0.75rem;
+  transition: transform 0.2s ease;
+}
+
+.userMenuButton[aria-expanded="true"] .chevron {
+  transform: rotate(180deg);
+}
+
+.userDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  z-index: 50;
+  min-width: 200px;
+  margin-top: 0.25rem;
+}
+
+.userInfo {
+  padding: 0.75rem 1rem;
+}
+
+.userName {
+  font-weight: 600;
+  color: #111827;
+  font-size: 0.875rem;
+}
+
+.userEmail {
+  color: #6b7280;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.dropdownSeparator {
+  margin: 0;
+  border: none;
+  border-top: 1px solid #e5e7eb;
+}
+
+.logoutButton {
+  width: 100%;
+  text-align: right;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  color: #dc2626;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.logoutButton:hover {
+  background: #fee2e2;
+}

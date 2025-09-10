@@ -16,6 +16,7 @@ import SmartTable, {
   type SortDirection,
 } from "../../../shared/SmartTable";
 import { useAuth } from "../../../auth/useAuth";
+import { UserMenu } from "../../../../components/common";
 
 export default function MyBidsPage() {
   const [bids, setBids] = useState<UserBidSummaryItem[]>([]);
@@ -108,6 +109,7 @@ export default function MyBidsPage() {
   if (bids.length === 0) {
     return (
       <div className={styles.container}>
+        <UserMenu />
         <div className={styles.headerSection}>
           <h1 className={styles.title}>ההצעות שלי</h1>
         </div>
@@ -333,7 +335,12 @@ export default function MyBidsPage() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>ההצעות שלי</h1>
+      {/* User menu */}
+      <UserMenu />
+
+      <div className={styles.headerSection}>
+        <h1 className={styles.title}>ההצעות שלי</h1>
+      </div>
 
       <SmartTable<UserBidSummaryItem>
         rows={bids}

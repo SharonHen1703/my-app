@@ -19,7 +19,7 @@
 .title {
   font-size: 2rem;
   font-weight: bold;
-  color: #1e40af;
+  color: #000000;
   margin: 0;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .addItemButton {
-  background: #059669;
+  background: #3b82f6;
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -42,7 +42,7 @@
 }
 
 .addItemButton:hover {
-  background: #047857;
+  background: #2563eb;
   transform: translateY(-1px);
 }
 
@@ -264,7 +264,7 @@
 
 .tableCell {
   padding: 1rem;
-  text-align: right;
+  text-align: center;
   vertical-align: middle;
 }
 
@@ -414,20 +414,20 @@
 
 /* Table Content Styles */
 .auctionTitle {
-  color: #1e40af;
+  color: #374151;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.2s ease;
 }
 
 .auctionTitle:hover {
-  color: #1d4ed8;
+  color: #1f2937;
   text-decoration: underline;
 }
 
 .currentPrice {
   font-weight: 600;
-  color: #059669;
+  color: #374151;
   font-size: 1rem;
 }
 

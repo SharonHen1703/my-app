@@ -1,6 +1,8 @@
 package com.myapp.server.auth.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,7 +20,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false, length = 255, unique = true)
+    @NotBlank(message = "שדה האימייל הוא חובה")
+    @Email(message = "פורמט האימייל אינו תקין")
     private String email;
 
     @Column(name = "first_name", nullable = false)

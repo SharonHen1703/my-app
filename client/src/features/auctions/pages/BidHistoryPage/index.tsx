@@ -9,6 +9,7 @@ import {
 import FullWidthAuctionCard from "../../components/FullWidthAuctionCard";
 import BidSubmissionDialog from "../../components/PlaceBidDialog/BidSubmissionDialog";
 import { useAuth } from "../../../auth/useAuth";
+import { UserMenu } from "../../../../components/common";
 import styles from "./index.module.css";
 
 export default function BidHistoryPage() {
@@ -28,9 +29,8 @@ export default function BidHistoryPage() {
       auction.status === "active"
   );
 
-  const showOwnerMessage = Boolean(
-    user && auction && user.id === auction.sellerId
-  );
+  // Don't show owner message - removed as per requirement
+  const showOwnerMessage = false;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -99,6 +99,9 @@ export default function BidHistoryPage() {
 
   return (
     <div className={styles.container}>
+      {/* User menu */}
+      <UserMenu />
+
       <div className={styles.header}>
         <h1 className={styles.title}>היסטוריית הצעות</h1>
       </div>

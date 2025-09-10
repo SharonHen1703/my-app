@@ -7,6 +7,9 @@ import { Link, useNavigate } from "react-router-dom";
 const MIN_FULL_NAME_CHARS = 2;
 const MIN_PASSWORD_CHARS = 8;
 
+// Email validation regex
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export default function SignupPage() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -28,6 +31,15 @@ export default function SignupPage() {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const confirmRef = useRef<HTMLInputElement>(null);
+
+  // Email validation function
+  function validateEmail(emailValue: string): boolean {
+    const trimmedEmail = emailValue.trim();
+    if (!trimmedEmail) {
+      return false;
+    }
+    return EMAIL_REGEX.test(trimmedEmail);
+  }
 
   // Submit-only invalid state for required fields
   const fullNameInvalid =
@@ -83,6 +95,9 @@ export default function SignupPage() {
     // Check email - show "required" message for empty field
     if (!email.trim()) {
       setEmailError("שדה חובה");
+      hasError = true;
+    } else if (!validateEmail(email)) {
+      setEmailError("פורמט האימייל אינו תקין");
       hasError = true;
     }
 
@@ -277,6 +292,12 @@ export default function SignupPage() {
             onChange={(e) => {
               setEmail(e.target.value);
               if (emailError) setEmailError(null);
+            }}
+            onBlur={() => {
+              const trimmedEmail = email.trim();
+              if (trimmedEmail && !validateEmail(trimmedEmail)) {
+                setEmailError("פורמט האימייל אינו תקין");
+              }
             }}
             required
             aria-required="true"

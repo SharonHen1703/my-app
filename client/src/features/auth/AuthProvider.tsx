@@ -28,12 +28,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const refresh = async () => {
     try {
-      console.log("🔄 AuthProvider refresh - fetching user data...");
       const userData = await me();
-      console.log("✅ AuthProvider - user data fetched:", userData);
       setUser(userData);
-    } catch (error) {
-      console.error("❌ AuthProvider - error fetching user:", error);
+    } catch {
       setUser(null);
     }
   };
@@ -48,6 +45,60 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setUser(null);
     }
   };
+
+  // Listen for logout events from other tabs/windows
+  useEffect(() => {
+    // Method 1: localStorage events (works across all tabs)
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === "auth_logout") {
+        console.log(
+          "🔄 Logout detected from another tab/window via localStorage"
+        );
+        setUser(null);
+        // Redirect to login if not already on a public route
+        if (!PUBLIC_ROUTES.includes(location.pathname)) {
+          window.location.href = "/login";
+        }
+      } else if (e.key === "auth_login") {
+        console.log(
+          "🔄 Login detected from another tab/window via localStorage"
+        );
+        // Refresh user data when login happens in another tab
+        refresh();
+      }
+    };
+
+    // Method 2: BroadcastChannel (more modern, works within same domain)
+    let broadcastChannel: BroadcastChannel | null = null;
+    if ("BroadcastChannel" in window) {
+      broadcastChannel = new BroadcastChannel("auth_channel");
+      broadcastChannel.addEventListener("message", (event) => {
+        if (event.data.type === "LOGOUT") {
+          console.log(
+            "🔄 Logout detected from another tab/window via BroadcastChannel"
+          );
+          setUser(null);
+          if (!PUBLIC_ROUTES.includes(location.pathname)) {
+            window.location.href = "/login";
+          }
+        } else if (event.data.type === "LOGIN") {
+          console.log(
+            "🔄 Login detected from another tab/window via BroadcastChannel"
+          );
+          refresh();
+        }
+      });
+    }
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      if (broadcastChannel) {
+        broadcastChannel.close();
+      }
+    };
+  }, [location.pathname]);
 
   useEffect(() => {
     const initAuth = async () => {

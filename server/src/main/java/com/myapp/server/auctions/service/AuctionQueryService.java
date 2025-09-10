@@ -2,7 +2,6 @@ package com.myapp.server.auctions.service;
 
 import com.myapp.server.auctions.dto.AuctionDetail;
 import com.myapp.server.auctions.dto.AuctionListItem;
-import com.myapp.server.auctions.entity.enums.AuctionCategory;
 import com.myapp.server.auctions.entity.enums.AuctionStatus;
 import com.myapp.server.auctions.mapper.AuctionDetailMapper;
 import com.myapp.server.auctions.mapper.AuctionListMapper;
@@ -17,11 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 /**
  * Thin orchestrator for auction read operations.
@@ -43,10 +39,6 @@ public class AuctionQueryService {
 
     public AuctionDetail findAuctionDetailAnyStatus(Long id) {
         return runQueryMapToObject(() -> auctionRepository.findAuctionDetailByIdAnyStatus(id), () -> "Auction not found");
-    }
-
-    public Map<String, String> getCategoryMapping() {
-        return Arrays.stream(AuctionCategory.values()).collect(Collectors.toMap(AuctionCategory::getCode, AuctionCategory::getDisplayName));
     }
 
     public List<com.myapp.server.auctions.dto.UserAuctionItem> getUserAuctions(Long userId) {

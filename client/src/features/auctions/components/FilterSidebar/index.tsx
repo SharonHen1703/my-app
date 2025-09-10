@@ -42,6 +42,29 @@ export default function FilterSidebar({
   const [priceError, setPriceError] = useState<string>("");
   const [pendingSearch, setPendingSearch] = useState<string>(searchText);
 
+  // פונקציה לטיפול בהקלדה של מחיר - מאפשרת רק מספרים חיוביים
+  const handlePriceInput = (value: string, setter: (value: string) => void) => {
+    // מסיר תווים שאינם מספרים, נקודה או פסיק
+    const cleanedValue = value.replace(/[^0-9.,]/g, "");
+
+    // מחליף פסיק בנקודה לאחידות
+    const normalizedValue = cleanedValue.replace(",", ".");
+
+    // מוודא שיש רק נקודה אחת
+    const parts = normalizedValue.split(".");
+    let finalValue;
+    if (parts.length > 2) {
+      finalValue = parts[0] + "." + parts.slice(1).join("");
+    } else {
+      finalValue = normalizedValue;
+    }
+
+    // מוודא שהמספר לא שלילי (אם יש מינוס, מסיר אותו)
+    finalValue = finalValue.replace("-", "");
+
+    setter(finalValue);
+  };
+
   // מספר הקטגוריות שיוצגו בהתחלה
   const INITIAL_CATEGORIES_COUNT = 6;
 
@@ -188,8 +211,14 @@ export default function FilterSidebar({
                     pattern="[0-9]*[.,]?[0-9]*"
                     value={minInput}
                     onChange={(e) => {
-                      setMinInput(e.target.value);
+                      handlePriceInput(e.target.value, setMinInput);
                       setPriceError("");
+                    }}
+                    onKeyDown={(e) => {
+                      // מנע הקלדת תווים שליליים
+                      if (e.key === "-" || e.key === "e" || e.key === "E") {
+                        e.preventDefault();
+                      }
                     }}
                     placeholder="0"
                   />
@@ -205,8 +234,14 @@ export default function FilterSidebar({
                     pattern="[0-9]*[.,]?[0-9]*"
                     value={maxInput}
                     onChange={(e) => {
-                      setMaxInput(e.target.value);
+                      handlePriceInput(e.target.value, setMaxInput);
                       setPriceError("");
+                    }}
+                    onKeyDown={(e) => {
+                      // מנע הקלדת תווים שליליים
+                      if (e.key === "-" || e.key === "e" || e.key === "E") {
+                        e.preventDefault();
+                      }
                     }}
                     placeholder=""
                   />

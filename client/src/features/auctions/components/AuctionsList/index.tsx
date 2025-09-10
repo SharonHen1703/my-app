@@ -1,6 +1,8 @@
 import React from "react";
 import type { AuctionListItem } from "../../utils/types";
-import { fetchAuctions, fetchCategoriesMap } from "../../api";
+import { fetchAuctions } from "../../api";
+import { AUCTION_CATEGORIES } from "../../utils/categories";
+import { NavigationMenu } from "../../../../components/common";
 import styles from "./index.module.css";
 import AuctionCard from "../AuctionCard";
 import FilterSidebar from "../FilterSidebar";
@@ -143,21 +145,10 @@ export default function AuctionsList() {
     }
   }, []);
 
-  // טעינת קטגוריות
+  // השתמש בקטגוריות הקבועות
   React.useEffect(() => {
-    const loadCategories = async () => {
-      try {
-        setCategoriesLoading(true);
-        const categoriesData = await fetchCategoriesMap();
-        setCategories(categoriesData);
-      } catch (err) {
-        console.error("Failed to load categories:", err);
-      } finally {
-        setCategoriesLoading(false);
-      }
-    };
-
-    loadCategories();
+    setCategories(AUCTION_CATEGORIES);
+    setCategoriesLoading(false);
   }, []);
 
   // אפקט שמבצע את השחזור בפועל רק אחרי שהפריטים נטענו
@@ -281,7 +272,7 @@ export default function AuctionsList() {
           minPrice: effectiveMinPrice,
           maxPrice: effectiveMaxPrice,
           conditions: effectiveConditions,
-          searchText: effectiveSearchText
+          searchText: effectiveSearchText,
         });
 
         const data = await fetchAuctions(
@@ -438,7 +429,7 @@ export default function AuctionsList() {
       maxFromUrl,
       condsFromUrl,
       searchFromUrl,
-      fullUrl: window.location.href
+      fullUrl: window.location.href,
     });
 
     // קבע את הקטגוריה מה-URL
@@ -630,26 +621,11 @@ export default function AuctionsList() {
 
   return (
     <div className={styles.container}>
+      {/* Navigation Menu - Top Left Corner */}
+      <NavigationMenu showNavLinks={true} />
+
       <div className={styles.headerSection}>
         <h1 className={styles.title}>מכרזים פעילים</h1>
-        <div className={styles.headerActions}>
-          <a
-            href="/my-auctions"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.myAuctionsLink}
-          >
-            המכרזים שלי
-          </a>
-          <a
-            href="/my-bids"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.myBidsLink}
-          >
-            ההצעות שלי
-          </a>
-        </div>
       </div>
 
       <div className={styles.mainContent}>
@@ -813,7 +789,7 @@ export default function AuctionsList() {
           <div className={styles.pagination}>
             <button
               onClick={() => goToPage(currentPage - 1)}
-              disabled={currentPage === 1}
+              disabled={currentPage === 1 || totalPages <= 1}
               className={styles.pageButton}
             >
               הקודם
@@ -822,6 +798,7 @@ export default function AuctionsList() {
               <button
                 key={pageNum}
                 onClick={() => goToPage(pageNum)}
+                disabled={totalPages <= 1}
                 className={`${styles.pageButton} ${
                   pageNum === currentPage ? styles.activePage : ""
                 }`}
@@ -831,7 +808,7 @@ export default function AuctionsList() {
             ))}
             <button
               onClick={() => goToPage(currentPage + 1)}
-              disabled={currentPage === totalPages}
+              disabled={currentPage === totalPages || totalPages <= 1}
               className={styles.pageButton}
             >
               הבא
