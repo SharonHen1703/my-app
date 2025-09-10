@@ -53,7 +53,7 @@ function App() {
                 }
               />
               <Route
-                path="/my-auctions-smart"
+                path="/my-auctions"
                 element={
                   <RequireAuth>
                     <MyAuctionsPageSmart />

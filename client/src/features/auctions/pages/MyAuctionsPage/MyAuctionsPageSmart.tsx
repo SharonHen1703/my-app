@@ -329,7 +329,7 @@ export default function MyAuctionsPageSmart() {
             onClick={() => setIsAddModalOpen(true)}
             className={styles.addButton}
           >
-            הוספת מוצר חדש למכרז
+            הוספת מכרז{" "}
           </button>
         </div>
         <div className={styles.emptyState}>
@@ -354,13 +354,13 @@ export default function MyAuctionsPageSmart() {
   return (
     <div className={styles.container}>
       <div className={styles.headerSection}>
-        <h1 className={styles.title}>המכרזים שלי (Smart Table)</h1>
+        <h1 className={styles.title}>המכרזים שלי</h1>
         <button
           type="button"
           onClick={() => setIsAddModalOpen(true)}
           className={styles.addButton}
         >
-          הוספת מוצר חדש למכרז
+          הוספת מכרז{" "}
         </button>
       </div>
 

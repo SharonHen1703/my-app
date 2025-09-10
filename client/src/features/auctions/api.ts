@@ -128,44 +128,29 @@ export async function createAuction(
   auctionData: CreateAuctionRequest,
   images?: File[]
 ): Promise<CreateAuctionResponse> {
-  // If we have images, use FormData to handle file uploads
+  // Always use FormData to match server expectations
+  const formData = new FormData();
+
+  // Add auction data as JSON string
+  formData.append("auctionData", JSON.stringify(auctionData));
+
+  // Add each image file (if any)
   if (images && images.length > 0) {
-    const formData = new FormData();
-
-    // Add auction data as JSON string
-    formData.append("auctionData", JSON.stringify(auctionData));
-
-    // Add each image file
     images.forEach((image, index) => {
       formData.append(`image_${index}`, image);
     });
-
-    const res = await fetch(`${BASE}/auctions`, {
-      method: "POST",
-      credentials: "include", // Include authentication
-      body: formData, // Don't set Content-Type header - browser will set it with boundary
-    });
-
-    if (!res.ok) {
-      const text = await res.text().catch(() => "");
-      throw new Error(text || `Failed to create auction (${res.status})`);
-    }
-
-    return res.json();
-  } else {
-    // No images - use regular JSON
-    const res = await fetch(`${BASE}/auctions`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include", // Include authentication
-      body: JSON.stringify(auctionData),
-    });
-
-    if (!res.ok) {
-      const text = await res.text().catch(() => "");
-      throw new Error(text || `Failed to create auction (${res.status})`);
-    }
-
-    return res.json();
   }
+
+  const res = await fetch(`${BASE}/auctions`, {
+    method: "POST",
+    credentials: "include", // Include authentication
+    body: formData, // Don't set Content-Type header - browser will set it with boundary
+  });
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(text || `Failed to create auction (${res.status})`);
+  }
+
+  return res.json();
 }
