@@ -15,13 +15,7 @@ public interface AuctionRepository extends JpaRepository<Auction, Long>,
                                           AuctionActiveQueries,
                                           AuctionDetailQueriesFragment,
                                           AuctionUserQueries {
-    
-    /**
-     * מוצא מכרזים פעילים עם מיון לפי תאריך סיום
-     */
-    Page<Auction> findByStatusOrderByEndDate(AuctionStatus status, Pageable pageable);
-    
-    /**
+     /**
      * מוצא מכרזים לפי סטטוס ותאריך סיום
      */
     List<Auction> findByStatusAndEndDateBefore(AuctionStatus status, OffsetDateTime endDate);

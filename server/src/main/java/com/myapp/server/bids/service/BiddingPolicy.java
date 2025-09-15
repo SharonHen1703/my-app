@@ -91,13 +91,6 @@ public class BiddingPolicy {
             );
         }
         
-        if (auction.endDate() != null && auction.endDate().isBefore(java.time.OffsetDateTime.now())) {
-            throw new BusinessRuleViolationException(
-                HttpStatus.CONFLICT, 
-                "המכרז הסתיים"
-            );
-        }
-        
         if (bidderId.equals(auction.sellerId())) {
             throw new BusinessRuleViolationException(
                 HttpStatus.FORBIDDEN, 

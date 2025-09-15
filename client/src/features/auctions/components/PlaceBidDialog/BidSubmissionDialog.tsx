@@ -57,17 +57,8 @@ export default function BidSubmissionDialog({
       try {
         const summary = await getUserBidsSummary();
         if (cancelled) return;
-        console.log("👤 User bid summary:", summary);
-        console.log(
-          "🔍 Looking for auctionId:",
-          auction.id,
-          "type:",
-          typeof auction.id
-        );
-
         // Make sure we're comparing correctly - convert both to numbers
         const targetId = Number(auction.id);
-        console.log("🔍 Converted targetId:", targetId);
 
         const item = summary.find((s) => {
           const summaryId = Number(s.auctionId);
@@ -87,10 +78,9 @@ export default function BidSubmissionDialog({
           });
           return summaryId === targetId;
         });
-        console.log("🎯 Found user bid for this auction:", item);
         if (item) {
           userBidItem = item; // Save for later use
-          console.log("📊 Found bid item:", {
+          Object.assign(userBidItem, {
             leading: item.leading,
             yourMax: item.yourMax,
             currentPrice: item.currentPrice,
@@ -101,40 +91,17 @@ export default function BidSubmissionDialog({
             // Leader case: Must bid more than their current maxBid
             // For leader: minimum is yourMax + 1 (or some small increment)
             const leaderMinimum = (item.yourMax || 0) + 1;
-            console.log(
-              "👑 LEADER case - yourMax:",
-              item.yourMax,
-              "leaderMinimum (yourMax + 1):",
-              leaderMinimum,
-              "baseMin (general minimum):",
-              baseMin
-            );
             // Leader should use the higher of their minimum or the general minimum
             computedMin = Math.max(leaderMinimum, baseMin);
-            console.log("👑 LEADER final computedMin:", computedMin);
-          } else {
-            console.log(
-              "👤 Non-leader case - using server minBidToPlace:",
-              baseMin
-            );
           }
-        } else {
-          console.log(
-            "❌ No bid found for this auction - using server minBidToPlace:",
-            baseMin
-          );
-        }
+        } 
       } catch {
         console.log(
           "⚠️ Error getting user bid summary - using server minBidToPlace:",
           baseMin
         );
         console.log("⚠️ This usually means user is not authenticated");
-        // If unauthenticated or error, fall back to computedMin without user data
-        // no-op
       }
-
-      console.log("🎯 Final computedMin:", computedMin);
 
       if (!cancelled) {
         setRequiredMin(computedMin);

@@ -4,6 +4,7 @@ import com.myapp.server.auctions.dto.AuctionDetail;
 import com.myapp.server.auctions.dto.AuctionListItem;
 import com.myapp.server.auctions.dto.CreateAuctionRequest;
 import com.myapp.server.auctions.dto.CreateAuctionResponse;
+import com.myapp.server.auctions.dto.UserAuctionItem;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class AuctionService {
      * @param maxPrice מחיר מקסימלי (null = ללא מגבלה)
      * @param conditions רשימת מצבי מוצר לסינון (null/empty = כל המצבים)
      * @param searchText טקסט חופשי לחיפוש בכותרת ותיאור (null = ללא חיפוש)
-     * @param excludeSellerId ID של מוכר להרחקה (null = ללא הרחקה)
+     * @param excludeSellerId ID של מוכר לא רצוי (null = ללא)
      * @return דף מכרזים מסונן ומוין
      */
     public Page<AuctionListItem> findActiveAuctions(
@@ -61,7 +62,7 @@ public class AuctionService {
     /**
      * מוצא מכרזים של משתמש ספציפי (בהתבסס על sellerId)
      */
-    public List<com.myapp.server.auctions.dto.UserAuctionItem> getUserAuctions(Long userId) {
+    public List<UserAuctionItem> getUserAuctions(Long userId) {
         return auctionQueryService.getUserAuctions(userId);
     }
 
@@ -71,13 +72,5 @@ public class AuctionService {
     @Transactional
     public CreateAuctionResponse createAuction(CreateAuctionRequest request, Long currentUserId, List<MultipartFile> images) {
         return auctionCommandService.createAuction(request, currentUserId, images);
-    }
-    
-    /**
-     * יוצר מכרז חדש בלי תמונות
-     */
-    @Transactional
-    public CreateAuctionResponse createAuction(CreateAuctionRequest request, Long currentUserId) {
-        return auctionCommandService.createAuction(request, currentUserId, null);
     }
 }

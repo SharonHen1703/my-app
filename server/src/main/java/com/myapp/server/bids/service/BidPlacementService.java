@@ -24,7 +24,7 @@ public class BidPlacementService {
     
     @Transactional
     public PlaceBidResponse placeBid(long auctionId, PlaceBidRequest req, Long currentUserId) {
-        Long bidderId = currentUserId; // trust session, ignore client userId
+        Long bidderId = currentUserId;
         var auction = dao.lockAuctionForUpdate(auctionId); // row lock for concurrency
         
         // A) Basic validations

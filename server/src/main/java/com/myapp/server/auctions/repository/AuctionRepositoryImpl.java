@@ -33,9 +33,30 @@ public class AuctionRepositoryImpl implements AuctionActiveQueries,
     // === Domain methods (return entities without DTO mapping) ===
     
     @Override
-    public Page<Auction> findActiveAuctionsDomain(Pageable pageable, String category, BigDecimal minPrice, BigDecimal maxPrice, List<AuctionCondition> conditions, String searchText, Long excludeSellerId) {
-        return executeSearchWithoutMapping(() -> searchText != null && !searchText.trim().isEmpty() ? searchQueries.findActiveAuctionsFilteredWithSearchExcludeSeller(category, minPrice, maxPrice, conditions, excludeSellerId, searchText, pagingHelper.getOffset(pageable), pagingHelper.getPageSize(pageable)) : searchQueries.findActiveAuctionsFilteredNoSearchExcludeSeller(category, minPrice, maxPrice, conditions, excludeSellerId, pagingHelper.getOffset(pageable), pagingHelper.getPageSize(pageable)), () -> searchText != null && !searchText.trim().isEmpty() ? searchQueries.countActiveAuctionsFilteredWithSearchExcludeSeller(category, minPrice, maxPrice, conditions, excludeSellerId, searchText) : searchQueries.countActiveAuctionsFilteredNoSearchExcludeSeller(category, minPrice, maxPrice, conditions, excludeSellerId), pageable);
-    }
+    public Page<Auction> findActiveAuctionsDomain(Pageable pageable, String category, 
+        BigDecimal minPrice, BigDecimal maxPrice, List<AuctionCondition> conditions, 
+        String searchText, Long excludeSellerId) {
+    
+        boolean hasSearchText = searchText != null && !searchText.trim().isEmpty();
+        int offset = pagingHelper.getOffset(pageable);
+        int pageSize = pagingHelper.getPageSize(pageable);
+        
+        Supplier<List<Auction>> searchFunction = hasSearchText 
+            ? () -> searchQueries.findActiveAuctionsFilteredWithSearchExcludeSeller(
+                category, minPrice, maxPrice, conditions, excludeSellerId, 
+                searchText, offset, pageSize)
+            : () -> searchQueries.findActiveAuctionsFilteredNoSearchExcludeSeller(
+                category, minPrice, maxPrice, conditions, excludeSellerId, 
+                offset, pageSize);
+        
+        Supplier<Long> countFunction = hasSearchText
+            ? () -> searchQueries.countActiveAuctionsFilteredWithSearchExcludeSeller(
+                category, minPrice, maxPrice, conditions, excludeSellerId, searchText)
+            : () -> searchQueries.countActiveAuctionsFilteredNoSearchExcludeSeller(
+                category, minPrice, maxPrice, conditions, excludeSellerId);
+        
+        return executeSearchWithoutMapping(searchFunction, countFunction, pageable);
+}
     
     // === Domain methods for user queries ===
     

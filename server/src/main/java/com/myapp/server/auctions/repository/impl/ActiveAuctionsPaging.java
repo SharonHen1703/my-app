@@ -74,21 +74,6 @@ public class ActiveAuctionsPaging {
     }
 
     /**
-     * Helper to validate pagination parameters.
-     */
-    public void validatePagination(Pageable pageable) {
-        if (pageable == null) {
-            throw new IllegalArgumentException("Pageable cannot be null");
-        }
-        if (pageable.getPageSize() <= 0) {
-            throw new IllegalArgumentException("Page size must be greater than 0");
-        }
-        if (pageable.getPageNumber() < 0) {
-            throw new IllegalArgumentException("Page number must be non-negative");
-        }
-    }
-
-    /**
      * Create empty page when no results are found.
      */
     public Page<AuctionRepository.AuctionProjection> createEmptyPage(Pageable pageable) {

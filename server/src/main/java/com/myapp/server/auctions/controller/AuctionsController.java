@@ -39,7 +39,7 @@ public class AuctionsController {
     @GetMapping("/api/auctions")
     public Map<String, Object> listActive(
         @RequestParam(defaultValue = "0") int page,
-        @RequestParam(defaultValue = "12") int size,
+        @RequestParam(defaultValue = "20") int size,
         @RequestParam(required = false) String category,
         @RequestParam(required = false) BigDecimal minPrice,
         @RequestParam(required = false) BigDecimal maxPrice,
@@ -50,20 +50,20 @@ public class AuctionsController {
         int limit = Math.max(1, Math.min(size, 100));
         int pageNumber = Math.max(0, page);
 
-    // Validate min<=max when both provided
-    if (minPrice != null && maxPrice != null && minPrice.compareTo(maxPrice) > 0) {
-        throw new IllegalArgumentException("minPrice must be less than or equal to maxPrice");
-    }
+        // Validate min<=max when both provided
+        if (minPrice != null && maxPrice != null && minPrice.compareTo(maxPrice) > 0) {
+            throw new IllegalArgumentException("minPrice must be less than or equal to maxPrice");
+        }
 
-    // Normalize empty condition list
-    List<String> normalizedConditions = (conditions == null || conditions.isEmpty())
-        ? null
-        : conditions.stream().filter(s -> s != null && !s.isBlank()).collect(Collectors.toList());
+        // Normalize empty condition list
+        List<String> normalizedConditions = (conditions == null || conditions.isEmpty())
+            ? null
+            : conditions.stream().filter(s -> s != null && !s.isBlank()).collect(Collectors.toList());
 
-    // Get current user ID to exclude their auctions
-    Long excludeSellerId = jwtTokenExtractor.getCurrentUserId(request);
+        // Get current user ID to exclude their auctions
+        Long excludeSellerId = jwtTokenExtractor.getCurrentUserId(request);
 
-    Page<AuctionListItem> auctionsPage =
+        Page<AuctionListItem> auctionsPage =
         auctionService.findActiveAuctions(pageNumber, limit, category, minPrice, maxPrice, normalizedConditions, search, excludeSellerId);
 
         Map<String, Object> body = new HashMap<>();

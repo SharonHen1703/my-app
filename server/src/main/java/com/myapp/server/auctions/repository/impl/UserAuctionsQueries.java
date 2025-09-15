@@ -33,7 +33,6 @@ class UserAuctionProjectionImpl implements AuctionRepository.AuctionProjection {
     @Override public BigDecimal getCurrentBidAmount() { return auction.getCurrentBidAmount(); }
     @Override public Integer getBidsCount() { return auction.getBidsCount(); }
     @Override public BigDecimal getMinBidToPlace() { 
-        // Simple calculation for now - ideally would use AuctionPolicy
         return auction.getCurrentBidAmount() != null 
             ? auction.getCurrentBidAmount().add(auction.getBidIncrement())
             : auction.getMinPrice();
